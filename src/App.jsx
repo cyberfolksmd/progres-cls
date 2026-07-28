@@ -1,0 +1,887 @@
+import React, { useState, useEffect } from 'react';
+import {
+  BookOpen, Users, Award, Star, CheckCircle, GraduationCap,
+  MapPin, Phone, Mail, ChevronDown, Clock, Calendar, Zap,
+  Globe, TrendingUp, Heart, ShieldCheck, Menu, X,
+  ArrowRight, BadgeCheck, Trophy
+} from 'lucide-react';
+import { useFadeIn } from './useFadeIn';
+import './index.css';
+
+// ── Data ─────────────────────────────────────────────────
+const COURSES = [
+  {
+    id: 'kids',
+    label: 'Copii (8-11 ani)',
+    title: 'Engleza pentru Copii',
+    age: '8 - 11 ani',
+    levels: [{ label: 'A1.1', cls: 'level-a1' }, { label: 'A1.2', cls: 'level-a1' }, { label: 'A2.1', cls: 'level-a2' }],
+    series: 'Super Minds 1, 2, 3',
+    desc: 'Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.',
+    details: [
+      { icon: <Calendar size={18} />, label: 'Durată', value: '9 luni (septembrie-mai), 2 ori/săptămână' },
+      { icon: <Clock size={18} />, label: 'Lecții', value: '72 lecții · 75 minute fiecare' },
+      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 copii per grupă' },
+    ],
+    priceTotal: '7920',
+    priceMonthly: '880',
+    lessons: '8 lecții',
+    manuals: '500',
+    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
+  },
+  {
+    id: 'teens',
+    label: 'Adolescenți (12-18 ani)',
+    title: 'Engleza pentru Adolescenți',
+    age: '12 - 18 ani',
+    levels: [
+      { label: 'A1', cls: 'level-a1' }, { label: 'A2', cls: 'level-a2' },
+      { label: 'B1', cls: 'level-b1' }, { label: 'B1+', cls: 'level-b1' },
+      { label: 'B2', cls: 'level-b2' }, { label: 'C1', cls: 'level-c1' },
+    ],
+    desc: 'Adolescenții dezvoltă fluența în comunicare, gândirea critică și vocabularul necesar pentru examene și carieră. Grupe separate pe niveluri de la A1 până la C1.',
+    details: [
+      { icon: <Calendar size={18} />, label: 'Durată', value: '9 luni (septembrie-mai), 2 ori/săptămână' },
+      { icon: <Clock size={18} />, label: 'Lecții', value: '72 lecții · 80 minute fiecare' },
+      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 cursanți per grupă' },
+    ],
+    priceTotal: 'De la 8280',
+    priceMonthly: '920 - 1000',
+    lessons: '8 lecții',
+    manuals: '500',
+    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
+  },
+  {
+    id: 'adults',
+    label: 'Adulți (curs intensiv)',
+    title: 'Engleza pentru Adulți',
+    age: 'Adulți',
+    levels: [
+      { label: 'A2', cls: 'level-a2' }, { label: 'B1', cls: 'level-b1' },
+      { label: 'B1+', cls: 'level-b1' }, { label: 'B2', cls: 'level-b2' },
+    ],
+    desc: 'Curs intensiv pentru adulți activi. Ritm alert, rezultate rapide. Orarul de seară permite cursanților să îmbine studiul cu activitatea profesională.',
+    details: [
+      { icon: <Calendar size={18} />, label: 'Durată', value: '4.5 luni · Luni, Miercuri, Vineri 18:30' },
+      { icon: <Clock size={18} />, label: 'Lecții', value: '56 lecții · 90 minute fiecare' },
+      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 cursanți per grupă' },
+    ],
+    priceTotal: 'De la 6720',
+    priceMonthly: '1680 - 1750',
+    lessons: '14 lecții',
+    manuals: '500',
+    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
+  },
+];
+
+const BENEFITS = [
+  { icon: <BookOpen size={28} />, title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne, adaptate fiecărui nivel.' },
+  { icon: <Award size={28} />, title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate, cu experiență internațională și certificare TEFL.' },
+  { icon: <Users size={28} />, title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală și participare activă garantată.' },
+  { icon: <Zap size={28} />, title: 'Lecții interactive', desc: 'Comunicare, jocuri, proiecte și activități practice care dezvoltă fluența.' },
+  { icon: <TrendingUp size={28} />, title: 'Progres vizibil', desc: 'Monitorizăm constant evoluția și oferim feedback personalizat pentru fiecare cursant.' },
+  { icon: <Globe size={28} />, title: 'Pentru toate vârstele', desc: 'Cursuri dedicate copiilor (8+), adolescenților și adulților, adaptate fiecărei categorii.' },
+  { icon: <Heart size={28} />, title: 'Atmosferă prietenoasă', desc: 'Un mediu în care cursanții se simt încurajați să învețe, să pună întrebări, să comunice.' },
+  { icon: <ShieldCheck size={28} />, title: 'Rezultate certificate', desc: 'Pregătire pentru examene Cambridge recunoscute internațional, valabile pe viață.' },
+];
+
+const TEAM = [
+  { 
+    name: 'Ludmila Cebotaru', 
+    role: 'Director General & Profesoară', 
+    img: '/teacher_ludmila.png' 
+  },
+  { 
+    name: 'Anastasia Falca', 
+    role: 'Profesoară de engleză', 
+    img: '/teacher_anastasia.png' 
+  },
+  { 
+    name: 'Cristina Chirica', 
+    role: 'Profesoară de engleză', 
+    img: '/teacher_cristina.png' 
+  },
+  { 
+    name: 'Irina Buliga', 
+    role: 'Profesoară de engleză', 
+    img: '/teacher_irina.png' 
+  },
+  { 
+    name: 'Adriana Musteață', 
+    role: 'Profesoară de engleză', 
+    img: '/teacher_adriana.png' 
+  },
+  { 
+    name: 'Eugenia Ichim', 
+    role: 'Profesoară de engleză', 
+    img: '/teacher_eugenia.png' 
+  },
+];
+
+const TESTIMONIALS = [
+  { text: 'Fiica mea a avansat de la A1 la B1 în 18 luni! Profesoarele sunt extrem de dedicate și răbdătoare.', author: 'Maria D.', course: 'Engleza pentru Copii', rating: 5 },
+  { text: 'Am promovat examenul FCE cu nota B! Mulțumesc echipei Progress CLS pentru pregătirea excelentă.', author: 'Andrei C.', course: 'Pregătire Cambridge B2', rating: 5 },
+  { text: 'Atmosfera prietenoasă și lecțiile interactive m-au ajutat să depășesc teama de a vorbi engleză.', author: 'Elena M.', course: 'Engleza pentru Adulți', rating: 5 },
+];
+
+const CAMBRIDGE_FAQ = [
+  { q: 'De ce am nevoie de un certificat Cambridge?', a: 'Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață.' },
+  { q: 'Care este diferența dintre cursul intensiv și cel extensiv?', a: 'Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor.' },
+  { q: 'Unde susțin examenul Cambridge?', a: 'Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă.' },
+  { q: 'Este ușor examenul?', a: 'Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit.' },
+];
+
+const GENERAL_FAQ = [
+  { q: 'Cum mă pot înscrie la cursuri?', a: 'Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92.' },
+  { q: 'Aveți sediu doar la Botanica sau și în alte sectoare?', a: 'Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii.' },
+  { q: 'Aveți lecții Online sau doar Offline?', a: 'Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active.' },
+];
+
+// ── Components ────────────────────────────────────────────
+
+function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
+  return (
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container navbar-container">
+        <a href="#acasa" className="logo">
+          <img src="/logo2.png" alt="Progress CLS" className="logo-img" style={{ height: '40px' }} />
+        </a>
+        <div className="nav-links">
+          <a href="#acasa">Acasă</a>
+          <a href="#cursuri">Cursuri</a>
+          <a href="#cambridge">Cambridge</a>
+          <a href="#beneficii">Beneficii</a>
+          <a href="#echipa">Echipa</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div className="nav-cta-desktop">
+          <a href="https://maps.google.com/?q=Chișinău, Sarmizegetusa 92" target="_blank" rel="noopener noreferrer" className="nav-info-link nav-address-link">
+            <MapPin size={16} />
+            <span>Adresă</span>
+          </a>
+          <a href="tel:+37369447768" className="nav-info-link nav-phone-link">
+            <Phone size={16} />
+            <span>Sună acum</span>
+          </a>
+          <button onClick={onOpenModal} className="btn btn-primary" style={{ padding: '0.65rem 1.25rem', fontSize: '0.875rem', flexShrink: 0 }}>
+            Înscrie-te acum
+          </button>
+        </div>
+        <div className="nav-cta-mobile">
+          <a href="tel:+37369447768" className="btn-mobile-call">
+            <Phone size={14} />
+            <span>Sună acum</span>
+          </a>
+          <button onClick={onOpenMapModal} className="btn-mobile-pin" aria-label="Cum ajungi la noi">
+            <MapPin size={16} />
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function CourseTabs({ onOpenModal }) {
+  const [active, setActive] = useState(0);
+  const course = COURSES[active];
+  return (
+    <div>
+      <div className="tabs">
+        {COURSES.map((c, i) => (
+          <button key={c.id} className={`tab-btn ${active === i ? 'active' : ''}`} onClick={() => setActive(i)}>
+            {c.label}
+          </button>
+        ))}
+      </div>
+      <div className="course-detail-grid">
+        {/* Left: Info */}
+        <div className="course-info-card">
+          <h3 style={{ fontSize: '1.6rem', marginBottom: '0.75rem' }}>{course.title}</h3>
+          <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.5rem', lineHeight: 1.7, fontSize: '0.95rem' }}>{course.desc}</p>
+          {course.series && (
+            <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>Seria: <strong>{course.series}</strong></p>
+          )}
+          <div className="course-levels">
+            {course.levels.map(l => (
+              <span key={l.label} className={`level-badge ${l.cls}`}>{l.label}</span>
+            ))}
+          </div>
+          <div className="course-detail-list">
+            {course.details.map((d, i) => (
+              <div key={i} className="course-detail-item">
+                <div className="detail-icon">{d.icon}</div>
+                <div>
+                  <span className="detail-label">{d.label}</span>
+                  <span className="detail-value">{d.value}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Right: Pricing */}
+        <div className="price-card">
+          <span className="price-tag">Preț</span>
+          <div className="price-amount">{course.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span></div>
+          <div className="price-period">{course.priceMonthly} lei / lunar ({course.lessons})</div>
+          <div className="price-divider" />
+          <div className="price-features">
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Max. 12 cursanți per grupă</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Materiale Cambridge incluse (manual: +{course.manuals} lei)</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Profesori certificați TEFL</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Feedback individual constant</div>
+          </div>
+          <div className="discounts">
+            <h4>Reduceri disponibile</h4>
+            {course.discounts.map((d, i) => (
+              <div key={i} className="discount-item">
+                <BadgeCheck size={16} color="var(--color-secondary)" style={{ flexShrink: 0 }} />
+                {d}
+              </div>
+            ))}
+          </div>
+          <button onClick={() => onOpenModal(course.id)} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+            Înscrie-te acum <ArrowRight size={18} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FaqItem({ q, a, light = false }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`faq-item ${open ? 'active' : ''} ${light ? 'light' : ''}`}>
+      <div className="faq-q" onClick={() => setOpen(!open)}>
+        {q}
+        <ChevronDown size={20} className="faq-chevron" />
+      </div>
+      <div className="faq-a">{a}</div>
+    </div>
+  );
+}
+
+// ── Main App ──────────────────────────────────────────────
+export default function App() {
+  const [scrolled, setScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState('');
+  useFadeIn();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const openModal = (courseId = '') => {
+    setSelectedCourse(courseId);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <>
+      <Navbar 
+        scrolled={scrolled} 
+        onOpenModal={() => openModal()} 
+        onOpenMapModal={() => setIsMapModalOpen(true)} 
+      />
+
+      {/* ── HERO ─────────────────────────────── */}
+      <section id="acasa" className="hero">
+        <div className="hero-bg-circle hero-bg-circle--1" />
+        <div className="hero-bg-circle hero-bg-circle--2" />
+        <div className="container hero-container">
+          <div className="hero-content">
+            <div className="hero-award-badge animate-fade-up">
+              <span className="award-icon">🏆</span>
+              <span className="award-text">Centrul Lingvistic al Anului 2024</span>
+              <span className="award-divider">·</span>
+              <span className="award-text">Visionary Brand 2025</span>
+              <span className="award-shimmer" />
+            </div>
+            <h1 className="hero-h1 animate-fade-up animate-delay-1">
+              Un pas spre <span className="gradient-text">succes</span><br />cu Progress CLS
+            </h1>
+            <p className="hero-subtitle animate-fade-up animate-delay-2">
+              Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.
+            </p>
+            <div className="hero-pills animate-fade-up animate-delay-2">
+              <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Interactiv</span>
+              <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Eficient</span>
+              <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Accesibil</span>
+            </div>
+            <div className="hero-cta animate-fade-up animate-delay-3">
+              <a href="#cursuri" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+                Descoperă cursurile <ArrowRight size={18} />
+              </a>
+              <a href="tel:+37369447768" className="btn btn-ghost" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+                <Phone size={18} /> Sună-ne
+              </a>
+            </div>
+          </div>
+          <div className="hero-image-wrap animate-fade-up animate-delay-2">
+            <img src="/hero.png" alt="Cursuri de engleză Progress CLS" className="hero-image" />
+            <div className="hero-float-card hero-float-card--1">
+              <div className="hero-float-icon" style={{ background: '#dcfce7', color: '#15803d' }}>
+                <Users size={20} />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>Cursanți activi</div>
+                <div>500+</div>
+              </div>
+            </div>
+            <div className="hero-float-card hero-float-card--2">
+              <div className="hero-float-icon" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#059669' }}>
+                <Award size={20} />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>Centrul Anului</div>
+                <div>2024 & 2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS ────────────────────────────── */}
+      <div className="stats-strip">
+        <div className="container">
+          <div className="stats-grid">
+            <div className="stat-card fade-in delay-1">
+              <div className="stat-icon-wrapper">
+                <Users size={26} />
+              </div>
+              <div className="stat-number">500+</div>
+              <div className="stat-label">Cursanți formați</div>
+            </div>
+            <div className="stat-card fade-in delay-2">
+              <div className="stat-icon-wrapper">
+                <GraduationCap size={26} />
+              </div>
+              <div className="stat-number">6</div>
+              <div className="stat-label">Profesori certificați TEFL</div>
+            </div>
+            <div className="stat-card fade-in delay-3">
+              <div className="stat-icon-wrapper">
+                <Calendar size={26} />
+              </div>
+              <div className="stat-number">10+</div>
+              <div className="stat-label">Ani de experiență</div>
+            </div>
+            <div className="stat-card fade-in delay-4">
+              <div className="stat-icon-wrapper">
+                <Trophy size={26} />
+              </div>
+              <div className="stat-number">2</div>
+              <div className="stat-label">Premii de excelență</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── COURSES ──────────────────────────── */}
+      <section id="cursuri" className="section section--alt">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Cursurile noastre</span>
+            <h2 className="section-title">Alege drumul tău<br />spre noi oportunități</h2>
+            <p className="section-subtitle">
+              Descoperă plăcerea de a învăța limba engleză într-un mediu prietenos, modern și orientat spre rezultate!
+            </p>
+          </div>
+          <div>
+            <CourseTabs onOpenModal={openModal} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAMBRIDGE ────────────────────────── */}
+      <section id="cambridge" className="section section--dark">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag section-tag--teal">Examene Internaționale</span>
+            <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
+            <p className="section-subtitle section-subtitle--white">
+              Centru de pregătire în parteneriat cu Alianța Franceză. Pregătim cursanți pentru <strong style={{ color: 'var(--color-secondary)' }}>B2 First (FCE)</strong> și <strong style={{ color: 'var(--color-secondary)' }}>C1 Advanced (CAE)</strong>.
+            </p>
+          </div>
+
+          <div className="cambridge-wrap">
+            <div className="cambridge-card fade-in delay-1">
+              <div className="cambridge-card-header">
+                <div>
+                  <span className="cambridge-card-type">Intensiv</span>
+                </div>
+              </div>
+              <h3>Curs Intensiv</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                Recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid. Ritm alert, concentrat pe rezultate maxime.
+              </p>
+              <div className="cambridge-detail"><Calendar size={18} /> 3.5 luni · Sâmbătă și duminică</div>
+              <div className="cambridge-detail"><Clock size={18} /> 30 lecții · 135 minute</div>
+              <div className="cambridge-detail"><Users size={18} /> Max. 12 cursanți / grupă</div>
+              <div className="cambridge-price">6000 lei <span style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.5)' }}>(2000 lei/lună)</span></div>
+            </div>
+            <div className="cambridge-card fade-in delay-2">
+              <div className="cambridge-card-header">
+                <div>
+                  <span className="cambridge-card-type">Extensiv</span>
+                </div>
+              </div>
+              <h3>Curs Extensiv</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                Recomandat elevilor din clasele X-XI. Proces gradual de 9 luni cu timp pentru consolidarea cunoștințelor, fără presiune.
+              </p>
+              <div className="cambridge-detail"><Calendar size={18} /> 9 luni · 2 ori săptămânal</div>
+              <div className="cambridge-detail"><Clock size={18} /> 72 lecții · 80 minute</div>
+              <div className="cambridge-detail"><Users size={18} /> Max. 12 cursanți / grupă</div>
+              <div className="cambridge-price">9000 lei <span style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.5)' }}>(1000 lei/lună)</span></div>
+            </div>
+          </div>
+
+          <div className="cambridge-faq">
+            <h3 className="cambridge-faq-title">Întrebări frecvente - Cambridge</h3>
+            <div className="faq-list">
+              {CAMBRIDGE_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} />)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── BENEFITS ─────────────────────────── */}
+      <section id="beneficii" className="section">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">De ce noi?</span>
+            <h2 className="section-title">De ce să alegi Progress CLS?</h2>
+            <p className="section-subtitle">
+              Înveți mai mult decât o limbă - îți construiești încrederea, abilitățile și viitorul.
+            </p>
+          </div>
+          <div className="benefits-grid">
+            {BENEFITS.map((b, i) => (
+              <div className={`benefit-card fade-in delay-${(i % 4) + 1}`} key={i}>
+                <div className="benefit-icon">{b.icon}</div>
+                <h3 className="benefit-title">{b.title}</h3>
+                <p className="benefit-desc">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TEAM ─────────────────────────────── */}
+      <section id="echipa" className="section section--alt">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Echipa noastră</span>
+            <h2 className="section-title">Profesori care inspiră</h2>
+            <p className="section-subtitle">
+              Toți membrii echipei sunt certificați internațional prin calificarea TEFL și au experiență în lucrul cu copii, adolescenți și adulți.
+            </p>
+          </div>
+          <div className="team-grid">
+            {TEAM.map((m, i) => (
+              <div className={`team-member fade-in delay-${(i % 6) + 1}`} key={i}>
+                <div className="member-photo-wrap">
+                  <img
+                    src={m.img}
+                    alt={m.name}
+                    className="member-photo"
+                    loading="lazy"
+                  />
+                  <div className="member-badge">
+                    <BadgeCheck size={13} color="white" />
+                    <span>TEFL</span>
+                  </div>
+                </div>
+                <h3 className="member-name">{m.name}</h3>
+                <p className="member-role">{m.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ─────────────────────── */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Recenzii</span>
+            <h2 className="section-title">Ce zic cursanții despre noi?</h2>
+          </div>
+          <div className="testimonials-grid">
+            {TESTIMONIALS.map((t, i) => (
+              <div className={`testimonial-card fade-in delay-${i + 1}`} key={i}>
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} size={16} fill="var(--color-accent)" color="var(--color-accent)" />
+                  ))}
+                </div>
+                <p className="testimonial-text">"{t.text}"</p>
+                <div className="testimonial-author">
+                  <img
+                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=e2e8f0&color=1e3a8a&size=80`}
+                    alt={t.author}
+                    className="author-avatar"
+                  />
+                  <div>
+                    <div className="author-name">{t.author}</div>
+                    <div className="author-course">{t.course}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BLOG ─────────────────────────────── */}
+      <section id="blog" className="section section--alt">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Blog</span>
+            <h2 className="section-title">Noutăți și articole</h2>
+          </div>
+          <div className="blog-grid">
+            {[
+              { title: 'Start Înscrierilor pentru noul an de studii 2026-2027', date: 'Iulie 2026', tag: 'Noutăți' },
+              { title: 'Progress CLS - decernare Centrul Lingvistic al Anului 2024', date: 'Decembrie 2024', tag: 'Premii' },
+              { title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', date: 'Iunie 2025', tag: 'Premii' },
+              { title: 'Cum poți învăța engleza ușor și eficient?', date: 'Martie 2025', tag: 'Sfaturi' },
+              { title: 'Curiozități despre limba engleză', date: 'Ianuarie 2025', tag: 'Curiozități' },
+            ].map((post, i) => (
+              <div className={`blog-card fade-in delay-${(i % 5) + 1}`} key={i}>
+                <div className="blog-card-img" style={{ background: `linear-gradient(135deg, hsl(${224 + i * 10}, 64%, ${28 + i * 5}%), hsl(${214 + i * 5}, 89%, ${45 + i * 3}%))`, color: 'white', fontSize: '3rem' }}>
+                  {['📚','🏆','✨','💡','🌍'][i]}
+                </div>
+                <div className="blog-card-body">
+                  <span className="blog-tag">{post.tag}</span>
+                  <h3 className="blog-title">{post.title}</h3>
+                  <p className="blog-date">{post.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ GENERAL ──────────────────────── */}
+      <section id="faq" className="section">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Întrebări</span>
+            <h2 className="section-title">Întrebări frecvente</h2>
+          </div>
+          <div className="faq-list fade-in delay-2">
+            {GENERAL_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} light />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BANNER ───────────────────────── */}
+      <div className="container">
+        <div className="cta-banner fade-in">
+          <h2>Mai mult decât un curs de engleză -<br />o investiție în viitorul tău!</h2>
+          <p>Înscrie-te acum și fă primul pas spre succes alături de Progress CLS.</p>
+          <div className="cta-buttons">
+            <a href="tel:+37369447768" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+              <Phone size={18} /> Sună acum
+            </a>
+            <a href="mailto:progress.cls@gmail.com" className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+              <Mail size={18} /> Trimite email
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── FOOTER ───────────────────────────── */}
+      <footer id="contact" className="footer">
+        <div className="container">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <div className="logo" style={{ color: 'white' }}>
+                <div className="logo-icon"><GraduationCap size={22} /></div>
+                Progress CLS
+              </div>
+              <p>Un pas spre succes. Centrul tău de excelență în limba engleză din Chișinău, bazat pe metodologia Cambridge.</p>
+            </div>
+            <div>
+              <div className="footer-heading">Contact</div>
+              <div className="footer-contact-item">
+                <div className="footer-contact-icon"><Phone size={16} /></div>
+                <a href="tel:+37369447768" style={{ color: 'inherit' }}>+373 69 44 77 68</a>
+              </div>
+              <div className="footer-contact-item">
+                <div className="footer-contact-icon"><Mail size={16} /></div>
+                <a href="mailto:progress.cls@gmail.com" style={{ color: 'inherit' }}>progress.cls@gmail.com</a>
+              </div>
+              <div className="footer-contact-item">
+                <div className="footer-contact-icon"><MapPin size={16} /></div>
+                <span>Chișinău, Str. Sarmizegetusa 92</span>
+              </div>
+            </div>
+            <div>
+              <div className="footer-heading">Cursuri</div>
+              {['Engleza pentru Copii (8-11 ani)', 'Engleza pentru Adolescenți (12-18 ani)', 'Engleza pentru Adulți', 'Pregătire Cambridge FCE/CAE'].map(c => (
+                <div key={c} className="footer-contact-item" style={{ marginBottom: '0.5rem' }}>
+                  <CheckCircle size={14} color="var(--color-secondary)" style={{ flexShrink: 0, marginTop: 2 }} />
+                  <span style={{ fontSize: '0.875rem' }}>{c}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Progress CLS - Centrul de Limbă Engleză. Toate drepturile rezervate.</span>
+            <span>progress-english.md</span>
+          </div>
+        </div>
+      </footer>
+      {isModalOpen && (
+        <RegistrationModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          defaultCourse={selectedCourse} 
+        />
+      )}
+      {isMapModalOpen && (
+        <DirectionsModal 
+          isOpen={isMapModalOpen} 
+          onClose={() => setIsMapModalOpen(false)} 
+        />
+      )}
+    </>
+  );
+}
+
+function RegistrationModal({ isOpen, onClose, defaultCourse }) {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [course, setCourse] = useState(defaultCourse || 'kids');
+  const [isSent, setIsSent] = useState(false);
+  const [selectedPlatform, setSelectedPlatform] = useState('viber');
+
+  useEffect(() => {
+    if (defaultCourse) {
+      setCourse(defaultCourse);
+    }
+  }, [defaultCourse]);
+
+  const handleSend = (platform) => {
+    if (!name || !phone) {
+      const form = document.querySelector('.modal-card form');
+      if (form) {
+        form.reportValidity();
+      }
+      return;
+    }
+
+    setSelectedPlatform(platform);
+
+    const courseNames = {
+      kids: 'Copii (8-11 ani) - Engleza pentru Copii',
+      teens: 'Adolescenți (12-18 ani) - Engleza pentru Adolescenți',
+      adults: 'Adulți - Curs intensiv',
+      cambridge: 'Pregătire Cambridge FCE/CAE'
+    };
+
+    const courseName = courseNames[course] || course;
+    const msg = `Salut! Doresc să mă înscriu la curs.
+Nume: ${name}
+Telefon: ${phone}
+Curs: ${courseName}`;
+
+    let url = '';
+    if (platform === 'viber') {
+      url = `viber://chat?number=%2B37369447768&draft=${encodeURIComponent(msg)}`;
+    } else if (platform === 'whatsapp') {
+      url = `https://wa.me/37369447768?text=${encodeURIComponent(msg)}`;
+    } else if (platform === 'telegram') {
+      url = `https://t.me/+37369447768?text=${encodeURIComponent(msg)}`;
+    }
+
+    window.location.href = url;
+    setIsSent(true);
+  };
+
+  const copyToClipboard = () => {
+    const courseNames = {
+      kids: 'Copii (8-11 ani) - Engleza pentru Copii',
+      teens: 'Adolescenți (12-18 ani) - Engleza pentru Adolescenți',
+      adults: 'Adulți - Curs intensiv',
+      cambridge: 'Pregătire Cambridge FCE/CAE'
+    };
+    const courseName = courseNames[course] || course;
+    const msg = `Salut! Doresc să mă înscriu la curs.
+Nume: ${name}
+Telefon: ${phone}
+Curs: ${courseName}`;
+    navigator.clipboard.writeText(msg);
+    alert('Mesajul a fost copiat în clipboard!');
+  };
+
+  const getPlatformLabel = (platform) => {
+    if (platform === 'viber') return 'Viber';
+    if (platform === 'whatsapp') return 'WhatsApp';
+    if (platform === 'telegram') return 'Telegram';
+    return platform;
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Închide">
+          <X size={20} />
+        </button>
+        
+        {!isSent ? (
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(selectedPlatform); }}>
+            <h3 className="modal-title">Înscrie-te la Curs</h3>
+            <p className="modal-subtitle">Introduceți datele dvs. și alegeți rețeaua pentru a trimite cererea.</p>
+            
+            <div className="form-group">
+              <label htmlFor="modal-name">Nume și Prenume</label>
+              <input 
+                id="modal-name"
+                type="text" 
+                required 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ex: Ion Popescu"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="modal-phone">Număr de Telefon</label>
+              <input 
+                id="modal-phone"
+                type="tel" 
+                required 
+                value={phone} 
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Ex: +373 69 123 456"
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="modal-course">Alege Cursul</label>
+              <select 
+                id="modal-course"
+                value={course} 
+                onChange={(e) => setCourse(e.target.value)}
+              >
+                <option value="kids">Copii (8-11 ani)</option>
+                <option value="teens">Adolescenți (12-18 ani)</option>
+                <option value="adults">Adulți (curs intensiv)</option>
+                <option value="cambridge">Pregătire Cambridge (FCE/CAE)</option>
+              </select>
+            </div>
+
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text)', marginBottom: '0.5rem', textAlign: 'left' }}>
+              Trimite mesajul prin:
+            </label>
+            
+            <div className="messenger-row">
+              <button type="button" onClick={() => handleSend('viber')} className="btn btn-messenger btn-viber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817.57 12.933.488 18.776 6.12 20.36h.003l-.004 2.416s-.037.977.61 1.177c.777.242 1.234-.5 1.98-1.302.407-.44.972-1.084 1.397-1.58 3.85.326 6.812-.416 7.15-.525.776-.252 5.176-.816 5.892-6.657.74-6.02-.36-9.83-2.34-11.546-.596-.55-3.006-2.3-8.375-2.323 0 0-.395-.025-1.037-.017zm.058 1.693c.545-.004.88.017.88.017 4.542.02 6.717 1.388 7.222 1.846 1.675 1.435 2.53 4.868 1.906 9.897v.002c-.604 4.878-4.174 5.184-4.832 5.395-.28.09-2.882.737-6.153.524 0 0-2.436 2.94-3.197 3.704-.12.12-.26.167-.352.144-.13-.033-.166-.188-.165-.414l.02-4.018c-4.762-1.32-4.485-6.292-4.43-8.895.054-2.604.543-4.738 1.996-6.173 1.96-1.773 5.474-2.018 7.11-2.03z"/>
+                </svg>
+                Viber
+              </button>
+              
+              <button type="button" onClick={() => handleSend('whatsapp')} className="btn btn-messenger btn-whatsapp">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.601 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                </svg>
+                WhatsApp
+              </button>
+              
+              <button type="button" onClick={() => handleSend('telegram')} className="btn btn-messenger btn-telegram">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+                </svg>
+                Telegram
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📱</div>
+            <h3 className="modal-title">Deschidem {getPlatformLabel(selectedPlatform)}...</h3>
+            <p className="modal-subtitle" style={{ marginBottom: '1.5rem' }}>
+              Dacă aplicația nu s-a deschis automat, puteți trimite mesajul manual la numărul <strong>+373 69 44 77 68</strong>.
+            </p>
+            <div className="message-preview">
+              <strong>Salut! Doresc să mă înscriu la curs.</strong><br />
+              Nume: {name}<br />
+              Telefon: {phone}<br />
+              Curs: {course === 'kids' ? 'Copii (8-11 ani)' : course === 'teens' ? 'Adolescenți (12-18 ani)' : course === 'adults' ? 'Adulți (curs intensiv)' : 'Pregătire Cambridge (FCE/CAE)'}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '1.5rem' }}>
+              <button onClick={copyToClipboard} className="btn btn-outline" style={{ flex: 1, justifyContent: 'center' }}>
+                Copiază Textul
+              </button>
+              <button onClick={() => {
+                const courseNames = {
+                  kids: 'Copii (8-11 ani) - Engleza pentru Copii',
+                  teens: 'Adolescenți (12-18 ani) - Engleza pentru Adolescenți',
+                  adults: 'Adulți - Curs intensiv',
+                  cambridge: 'Pregătire Cambridge FCE/CAE'
+                };
+                const courseName = courseNames[course] || course;
+                const msg = `Salut! Doresc să mă înscriu la curs.
+Nume: ${name}
+Telefon: ${phone}
+Curs: ${courseName}`;
+                let url = '';
+                if (selectedPlatform === 'viber') {
+                  url = `viber://chat?number=%2B37369447768&draft=${encodeURIComponent(msg)}`;
+                } else if (selectedPlatform === 'whatsapp') {
+                  url = `https://wa.me/37369447768?text=${encodeURIComponent(msg)}`;
+                } else if (selectedPlatform === 'telegram') {
+                  url = `https://t.me/+37369447768?text=${encodeURIComponent(msg)}`;
+                }
+                window.location.href = url;
+              }} className={`btn btn-messenger btn-${selectedPlatform}`} style={{ flex: 1, justifyContent: 'center', display: 'flex', alignItems: 'center' }}>
+                Reîncearcă
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function DirectionsModal({ isOpen, onClose }) {
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Închide">
+          <X size={20} />
+        </button>
+        <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📍</div>
+          <h3 className="modal-title">Cum ajungi la noi?</h3>
+          <p className="modal-subtitle" style={{ marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            Sediul Progress CLS se află în Chișinău, sectorul Botanica, <strong>Str. Sarmizegetusa 92</strong>.<br />
+            Ne puteți găsi ușor pe hartă sau puteți obține indicații de orientare.
+          </p>
+          <a 
+            href="https://maps.google.com/?q=Chișinău, Sarmizegetusa 92" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn btn-primary btn-full"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+          >
+            <MapPin size={18} />
+            Deschide în Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
