@@ -325,39 +325,45 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
 
                 <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border-light)' }} />
 
-                <div className="flex-between">
-                  <h4>Frază Animată (Typewriter)</h4>
+                <div className="flex-between" style={{ marginTop: '1.5rem' }}>
+                  <h4>Frază Animată (Typewriter) — Învață Engleza & Succes</h4>
                   <button 
                     onClick={() => setData({ ...data, hero: { ...data.hero, typewriterWords: [...data.hero.typewriterWords, 'Frază nouă'] } })}
                     className="btn btn-ghost btn-sm"
                   >
-                    <Plus size={16} /> Adaugă Cuvânt
+                    <Plus size={16} /> Adaugă Frază Nouă
                   </button>
                 </div>
 
-                {data.hero.typewriterWords.map((word, idx) => (
-                  <div key={idx} className="admin-list-item">
-                    <input 
-                      type="text" 
-                      value={word} 
-                      onChange={(e) => {
-                        const updated = [...data.hero.typewriterWords];
-                        updated[idx] = e.target.value;
-                        setData({ ...data, hero: { ...data.hero, typewriterWords: updated } });
-                      }} 
-                    />
-                    <button 
-                      onClick={() => {
-                        const updated = [...data.hero.typewriterWords];
-                        updated.splice(idx, 1);
-                        setData({ ...data, hero: { ...data.hero, typewriterWords: updated } });
-                      }}
-                      className="btn-icon-danger"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                ))}
+                <div className="typewriter-pills-grid">
+                  {data.hero.typewriterWords.map((word, idx) => (
+                    <div key={idx} className="typewriter-pill-card">
+                      <span className="typewriter-badge">#{idx + 1}</span>
+                      <input 
+                        type="text" 
+                        value={word} 
+                        onChange={(e) => {
+                          const updated = [...data.hero.typewriterWords];
+                          updated[idx] = e.target.value;
+                          setData({ ...data, hero: { ...data.hero, typewriterWords: updated } });
+                        }} 
+                        className="typewriter-input"
+                        placeholder="Ex: Învață Engleza"
+                      />
+                      <button 
+                        onClick={() => {
+                          const updated = [...data.hero.typewriterWords];
+                          updated.splice(idx, 1);
+                          setData({ ...data, hero: { ...data.hero, typewriterWords: updated } });
+                        }}
+                        className="btn-icon-danger"
+                        title="Șterge fraza"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -491,16 +497,16 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                           }} 
                         />
                       </div>
-                      <div className="form-group" style={{ marginTop: '0.5rem' }}>
-                        <label>Descriere</label>
-                        <textarea 
-                          rows={2} 
-                          value={b.desc} 
-                          onChange={(e) => {
+                      <div style={{ marginTop: '0.75rem' }}>
+                        <RichTextEditor
+                          label="Descriere Beneficiu (Formatat)"
+                          value={b.desc}
+                          onChange={(val) => {
                             const updated = [...data.benefits];
-                            updated[idx].desc = e.target.value;
+                            updated[idx].desc = val;
                             setData({ ...data, benefits: updated });
-                          }} 
+                          }}
+                          minHeight={100}
                         />
                       </div>
                     </div>
@@ -566,7 +572,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
               <div className="admin-card-section">
                 <h3>Recenzii de la Cursanți</h3>
                 {data.testimonials.map((t, idx) => (
-                  <div key={idx} className="admin-inner-card" style={{ marginBottom: '1rem' }}>
+                  <div key={idx} className="admin-inner-card" style={{ marginBottom: '1.25rem' }}>
                     <div className="admin-grid-2">
                       <div className="form-group">
                         <label>Nume Autor</label>
@@ -593,16 +599,16 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                         />
                       </div>
                     </div>
-                    <div className="form-group" style={{ marginTop: '0.5rem' }}>
-                      <label>Text Recenzie</label>
-                      <textarea 
-                        rows={2} 
-                        value={t.text} 
-                        onChange={(e) => {
+                    <div style={{ marginTop: '0.75rem' }}>
+                      <RichTextEditor
+                        label="Text Recenzie (Rich Text)"
+                        value={t.text}
+                        onChange={(val) => {
                           const updated = [...data.testimonials];
-                          updated[idx].text = e.target.value;
+                          updated[idx].text = val;
                           setData({ ...data, testimonials: updated });
-                        }} 
+                        }}
+                        minHeight={110}
                       />
                     </div>
                   </div>
@@ -647,7 +653,134 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
               </div>
             )}
 
-            {/* 8. CONTACTS SECTION */}
+            {/* 8. FAQ SECTION */}
+            {activeSection === 'faq' && (
+              <div className="admin-card-section">
+                <div className="flex-between">
+                  <h3>Întrebări Frecvente — Cambridge</h3>
+                  <button 
+                    onClick={() => {
+                      const current = data.faq.cambridgeFaq || [];
+                      setData({
+                        ...data,
+                        faq: {
+                          ...data.faq,
+                          cambridgeFaq: [...current, { q: 'Întrebare nouă Cambridge?', a: 'Răspuns detaliat...' }]
+                        }
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <Plus size={16} /> Adaugă Întrebare Cambridge
+                  </button>
+                </div>
+
+                {(data.faq.cambridgeFaq || []).map((faqItem, idx) => (
+                  <div key={idx} className="admin-inner-card" style={{ marginBottom: '1.25rem' }}>
+                    <div className="flex-between">
+                      <label style={{ fontWeight: 700, color: 'var(--color-primary-dark)' }}>Întrebarea #{idx + 1}</label>
+                      <button 
+                        onClick={() => {
+                          const updated = [...data.faq.cambridgeFaq];
+                          updated.splice(idx, 1);
+                          setData({ ...data, faq: { ...data.faq, cambridgeFaq: updated } });
+                        }}
+                        className="btn-icon-danger"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                    <div className="form-group" style={{ marginTop: '0.5rem' }}>
+                      <input 
+                        type="text" 
+                        value={faqItem.q} 
+                        onChange={(e) => {
+                          const updated = [...data.faq.cambridgeFaq];
+                          updated[idx].q = e.target.value;
+                          setData({ ...data, faq: { ...data.faq, cambridgeFaq: updated } });
+                        }} 
+                      />
+                    </div>
+                    <div style={{ marginTop: '0.75rem' }}>
+                      <RichTextEditor
+                        label="Răspuns Explicație (Rich Text)"
+                        value={faqItem.a}
+                        onChange={(val) => {
+                          const updated = [...data.faq.cambridgeFaq];
+                          updated[idx].a = val;
+                          setData({ ...data, faq: { ...data.faq, cambridgeFaq: updated } });
+                        }}
+                        minHeight={120}
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <hr style={{ margin: '2rem 0', borderColor: 'var(--color-border-light)' }} />
+
+                <div className="flex-between">
+                  <h3>Întrebări Frecvente — Generale & Înscriere</h3>
+                  <button 
+                    onClick={() => {
+                      const current = data.faq.generalFaq || [];
+                      setData({
+                        ...data,
+                        faq: {
+                          ...data.faq,
+                          generalFaq: [...current, { q: 'Întrebare nouă generală?', a: 'Răspuns detaliat...' }]
+                        }
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <Plus size={16} /> Adaugă Întrebare Generală
+                  </button>
+                </div>
+
+                {(data.faq.generalFaq || []).map((faqItem, idx) => (
+                  <div key={idx} className="admin-inner-card" style={{ marginBottom: '1.25rem' }}>
+                    <div className="flex-between">
+                      <label style={{ fontWeight: 700, color: 'var(--color-primary-dark)' }}>Întrebarea Generală #{idx + 1}</label>
+                      <button 
+                        onClick={() => {
+                          const updated = [...data.faq.generalFaq];
+                          updated.splice(idx, 1);
+                          setData({ ...data, faq: { ...data.faq, generalFaq: updated } });
+                        }}
+                        className="btn-icon-danger"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                    <div className="form-group" style={{ marginTop: '0.5rem' }}>
+                      <input 
+                        type="text" 
+                        value={faqItem.q} 
+                        onChange={(e) => {
+                          const updated = [...data.faq.generalFaq];
+                          updated[idx].q = e.target.value;
+                          setData({ ...data, faq: { ...data.faq, generalFaq: updated } });
+                        }} 
+                      />
+                    </div>
+                    <div style={{ marginTop: '0.75rem' }}>
+                      <RichTextEditor
+                        label="Răspuns Explicație (Rich Text)"
+                        value={faqItem.a}
+                        onChange={(val) => {
+                          const updated = [...data.faq.generalFaq];
+                          updated[idx].a = val;
+                          setData({ ...data, faq: { ...data.faq, generalFaq: updated } });
+                        }}
+                        minHeight={120}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 9. CONTACTS SECTION */}
             {activeSection === 'contacts' && (
               <div className="admin-card-section">
                 <h3>Date de Contact & Footer</h3>
