@@ -99,19 +99,9 @@ function HeroCarousel({ images }) {
     if (isPaused || slideList.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slideList.length);
-    }, 3800);
+    }, 4000);
     return () => clearInterval(timer);
   }, [isPaused, slideList.length]);
-
-  const prevSlide = (e) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev - 1 + slideList.length) % slideList.length);
-  };
-
-  const nextSlide = (e) => {
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % slideList.length);
-  };
 
   return (
     <div 
@@ -119,40 +109,28 @@ function HeroCarousel({ images }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="hero-carousel-track">
+      <div className="hero-carousel-card">
         {slideList.map((imgUrl, idx) => (
-          <div 
+          <img 
             key={idx} 
-            className={`hero-carousel-slide ${idx === currentIndex ? 'active' : ''}`}
-          >
-            <img src={imgUrl} alt={`Progress CLS Slide ${idx + 1}`} />
-          </div>
+            src={imgUrl} 
+            alt={`Progress CLS Slide ${idx + 1}`} 
+            className={`hero-image hero-carousel-img ${idx === currentIndex ? 'active' : ''}`} 
+          />
         ))}
       </div>
 
       {slideList.length > 1 && (
-        <>
-          <button onClick={prevSlide} className="hero-carousel-btn hero-carousel-btn--prev" aria-label="Slide anterior">
-            ‹
-          </button>
-          <button onClick={nextSlide} className="hero-carousel-btn hero-carousel-btn--next" aria-label="Slide următor">
-            ›
-          </button>
-
-          <div className="hero-carousel-dots">
-            {slideList.map((_, idx) => (
-              <button
-                key={idx}
-                className={`hero-carousel-dot ${idx === currentIndex ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentIndex(idx);
-                }}
-                aria-label={`Vezi slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </>
+        <div className="hero-carousel-dots-bottom">
+          {slideList.map((_, idx) => (
+            <button
+              key={idx}
+              className={`hero-carousel-dot ${idx === currentIndex ? 'active' : ''}`}
+              onClick={() => setCurrentIndex(idx)}
+              aria-label={`Vezi slide ${idx + 1}`}
+            />
+          ))}
+        </div>
       )}
     </div>
   );
