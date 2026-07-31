@@ -305,6 +305,53 @@ export default function App() {
       desc: 'Știai că limba engleză are peste 1 milion de cuvinte și că cel mai scurt termen propozițional complet este "Go!"? Descoperă mai multe lucruri fascinante în cursurile noastre!'
     }
   ]);
+  const [siteData, setSiteData] = useState({
+    hero: {
+      awardText1: 'Centrul Lingvistic al Anului 2024',
+      awardText2: 'Visionary Brand 2025',
+      subtitle: 'Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.',
+      typewriterWords: ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']
+    },
+    stats: [
+      { number: '500+', label: 'Cursanți formați' },
+      { number: '98%', label: 'Rată de promovare Cambridge' },
+      { number: '10+', label: 'Ani de experiență' },
+      { number: '100%', label: 'Dedicare și profesionalism' }
+    ],
+    courses: COURSES,
+    benefits: [
+      { title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne.' },
+      { title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate cu experiență.' },
+      { title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală.' },
+      { title: 'Lecții interactive', desc: 'Comunicare, jocuri și proiecte practice.' }
+    ],
+    team: TEAM,
+    testimonials: [
+      { author: 'Maria D.', course: 'Engleza pentru Copii', text: 'Fiica mea a avansat de la A1 la B1 în 18 luni!', rating: 5 },
+      { author: 'Andrei C.', course: 'Pregătire Cambridge B2', text: 'Am promovat examenul FCE cu nota B!', rating: 5 }
+    ],
+    blog: blogPosts,
+    faq: {
+      cambridgeFaq: [
+        { q: 'De ce am nevoie de un certificat Cambridge?', a: 'Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață.' },
+        { q: 'Care este diferența dintre cursul intensiv și cel extensiv?', a: 'Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor.' },
+        { q: 'Unde susțin examenul Cambridge?', a: 'Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă.' },
+        { q: 'Este ușor examenul?', a: 'Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit.' }
+      ],
+      generalFaq: [
+        { q: 'Cum mă pot înscrie la cursuri?', a: 'Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92.' },
+        { q: 'Aveți sediu doar la Botanica sau și în alte sectoare?', a: 'Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii.' },
+        { q: 'Aveți lecții Online sau doar Offline?', a: 'Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active.' }
+      ]
+    },
+    contacts: {
+      phone: '+373 69 44 77 68',
+      phoneRaw: '+37369447768',
+      address: 'Chișinău, Str. Sarmizegetusa 92',
+      email: 'progress.cls@gmail.com'
+    }
+  });
+
   useFadeIn();
 
   useEffect(() => {
@@ -345,17 +392,15 @@ export default function App() {
           <div className="hero-content">
             <div className="hero-award-badge animate-fade-up">
               <span className="award-icon">🏆</span>
-              <span className="award-text">Centrul Lingvistic al Anului 2024</span>
+              <span className="award-text">{siteData.hero.awardText1}</span>
               <span className="award-divider">·</span>
-              <span className="award-text">Visionary Brand 2025</span>
+              <span className="award-text">{siteData.hero.awardText2}</span>
               <span className="award-shimmer" />
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
-              <span className="gradient-text"><Typewriter words={TYPEWRITER_WORDS} /></span><br />cu Progress CLS
+              <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
-            <p className="hero-subtitle animate-fade-up animate-delay-2">
-              Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.
-            </p>
+            <p className="hero-subtitle animate-fade-up animate-delay-2" dangerouslySetInnerHTML={{ __html: siteData.hero.subtitle }} />
             <div className="hero-pills animate-fade-up animate-delay-2">
               <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Interactiv</span>
               <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Eficient</span>
@@ -377,8 +422,8 @@ export default function App() {
                 <Users size={20} />
               </div>
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>Cursanți activi</div>
-                <div>500+</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{siteData.stats[0]?.label || 'Cursanți activi'}</div>
+                <div style={{ fontWeight: 800 }}>{siteData.stats[0]?.number || '500+'}</div>
               </div>
             </div>
             <div className="hero-float-card hero-float-card--2">
@@ -398,34 +443,15 @@ export default function App() {
       <div className="stats-strip">
         <div className="container">
           <div className="stats-grid">
-            <div className="stat-card fade-in delay-1">
-              <div className="stat-icon-wrapper">
-                <Users size={26} />
+            {(siteData.stats || []).map((stat, idx) => (
+              <div className={`stat-card fade-in delay-${idx + 1}`} key={idx}>
+                <div className="stat-icon-wrapper">
+                  {[<Users size={26} />, <GraduationCap size={26} />, <Calendar size={26} />, <Trophy size={26} />][idx % 4]}
+                </div>
+                <div className="stat-number">{stat.number}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
-              <div className="stat-number">500+</div>
-              <div className="stat-label">Cursanți formați</div>
-            </div>
-            <div className="stat-card fade-in delay-2">
-              <div className="stat-icon-wrapper">
-                <GraduationCap size={26} />
-              </div>
-              <div className="stat-number">6</div>
-              <div className="stat-label">Profesori certificați TEFL</div>
-            </div>
-            <div className="stat-card fade-in delay-3">
-              <div className="stat-icon-wrapper">
-                <Calendar size={26} />
-              </div>
-              <div className="stat-number">10+</div>
-              <div className="stat-label">Ani de experiență</div>
-            </div>
-            <div className="stat-card fade-in delay-4">
-              <div className="stat-icon-wrapper">
-                <Trophy size={26} />
-              </div>
-              <div className="stat-number">2</div>
-              <div className="stat-label">Premii de excelență</div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -719,8 +745,9 @@ export default function App() {
       {isAdminOpen && (
         <AdminPanel 
           onClose={() => setIsAdminOpen(false)} 
-          initialData={{ general: generalData, courses: COURSES, team: TEAM, blog: blogPosts }} 
+          initialData={siteData} 
           onSaveData={(updated) => {
+            setSiteData(updated);
             if (updated.blog) setBlogPosts(updated.blog);
           }}
         />
