@@ -385,7 +385,7 @@ export default function App() {
               <span className="award-shimmer" />
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
-              Un pas spre <span className="gradient-text"><Typewriter words={['succes', 'Învață Engleza', 'excelență']} /></span><br />cu Progress CLS
+              <span className="gradient-text"><Typewriter words={['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']} /></span><br />cu Progress CLS
             </h1>
             <p className="hero-subtitle animate-fade-up animate-delay-2">
               Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.
