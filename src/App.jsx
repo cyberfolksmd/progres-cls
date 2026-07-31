@@ -147,23 +147,42 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
             <img src="/logo2.png" alt="Progress CLS" className="logo-img" style={{ height: '42px' }} />
           </a>
 
-          {/* Hamburger Menu Button */}
+          {/* Desktop Navigation Links */}
+          <div className="nav-links-desktop">
+            <a href="#acasa">Acasă</a>
+            <a href="#cursuri">Cursuri</a>
+            <a href="#beneficii">Beneficii</a>
+            <a href="#echipa">Echipa</a>
+            <a href="#recenzii">Recenzii</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contacte">Contacte</a>
+          </div>
+
+          <div className="nav-right-desktop">
+            <button onClick={onOpenModal} className="btn btn-primary btn-sm">
+              Înscrie-te acum
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Button */}
           <button className="burger-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Meniu">
             {menuOpen ? <X size={26} color="var(--color-primary-dark)" /> : <Menu size={26} color="var(--color-primary-dark)" />}
           </button>
         </div>
 
-        {/* Dropdown Menu Panel */}
+        {/* Dropdown Menu Panel (Mobile Only) */}
         {menuOpen && (
           <div className="navbar-dropdown">
             <div className="container dropdown-container">
               <a href="#acasa" onClick={() => setMenuOpen(false)}>Acasă</a>
               <a href="#cursuri" onClick={() => setMenuOpen(false)}>Cursuri</a>
-              <a href="#cambridge" onClick={() => setMenuOpen(false)}>Cambridge</a>
               <a href="#beneficii" onClick={() => setMenuOpen(false)}>Beneficii</a>
               <a href="#echipa" onClick={() => setMenuOpen(false)}>Echipa</a>
+              <a href="#recenzii" onClick={() => setMenuOpen(false)}>Recenzii</a>
               <a href="#blog" onClick={() => setMenuOpen(false)}>Blog</a>
-              <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+              <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
+              <a href="#contacte" onClick={() => setMenuOpen(false)}>Contacte</a>
               <button onClick={() => { setMenuOpen(false); onOpenModal(); }} className="btn btn-primary btn-full" style={{ marginTop: '1rem' }}>
                 Înscrie-te acum
               </button>
