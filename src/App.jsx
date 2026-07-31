@@ -262,6 +262,49 @@ export default function App() {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedBlogArticle, setSelectedBlogArticle] = useState(null);
+  const [blogPosts, setBlogPosts] = useState([
+    { 
+      id: 'b1', 
+      title: 'Start Înscrierilor pentru noul an de studii 2026-2027', 
+      date: 'Iulie 2026', 
+      tag: 'Noutăți',
+      img: '/hero.png',
+      desc: 'Centrul Lingvistic Progress CLS anunță deschiderea înscrierilor pentru noul an academic 2026-2027!\n\nOferim cursuri moderne de engleză pentru copii (8-11 ani), adolescenți (12-18 ani) și adulți, precum și grupe speciale de pregătire intensivă pentru examenele Cambridge (FCE / CAE).\n\nÎnscrie-te înainte de 1 septembrie și beneficiezi de o reducere de 5% la achitarea integrală a cursului!'
+    },
+    { 
+      id: 'b2', 
+      title: 'Progress CLS - decernare Centrul Lingvistic al Anului 2024', 
+      date: 'Decembrie 2024', 
+      tag: 'Premii',
+      img: '/cambridge.png',
+      desc: 'Suntem mândri să vă anunțăm că Progress CLS a fost desemnat Centrul Lingvistic al Anului 2024!\n\nMulțumim echipei noastre fantastice de profesori dedicați și tuturor cursanților care au ales să învețe engleza alături de noi.'
+    },
+    { 
+      id: 'b3', 
+      title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', 
+      date: 'Iunie 2025', 
+      tag: 'Premii',
+      img: '/hero.png',
+      desc: 'O nouă recunoaștere a muncii noastre! În cadrul galei ORPH Awards 2025, Progress CLS a obținut trofeul Visionary Brand pentru inovație în metodele de predare a limbii engleze.'
+    },
+    { 
+      id: 'b4', 
+      title: 'Cum poți învăța engleza ușor și eficient?', 
+      date: 'Martie 2025', 
+      tag: 'Sfaturi',
+      img: '/teacher_ludmila.png',
+      desc: 'Învățarea unei limbi străine nu trebuie să fie plictisitoare. Secretul constă în practică zilnică, vizionarea filmelor în engleză cu subtitrări și participarea la lecții interactive unde vorbești din prima zi.'
+    },
+    { 
+      id: 'b5', 
+      title: 'Curiozități despre limba engleză', 
+      date: 'Ianuarie 2025', 
+      tag: 'Curiozități',
+      img: '/teacher_anastasia.png',
+      desc: 'Știai că limba engleză are peste 1 milion de cuvinte și că cel mai scurt termen propozițional complet este "Go!"? Descoperă mai multe lucruri fascinante în cursurile noastre!'
+    }
+  ]);
   useFadeIn();
 
   useEffect(() => {
@@ -547,19 +590,29 @@ export default function App() {
             <h2 className="section-title">Noutăți și articole</h2>
           </div>
           <div className="blog-grid">
-            {[
-              { title: 'Start Înscrierilor pentru noul an de studii 2026-2027', date: 'Iulie 2026', tag: 'Noutăți' },
-              { title: 'Progress CLS - decernare Centrul Lingvistic al Anului 2024', date: 'Decembrie 2024', tag: 'Premii' },
-              { title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', date: 'Iunie 2025', tag: 'Premii' },
-              { title: 'Cum poți învăța engleza ușor și eficient?', date: 'Martie 2025', tag: 'Sfaturi' },
-              { title: 'Curiozități despre limba engleză', date: 'Ianuarie 2025', tag: 'Curiozități' },
-            ].map((post, i) => (
-              <div className={`blog-card fade-in delay-${(i % 5) + 1}`} key={i}>
-                <div className="blog-card-img" style={{ background: `linear-gradient(135deg, hsl(${224 + i * 10}, 64%, ${28 + i * 5}%), hsl(${214 + i * 5}, 89%, ${45 + i * 3}%))`, color: 'white', fontSize: '3rem' }}>
-                  {['📚','🏆','✨','💡','🌍'][i]}
+            {blogPosts.map((post, i) => (
+              <div 
+                className={`blog-card fade-in delay-${(i % 5) + 1}`} 
+                key={i}
+                onClick={() => setSelectedBlogArticle(post)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div 
+                  className="blog-card-img" 
+                  style={{ 
+                    backgroundImage: post.img ? `url(${post.img})` : 'none',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    background: !post.img ? `linear-gradient(135deg, hsl(${202 + i * 15}, 85%, ${30 + i * 5}%), hsl(${202 + i * 5}, 70%, 45%))` : undefined,
+                    color: 'white', 
+                    fontSize: '3rem',
+                    minHeight: '180px'
+                  }}
+                >
+                  {!post.img && ['📚','🏆','✨','💡','🌍'][i % 5]}
                 </div>
                 <div className="blog-card-body">
-                  <span className="blog-tag">{post.tag}</span>
+                  <span className="blog-tag">{post.tag || 'Noutăți'}</span>
                   <h3 className="blog-title">{post.title}</h3>
                   <p className="blog-date">{post.date}</p>
                 </div>
@@ -661,7 +714,16 @@ export default function App() {
       {isAdminOpen && (
         <AdminPanel 
           onClose={() => setIsAdminOpen(false)} 
-          initialData={{ general: generalData, courses: COURSES, team: TEAM }} 
+          initialData={{ general: generalData, courses: COURSES, team: TEAM, blog: blogPosts }} 
+          onSaveData={(updated) => {
+            if (updated.blog) setBlogPosts(updated.blog);
+          }}
+        />
+      )}
+      {selectedBlogArticle && (
+        <BlogArticleModal 
+          article={selectedBlogArticle} 
+          onClose={() => setSelectedBlogArticle(null)} 
         />
       )}
     </>
@@ -891,6 +953,40 @@ function DirectionsModal({ isOpen, onClose }) {
             <MapPin size={18} />
             Deschide în Google Maps
           </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BlogArticleModal({ article, onClose }) {
+  if (!article) return null;
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card blog-modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Închide">
+          <X size={20} />
+        </button>
+
+        {article.img && (
+          <div className="blog-modal-img-wrap">
+            <img src={article.img} alt={article.title} className="blog-modal-img" />
+          </div>
+        )}
+
+        <div className="blog-modal-body">
+          <div className="blog-modal-meta">
+            <span className="blog-tag">{article.tag || 'Noutăți'}</span>
+            <span className="blog-date" style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginLeft: 'auto' }}>{article.date}</span>
+          </div>
+
+          <h2 className="blog-modal-title">{article.title}</h2>
+
+          <div className="blog-modal-content" dangerouslySetInnerHTML={{ __html: article.desc || article.text || '' }} />
+
+          <button onClick={onClose} className="btn btn-primary btn-full" style={{ marginTop: '1.75rem' }}>
+            Închide Articolul
+          </button>
         </div>
       </div>
     </div>

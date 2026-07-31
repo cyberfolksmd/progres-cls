@@ -570,10 +570,43 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
             {/* 6. TESTIMONIALS SECTION */}
             {activeSection === 'testimonials' && (
               <div className="admin-card-section">
-                <h3>Recenzii de la Cursanți</h3>
+                <div className="flex-between">
+                  <h3>Recenzii de la Cursanți</h3>
+                  <button 
+                    onClick={() => {
+                      const current = data.testimonials || [];
+                      setData({
+                        ...data,
+                        testimonials: [
+                          ...current, 
+                          { author: 'Nume Cursant', course: 'Engleza pentru Copii', text: 'O experiență excelentă!', rating: 5 }
+                        ]
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <Plus size={16} /> Adaugă Recenzie Nouă
+                  </button>
+                </div>
+
                 {data.testimonials.map((t, idx) => (
                   <div key={idx} className="admin-inner-card" style={{ marginBottom: '1.25rem' }}>
-                    <div className="admin-grid-2">
+                    <div className="flex-between">
+                      <label style={{ fontWeight: 700, color: 'var(--color-primary-dark)' }}>Recenzia #{idx + 1}</label>
+                      <button 
+                        onClick={() => {
+                          const updated = [...data.testimonials];
+                          updated.splice(idx, 1);
+                          setData({ ...data, testimonials: updated });
+                        }}
+                        className="btn-icon-danger"
+                        title="Șterge recenzia"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+
+                    <div className="admin-grid-2" style={{ marginTop: '0.5rem' }}>
                       <div className="form-group">
                         <label>Nume Autor</label>
                         <input 
@@ -619,10 +652,50 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
             {/* 7. BLOG SECTION */}
             {activeSection === 'blog' && (
               <div className="admin-card-section">
-                <h3>Noutăți și Articole de Blog</h3>
+                <div className="flex-between">
+                  <h3>Noutăți și Articole de Blog</h3>
+                  <button 
+                    onClick={() => {
+                      const current = data.blog || [];
+                      setData({
+                        ...data,
+                        blog: [
+                          ...current,
+                          {
+                            id: `b-${Date.now()}`,
+                            title: 'Titlu Nou Articol de Blog',
+                            date: 'Iulie 2026',
+                            tag: 'Noutăți',
+                            img: '/hero.png',
+                            desc: 'Conținut detaliat articol...'
+                          }
+                        ]
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <Plus size={16} /> Adaugă Articol Nou
+                  </button>
+                </div>
+
                 {data.blog.map((post, idx) => (
-                  <div key={idx} className="admin-inner-card" style={{ marginBottom: '1rem' }}>
-                    <div className="admin-grid-2">
+                  <div key={post.id || idx} className="admin-inner-card" style={{ marginBottom: '1.5rem' }}>
+                    <div className="flex-between">
+                      <label style={{ fontWeight: 700, color: 'var(--color-primary-dark)' }}>Articolul #{idx + 1}</label>
+                      <button 
+                        onClick={() => {
+                          const updated = [...data.blog];
+                          updated.splice(idx, 1);
+                          setData({ ...data, blog: updated });
+                        }}
+                        className="btn-icon-danger"
+                        title="Șterge articolul"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+
+                    <div className="admin-grid-2" style={{ marginTop: '0.5rem' }}>
                       <div className="form-group">
                         <label>Titlu Articol</label>
                         <input 
@@ -636,7 +709,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                         />
                       </div>
                       <div className="form-group">
-                        <label>Data / Etichetă</label>
+                        <label>Data / Luna (ex: Iulie 2026)</label>
                         <input 
                           type="text" 
                           value={post.date} 
@@ -647,6 +720,44 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                           }} 
                         />
                       </div>
+                      <div className="form-group">
+                        <label>Etichetă / Categorie (ex: Noutăți, Premii, Sfaturi)</label>
+                        <input 
+                          type="text" 
+                          value={post.tag || 'Noutăți'} 
+                          onChange={(e) => {
+                            const updated = [...data.blog];
+                            updated[idx].tag = e.target.value;
+                            setData({ ...data, blog: updated });
+                          }} 
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Fotografie Articol — 📐 Recomandat format PĂTRAT (1:1, 500x500px, calea: /hero.png sau URL)</label>
+                        <input 
+                          type="text" 
+                          placeholder="/blog_photo.png sau https://..." 
+                          value={post.img || ''} 
+                          onChange={(e) => {
+                            const updated = [...data.blog];
+                            updated[idx].img = e.target.value;
+                            setData({ ...data, blog: updated });
+                          }} 
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: '1rem' }}>
+                      <RichTextEditor
+                        label="Descriere & Conținut Articol (Rich Text / WYSIWYG)"
+                        value={post.desc || post.text || ''}
+                        onChange={(val) => {
+                          const updated = [...data.blog];
+                          updated[idx].desc = val;
+                          setData({ ...data, blog: updated });
+                        }}
+                        minHeight={160}
+                      />
                     </div>
                   </div>
                 ))}
