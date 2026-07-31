@@ -369,6 +369,75 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                     </div>
                   ))}
                 </div>
+
+                <hr style={{ margin: '1.75rem 0', borderColor: 'var(--color-border-light)' }} />
+
+                <div className="flex-between">
+                  <h4>Galerie Foto Carusel Banner (Hero Carousel)</h4>
+                  <button 
+                    onClick={() => {
+                      const currentImages = data.hero.images || ['/hero.png', '/cambridge.png'];
+                      setData({
+                        ...data,
+                        hero: {
+                          ...data.hero,
+                          images: [...currentImages, '/hero.png']
+                        }
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    <Plus size={16} /> Adaugă Foto în Carusel
+                  </button>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+                  {(data.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']).map((img, idx) => (
+                    <div key={idx} className="admin-inner-card flex-between" style={{ padding: '0.75rem 1rem' }}>
+                      <span className="typewriter-badge">Slide #{idx + 1}</span>
+                      <input 
+                        type="text" 
+                        value={img} 
+                        onChange={(e) => {
+                          const updated = [...(data.hero.images || [])];
+                          updated[idx] = e.target.value;
+                          setData({ ...data, hero: { ...data.hero, images: updated } });
+                        }} 
+                        style={{ flex: 1, margin: '0 0.75rem' }}
+                      />
+                      <label className="btn btn-primary btn-sm" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', margin: '0 0.5rem 0 0', whiteSpace: 'nowrap' }}>
+                        📁 ÎNCARCĂ
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          style={{ display: 'none' }}
+                          onChange={(e) => {
+                            const file = e.target.files && e.target.files[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (event) => {
+                                const updated = [...(data.hero.images || [])];
+                                updated[idx] = event.target.result;
+                                setData({ ...data, hero: { ...data.hero, images: updated } });
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                      </label>
+                      <button 
+                        onClick={() => {
+                          const updated = [...(data.hero.images || [])];
+                          updated.splice(idx, 1);
+                          setData({ ...data, hero: { ...data.hero, images: updated } });
+                        }}
+                        className="btn-icon-danger"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

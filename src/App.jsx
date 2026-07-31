@@ -89,6 +89,75 @@ function Typewriter({ words, speed = 100, delay = 2200 }) {
   );
 }
 
+function HeroCarousel({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const slideList = images && images.length > 0 ? images : ['/hero.png', '/cambridge.png'];
+
+  useEffect(() => {
+    if (isPaused || slideList.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slideList.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, [isPaused, slideList.length]);
+
+  const prevSlide = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + slideList.length) % slideList.length);
+  };
+
+  const nextSlide = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % slideList.length);
+  };
+
+  return (
+    <div 
+      className="hero-carousel-container"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="hero-carousel-track">
+        {slideList.map((imgUrl, idx) => (
+          <div 
+            key={idx} 
+            className={`hero-carousel-slide ${idx === currentIndex ? 'active' : ''}`}
+          >
+            <img src={imgUrl} alt={`Progress CLS Slide ${idx + 1}`} />
+          </div>
+        ))}
+      </div>
+
+      {slideList.length > 1 && (
+        <>
+          <button onClick={prevSlide} className="hero-carousel-btn hero-carousel-btn--prev" aria-label="Slide anterior">
+            ‹
+          </button>
+          <button onClick={nextSlide} className="hero-carousel-btn hero-carousel-btn--next" aria-label="Slide următor">
+            ›
+          </button>
+
+          <div className="hero-carousel-dots">
+            {slideList.map((_, idx) => (
+              <button
+                key={idx}
+                className={`hero-carousel-dot ${idx === currentIndex ? 'active' : ''}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex(idx);
+                }}
+                aria-label={`Vezi slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -330,7 +399,8 @@ export default function App() {
         awardText1: 'Centrul Lingvistic al Anului 2024',
         awardText2: 'Visionary Brand 2025',
         subtitle: 'Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.',
-        typewriterWords: ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']
+        typewriterWords: ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză'],
+        images: ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']
       },
       stats: [
         { number: '500+', label: 'Cursanți formați' },
@@ -495,7 +565,7 @@ export default function App() {
             </div>
           </div>
           <div className="hero-image-wrap animate-fade-up animate-delay-2">
-            <img src="/hero.png" alt="Cursuri de engleză Progress CLS" className="hero-image" />
+            <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
             <div className="hero-float-card hero-float-card--1">
               <div className="hero-float-icon" style={{ background: '#dcfce7', color: '#15803d' }}>
                 <Users size={20} />
