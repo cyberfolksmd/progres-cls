@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-primary: hsl(222, 55%, 22%);
-  --color-primary-light: hsl(217, 91%, 56%);
-  --color-primary-dark: hsl(222, 60%, 15%);
-  --color-primary-glow: rgba(37, 99, 235, 0.2);
+  --color-primary: hsl(202, 95%, 26%);
+  --color-primary-light: hsl(202, 95%, 40%);
+  --color-primary-dark: hsl(202, 95%, 15%);
+  --color-primary-glow: rgba(3, 132, 200, 0.22);
 
   --color-secondary: hsl(160, 84%, 39%);
   --color-secondary-light: hsl(160, 84%, 48%);
@@ -13,16 +13,16 @@
   --color-accent: hsl(350, 89%, 60%);
   --color-accent-light: hsl(350, 89%, 72%);
 
-  --color-bg: hsl(220, 30%, 97%);
+  --color-bg: hsl(202, 25%, 97%);
   --color-surface: hsl(0, 0%, 100%);
-  --color-surface-2: hsl(220, 30%, 98%);
+  --color-surface-2: hsl(202, 25%, 98%);
 
-  --color-text: hsl(224, 30%, 15%);
-  --color-text-secondary: hsl(224, 15%, 45%);
-  --color-text-muted: hsl(224, 10%, 65%);
+  --color-text: hsl(202, 40%, 15%);
+  --color-text-secondary: hsl(202, 20%, 42%);
+  --color-text-muted: hsl(202, 15%, 62%);
 
-  --color-border: hsl(220, 20%, 90%);
-  --color-border-light: hsl(220, 20%, 95%);
+  --color-border: hsl(202, 20%, 90%);
+  --color-border-light: hsl(202, 20%, 95%);
 
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -329,7 +329,7 @@ img { max-width: 100%; display: block; }
 }
 
 .top-bar-cta-btn {
-  background: #3b82f6;
+  background: var(--color-primary-light);
   color: white;
   font-weight: 700;
   font-size: 0.825rem;
@@ -338,14 +338,14 @@ img { max-width: 100%; display: block; }
   border: none;
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 2px 8px var(--color-primary-glow);
   font-family: inherit;
 }
 
 .top-bar-cta-btn:hover {
-  background: #2563eb;
+  background: var(--color-primary);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 12px var(--color-primary-glow);
 }
 
 /* NAVBAR (White bar below top bar) */
