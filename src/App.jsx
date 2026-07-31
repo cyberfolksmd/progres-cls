@@ -139,6 +139,45 @@ const GENERAL_FAQ = [
 
 // ── Components ────────────────────────────────────────────
 
+function Typewriter({ words, speed = 100, delay = 2200 }) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    if (index >= words.length) {
+      setIndex(0);
+      return;
+    }
+
+    if (subIndex === words[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => {
+        setReverse(true);
+      }, delay);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 40 : speed);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, words, speed, delay]);
+
+  return (
+    <span className="typewriter-box">
+      <span>{words[index].substring(0, subIndex)}</span>
+      <span className="typewriter-cursor">|</span>
+    </span>
+  );
+}
+
 function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -346,7 +385,7 @@ export default function App() {
               <span className="award-shimmer" />
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
-              Un pas spre <span className="gradient-text">succes</span><br />cu Progress CLS
+              Un pas spre <span className="gradient-text"><Typewriter words={['succes', 'Învață Engleza', 'excelență']} /></span><br />cu Progress CLS
             </h1>
             <p className="hero-subtitle animate-fade-up animate-delay-2">
               Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.

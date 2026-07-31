@@ -431,6 +431,25 @@ img { max-width: 100%; display: block; }
   }
 }
 
+/* TYPEWRITER EFFECT */
+.typewriter-box {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  color: var(--color-primary-light);
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ==============================
    HERO
 ============================== */
