@@ -140,45 +140,90 @@ const GENERAL_FAQ = [
 // ── Components ────────────────────────────────────────────
 
 function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container navbar-container">
-        <a href="#acasa" className="logo">
-          <img src="/logo2.png" alt="Progress CLS" className="logo-img" style={{ height: '40px' }} />
-        </a>
-        <div className="nav-links">
-          <a href="#acasa">Acasă</a>
-          <a href="#cursuri">Cursuri</a>
-          <a href="#cambridge">Cambridge</a>
-          <a href="#beneficii">Beneficii</a>
-          <a href="#echipa">Echipa</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div className="nav-cta-desktop">
-          <a href="https://maps.google.com/?q=Chișinău, Sarmizegetusa 92" target="_blank" rel="noopener noreferrer" className="nav-info-link nav-address-link">
-            <MapPin size={16} />
-            <span>Adresă</span>
-          </a>
-          <a href="tel:+37369447768" className="nav-info-link nav-phone-link">
-            <Phone size={16} />
-            <span>Sună acum</span>
-          </a>
-          <button onClick={onOpenModal} className="btn btn-primary" style={{ padding: '0.65rem 1.25rem', fontSize: '0.875rem', flexShrink: 0 }}>
-            Înscrie-te acum
-          </button>
-        </div>
-        <div className="nav-cta-mobile">
-          <a href="tel:+37369447768" className="btn-mobile-call">
-            <Phone size={14} />
-            <span>Sună acum</span>
-          </a>
-          <button onClick={onOpenMapModal} className="btn-mobile-pin" aria-label="Cum ajungi la noi">
-            <MapPin size={16} />
-          </button>
+    <header className="header-wrapper">
+      {/* ── TOP BAR (Dark navy blue) ─────────────── */}
+      <div className="top-bar">
+        <div className="container top-bar-container">
+          {/* Left: Social networks */}
+          <div className="top-bar-socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon-link">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon-link">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://t.me/+37369447768" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="social-icon-link">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
+              </svg>
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="social-icon-link">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.84V7.63a6.34 6.34 0 0 0-5.06 2.05A6.34 6.34 0 0 0 3 14.15a6.34 6.34 0 0 0 6.35 6.35 6.34 6.34 0 0 0 6.35-6.35V9.4a8.28 8.28 0 0 0 4.89 1.58V7.53a4.83 4.83 0 0 1-1-.84z"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Right: Phone, Pin & Contact Button */}
+          <div className="top-bar-contacts">
+            <a href="tel:+37369447768" className="top-bar-link">
+              <Phone size={14} />
+              <span>Sună acum</span>
+            </a>
+            <button onClick={onOpenMapModal} className="top-bar-link top-bar-pin-btn">
+              <MapPin size={14} />
+              <span>Adresă</span>
+            </button>
+            <button onClick={onOpenModal} className="top-bar-cta-btn">
+              Contactează-ne!
+            </button>
+          </div>
         </div>
       </div>
-    </nav>
+
+      {/* ── MAIN NAVBAR (White bar below top bar) ── */}
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container navbar-container">
+          <a href="#acasa" className="logo">
+            <img src="/logo2.png" alt="Progress CLS" className="logo-img" style={{ height: '42px' }} />
+          </a>
+
+          {/* Hamburger Menu Button */}
+          <button className="burger-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Meniu">
+            {menuOpen ? <X size={26} color="var(--color-primary-dark)" /> : <Menu size={26} color="var(--color-primary-dark)" />}
+          </button>
+        </div>
+
+        {/* Dropdown Menu Panel */}
+        {menuOpen && (
+          <div className="navbar-dropdown">
+            <div className="container dropdown-container">
+              <a href="#acasa" onClick={() => setMenuOpen(false)}>Acasă</a>
+              <a href="#cursuri" onClick={() => setMenuOpen(false)}>Cursuri</a>
+              <a href="#cambridge" onClick={() => setMenuOpen(false)}>Cambridge</a>
+              <a href="#beneficii" onClick={() => setMenuOpen(false)}>Beneficii</a>
+              <a href="#echipa" onClick={() => setMenuOpen(false)}>Echipa</a>
+              <a href="#blog" onClick={() => setMenuOpen(false)}>Blog</a>
+              <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+              <button onClick={() => { setMenuOpen(false); onOpenModal(); }} className="btn btn-primary btn-full" style={{ marginTop: '1rem' }}>
+                Înscrie-te acum
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+}
   );
 }
 
