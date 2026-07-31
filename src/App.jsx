@@ -314,9 +314,14 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (window.location.pathname.includes('/admin') || window.location.hash.includes('admin')) {
-      setIsAdminOpen(true);
-    }
+    const handleAdminRoute = () => {
+      if (window.location.pathname.includes('/admin') || window.location.hash.includes('admin')) {
+        setIsAdminOpen(true);
+      }
+    };
+    handleAdminRoute();
+    window.addEventListener('hashchange', handleAdminRoute);
+    return () => window.removeEventListener('hashchange', handleAdminRoute);
   }, []);
 
   const openModal = (courseId = '') => {
