@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useFadeIn } from './useFadeIn';
 import './index.css';
+import AdminPanel from './AdminPanel';
 
 import generalData from './data/general.json';
 import coursesData from './data/courses.json';
@@ -259,6 +260,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState('');
   useFadeIn();
 
@@ -266,6 +268,12 @@ export default function App() {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (window.location.pathname.includes('/admin') || window.location.hash.includes('admin')) {
+      setIsAdminOpen(true);
+    }
   }, []);
 
   const openModal = (courseId = '') => {
@@ -628,7 +636,12 @@ export default function App() {
           </div>
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Progress CLS - Centrul de Limbă Engleză. Toate drepturile rezervate.</span>
-            <span>progress-english.md</span>
+            <button 
+              onClick={() => setIsAdminOpen(true)}
+              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '0.8rem' }}
+            >
+              🔒 Autentificare Admin
+            </button>
           </div>
         </div>
       </footer>
@@ -643,6 +656,12 @@ export default function App() {
         <DirectionsModal 
           isOpen={isMapModalOpen} 
           onClose={() => setIsMapModalOpen(false)} 
+        />
+      )}
+      {isAdminOpen && (
+        <AdminPanel 
+          onClose={() => setIsAdminOpen(false)} 
+          initialData={{ general: generalData, courses: COURSES, team: TEAM }} 
         />
       )}
     </>
