@@ -114,6 +114,11 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
   };
 
   const handleSave = () => {
+    try {
+      localStorage.setItem('progress_cls_site_data', JSON.stringify(data));
+    } catch (e) {
+      console.error('Failed to save to localStorage:', e);
+    }
     if (onSaveData) {
       onSaveData(data);
     }

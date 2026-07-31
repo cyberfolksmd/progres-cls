@@ -305,51 +305,111 @@ export default function App() {
       desc: 'Știai că limba engleză are peste 1 milion de cuvinte și că cel mai scurt termen propozițional complet este "Go!"? Descoperă mai multe lucruri fascinante în cursurile noastre!'
     }
   ]);
-  const [siteData, setSiteData] = useState({
-    hero: {
-      awardText1: 'Centrul Lingvistic al Anului 2024',
-      awardText2: 'Visionary Brand 2025',
-      subtitle: 'Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.',
-      typewriterWords: ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']
-    },
-    stats: [
-      { number: '500+', label: 'Cursanți formați' },
-      { number: '98%', label: 'Rată de promovare Cambridge' },
-      { number: '10+', label: 'Ani de experiență' },
-      { number: '100%', label: 'Dedicare și profesionalism' }
-    ],
-    courses: COURSES,
-    benefits: [
-      { title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne.' },
-      { title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate cu experiență.' },
-      { title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală.' },
-      { title: 'Lecții interactive', desc: 'Comunicare, jocuri și proiecte practice.' }
-    ],
-    team: TEAM,
-    testimonials: [
-      { author: 'Maria D.', course: 'Engleza pentru Copii', text: 'Fiica mea a avansat de la A1 la B1 în 18 luni!', rating: 5 },
-      { author: 'Andrei C.', course: 'Pregătire Cambridge B2', text: 'Am promovat examenul FCE cu nota B!', rating: 5 }
-    ],
-    blog: blogPosts,
-    faq: {
-      cambridgeFaq: [
-        { q: 'De ce am nevoie de un certificat Cambridge?', a: 'Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață.' },
-        { q: 'Care este diferența dintre cursul intensiv și cel extensiv?', a: 'Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor.' },
-        { q: 'Unde susțin examenul Cambridge?', a: 'Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă.' },
-        { q: 'Este ușor examenul?', a: 'Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit.' }
+  const [siteData, setSiteData] = useState(() => {
+    const defaultData = {
+      hero: {
+        awardText1: 'Centrul Lingvistic al Anului 2024',
+        awardText2: 'Visionary Brand 2025',
+        subtitle: 'Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.',
+        typewriterWords: ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']
+      },
+      stats: [
+        { number: '500+', label: 'Cursanți formați' },
+        { number: '98%', label: 'Rată de promovare Cambridge' },
+        { number: '10+', label: 'Ani de experiență' },
+        { number: '100%', label: 'Dedicare și profesionalism' }
       ],
-      generalFaq: [
-        { q: 'Cum mă pot înscrie la cursuri?', a: 'Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92.' },
-        { q: 'Aveți sediu doar la Botanica sau și în alte sectoare?', a: 'Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii.' },
-        { q: 'Aveți lecții Online sau doar Offline?', a: 'Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active.' }
-      ]
-    },
-    contacts: {
-      phone: '+373 69 44 77 68',
-      phoneRaw: '+37369447768',
-      address: 'Chișinău, Str. Sarmizegetusa 92',
-      email: 'progress.cls@gmail.com'
+      courses: COURSES,
+      benefits: [
+        { title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne.' },
+        { title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate cu experiență.' },
+        { title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală.' },
+        { title: 'Lecții interactive', desc: 'Comunicare, jocuri și proiecte practice.' }
+      ],
+      team: TEAM,
+      testimonials: [
+        { author: 'Maria D.', course: 'Engleza pentru Copii', text: 'Fiica mea a avansat de la A1 la B1 în 18 luni!', rating: 5 },
+        { author: 'Andrei C.', course: 'Pregătire Cambridge B2', text: 'Am promovat examenul FCE cu nota B!', rating: 5 }
+      ],
+      blog: [
+        { 
+          id: 'b1', 
+          title: 'Start Înscrierilor pentru noul an de studii 2026-2027', 
+          date: 'Iulie 2026', 
+          tag: 'Noutăți',
+          img: '/hero.png',
+          desc: 'Centrul Lingvistic Progress CLS anunță deschiderea înscrierilor pentru noul an academic 2026-2027!\n\nOferim cursuri moderne de engleză pentru copii (8-11 ani), adolescenți (12-18 ani) și adulți, precum și grupe speciale de pregătire intensivă pentru examenele Cambridge (FCE / CAE).\n\nÎnscrie-te înainte de 1 septembrie și beneficiezi de o reducere de 5% la achitarea integrală a cursului!'
+        },
+        { 
+          id: 'b2', 
+          title: 'Progress CLS - decernare Centrul Lingvistic al Anului 2024', 
+          date: 'Decembrie 2024', 
+          tag: 'Premii',
+          img: '/cambridge.png',
+          desc: 'Suntem mândri să vă anunțăm că Progress CLS a fost desemnat Centrul Lingvistic al Anului 2024!\n\nMulțumim echipei noastre fantastice de profesori dedicați și tuturor cursanților care au ales să învețe engleza alături de noi.'
+        },
+        { 
+          id: 'b3', 
+          title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', 
+          date: 'Iunie 2025', 
+          tag: 'Premii',
+          img: '/hero.png',
+          desc: 'O nouă recunoaștere a muncii noastre! În cadrul galei ORPH Awards 2025, Progress CLS a obținut trofeul Visionary Brand pentru inovație în metodele de predare a limbii engleze.'
+        },
+        { 
+          id: 'b4', 
+          title: 'Cum poți învăța engleza ușor și eficient?', 
+          date: 'Martie 2025', 
+          tag: 'Sfaturi',
+          img: '/teacher_ludmila.png',
+          desc: 'Învățarea unei limbi străine nu trebuie să fie plictisitoare. Secretul constă în practică zilnică, vizionarea filmelor în engleză cu subtitrări și participarea la lecții interactive unde vorbești din prima zi.'
+        },
+        { 
+          id: 'b5', 
+          title: 'Curiozități despre limba engleză', 
+          date: 'Ianuarie 2025', 
+          tag: 'Curiozități',
+          img: '/teacher_anastasia.png',
+          desc: 'Știai că limba engleză are peste 1 milion de cuvinte și că cel mai scurt termen propozițional complet este "Go!"? Descoperă mai multe lucruri fascinante în cursurile noastre!'
+        }
+      ],
+      faq: {
+        cambridgeFaq: [
+          { q: 'De ce am nevoie de un certificat Cambridge?', a: 'Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață.' },
+          { q: 'Care este diferența dintre cursul intensiv și cel extensiv?', a: 'Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor.' },
+          { q: 'Unde susțin examenul Cambridge?', a: 'Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă.' },
+          { q: 'Este ușor examenul?', a: 'Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit.' }
+        ],
+        generalFaq: [
+          { q: 'Cum mă pot înscrie la cursuri?', a: 'Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92.' },
+          { q: 'Aveți sediu doar la Botanica sau și în alte sectoare?', a: 'Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii.' },
+          { q: 'Aveți lecții Online sau doar Offline?', a: 'Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active.' }
+        ]
+      },
+      contacts: {
+        phone: '+373 69 44 77 68',
+        phoneRaw: '+37369447768',
+        address: 'Chișinău, Str. Sarmizegetusa 92',
+        email: 'progress.cls@gmail.com'
+      }
+    };
+
+    try {
+      const saved = localStorage.getItem('progress_cls_site_data');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          ...defaultData,
+          ...parsed,
+          hero: { ...defaultData.hero, ...(parsed.hero || {}) },
+          faq: { ...defaultData.faq, ...(parsed.faq || {}) },
+          contacts: { ...defaultData.contacts, ...(parsed.contacts || {}) }
+        };
+      }
+    } catch (e) {
+      console.error('Error loading saved siteData:', e);
     }
+    return defaultData;
   });
 
   useFadeIn();
