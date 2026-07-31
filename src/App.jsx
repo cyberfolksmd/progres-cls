@@ -224,8 +224,6 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
     </header>
   );
 }
-  );
-}
 
 function CourseTabs({ onOpenModal }) {
   const [active, setActive] = useState(0);
