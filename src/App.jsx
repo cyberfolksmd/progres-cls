@@ -8,71 +8,21 @@ import {
 import { useFadeIn } from './useFadeIn';
 import './index.css';
 
-// ── Data ─────────────────────────────────────────────────
-const COURSES = [
-  {
-    id: 'kids',
-    label: 'Copii (8-11 ani)',
-    title: 'Engleza pentru Copii',
-    age: '8 - 11 ani',
-    levels: [{ label: 'A1.1', cls: 'level-a1' }, { label: 'A1.2', cls: 'level-a1' }, { label: 'A2.1', cls: 'level-a2' }],
-    series: 'Super Minds 1, 2, 3',
-    desc: 'Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.',
-    details: [
-      { icon: <Calendar size={18} />, label: 'Durată', value: '9 luni (septembrie-mai), 2 ori/săptămână' },
-      { icon: <Clock size={18} />, label: 'Lecții', value: '72 lecții · 75 minute fiecare' },
-      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 copii per grupă' },
-    ],
-    priceTotal: '7920',
-    priceMonthly: '880',
-    lessons: '8 lecții',
-    manuals: '500',
-    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
-  },
-  {
-    id: 'teens',
-    label: 'Adolescenți (12-18 ani)',
-    title: 'Engleza pentru Adolescenți',
-    age: '12 - 18 ani',
-    levels: [
-      { label: 'A1', cls: 'level-a1' }, { label: 'A2', cls: 'level-a2' },
-      { label: 'B1', cls: 'level-b1' }, { label: 'B1+', cls: 'level-b1' },
-      { label: 'B2', cls: 'level-b2' }, { label: 'C1', cls: 'level-c1' },
-    ],
-    desc: 'Adolescenții dezvoltă fluența în comunicare, gândirea critică și vocabularul necesar pentru examene și carieră. Grupe separate pe niveluri de la A1 până la C1.',
-    details: [
-      { icon: <Calendar size={18} />, label: 'Durată', value: '9 luni (septembrie-mai), 2 ori/săptămână' },
-      { icon: <Clock size={18} />, label: 'Lecții', value: '72 lecții · 80 minute fiecare' },
-      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 cursanți per grupă' },
-    ],
-    priceTotal: 'De la 8280',
-    priceMonthly: '920 - 1000',
-    lessons: '8 lecții',
-    manuals: '500',
-    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
-  },
-  {
-    id: 'adults',
-    label: 'Adulți (curs intensiv)',
-    title: 'Engleza pentru Adulți',
-    age: 'Adulți',
-    levels: [
-      { label: 'A2', cls: 'level-a2' }, { label: 'B1', cls: 'level-b1' },
-      { label: 'B1+', cls: 'level-b1' }, { label: 'B2', cls: 'level-b2' },
-    ],
-    desc: 'Curs intensiv pentru adulți activi. Ritm alert, rezultate rapide. Orarul de seară permite cursanților să îmbine studiul cu activitatea profesională.',
-    details: [
-      { icon: <Calendar size={18} />, label: 'Durată', value: '4.5 luni · Luni, Miercuri, Vineri 18:30' },
-      { icon: <Clock size={18} />, label: 'Lecții', value: '56 lecții · 90 minute fiecare' },
-      { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 cursanți per grupă' },
-    ],
-    priceTotal: 'De la 6720',
-    priceMonthly: '1680 - 1750',
-    lessons: '14 lecții',
-    manuals: '500',
-    discounts: ['5% achitare integrală', '5% membrii aceleiași familii', '7% achitare integrală + familii'],
-  },
-];
+import generalData from './data/general.json';
+import coursesData from './data/courses.json';
+import teamData from './data/team.json';
+import faqData from './data/faq.json';
+
+// ── Data (Powered by Decap CMS / JSON) ───────────────────
+const COURSES = coursesData.map(c => ({
+  ...c,
+  desc: c.desc || c.text || '',
+  details: c.details || [
+    { icon: <Calendar size={18} />, label: 'Durată', value: '9 luni (septembrie-mai), 2 ori/săptămână' },
+    { icon: <Clock size={18} />, label: 'Lecții', value: '72 lecții · 75 minute fiecare' },
+    { icon: <Users size={18} />, label: 'Grup', value: 'Max. 12 copii per grupă' }
+  ]
+}));
 
 const BENEFITS = [
   { icon: <BookOpen size={28} />, title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne, adaptate fiecărui nivel.' },
@@ -85,38 +35,7 @@ const BENEFITS = [
   { icon: <ShieldCheck size={28} />, title: 'Rezultate certificate', desc: 'Pregătire pentru examene Cambridge recunoscute internațional, valabile pe viață.' },
 ];
 
-const TEAM = [
-  { 
-    name: 'Ludmila Cebotaru', 
-    role: 'Director General & Profesoară', 
-    img: '/teacher_ludmila.png' 
-  },
-  { 
-    name: 'Anastasia Falca', 
-    role: 'Profesoară de engleză', 
-    img: '/teacher_anastasia.png' 
-  },
-  { 
-    name: 'Cristina Chirica', 
-    role: 'Profesoară de engleză', 
-    img: '/teacher_cristina.png' 
-  },
-  { 
-    name: 'Irina Buliga', 
-    role: 'Profesoară de engleză', 
-    img: '/teacher_irina.png' 
-  },
-  { 
-    name: 'Adriana Musteață', 
-    role: 'Profesoară de engleză', 
-    img: '/teacher_adriana.png' 
-  },
-  { 
-    name: 'Eugenia Ichim', 
-    role: 'Profesoară de engleză', 
-    img: '/teacher_eugenia.png' 
-  },
-];
+const TEAM = teamData;
 
 const TESTIMONIALS = [
   { text: 'Fiica mea a avansat de la A1 la B1 în 18 luni! Profesoarele sunt extrem de dedicate și răbdătoare.', author: 'Maria D.', course: 'Engleza pentru Copii', rating: 5 },
@@ -124,18 +43,9 @@ const TESTIMONIALS = [
   { text: 'Atmosfera prietenoasă și lecțiile interactive m-au ajutat să depășesc teama de a vorbi engleză.', author: 'Elena M.', course: 'Engleza pentru Adulți', rating: 5 },
 ];
 
-const CAMBRIDGE_FAQ = [
-  { q: 'De ce am nevoie de un certificat Cambridge?', a: 'Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață.' },
-  { q: 'Care este diferența dintre cursul intensiv și cel extensiv?', a: 'Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor.' },
-  { q: 'Unde susțin examenul Cambridge?', a: 'Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă.' },
-  { q: 'Este ușor examenul?', a: 'Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit.' },
-];
-
-const GENERAL_FAQ = [
-  { q: 'Cum mă pot înscrie la cursuri?', a: 'Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92.' },
-  { q: 'Aveți sediu doar la Botanica sau și în alte sectoare?', a: 'Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii.' },
-  { q: 'Aveți lecții Online sau doar Offline?', a: 'Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active.' },
-];
+const CAMBRIDGE_FAQ = faqData.cambridgeFaq;
+const GENERAL_FAQ = faqData.generalFaq;
+const TYPEWRITER_WORDS = generalData.typewriterWords || ['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză'];
 
 // ── Components ────────────────────────────────────────────
 
@@ -385,7 +295,7 @@ export default function App() {
               <span className="award-shimmer" />
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
-              <span className="gradient-text"><Typewriter words={['Învață Engleza', 'Un pas spre succes', 'Excelență în engleză']} /></span><br />cu Progress CLS
+              <span className="gradient-text"><Typewriter words={TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
             <p className="hero-subtitle animate-fade-up animate-delay-2">
               Cursuri de limba engleză pentru copii, adolescenți și adulți, bazate pe metodologia Cambridge. Profesori cu experiență și certificați TEFL internațional.

@@ -1,0 +1,13 @@
+{
+  "cambridgeFaq": [
+    { "q": "De ce am nevoie de un certificat Cambridge?", "a": "Un certificat Cambridge este recunoscut internațional și îți oferă: scutire de proba de competențe lingvistice la Bacalaureat, avantaj la admiterea în universități din România și străinătate, mai multe oportunități profesionale și o certificare valabilă pe viață." },
+    { "q": "Care este diferența dintre cursul intensiv și cel extensiv?", "a": "Cursul intensiv este recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid - ritm alert, 3.5 luni. Cursul extensiv este ideal pentru elevii din clasele X-XI, oferind 9 luni de pregătire graduală, mai puțină presiune și timp pentru consolidarea cunoștințelor." },
+    { "q": "Unde susțin examenul Cambridge?", "a": "Pregătirea are loc la Progress CLS. Examenul propriu-zis este susținut la Alianța Franceză, centru autorizat de examinare Cambridge, unde cursanții noștri sunt programați pentru sesiunea aleasă." },
+    { "q": "Este ușor examenul?", "a": "Examenul Cambridge este riguros și evaluează toate competențele: Reading, Writing, Listening și Speaking. Cu o pregătire consecventă la Progress CLS - modele de examen, simulări și feedback constant - vei obține rezultatul dorit." }
+  ],
+  "generalFaq": [
+    { "q": "Cum mă pot înscrie la cursuri?", "a": "Ne puteți contacta la numărul +373 69 44 77 68, prin email la progress.cls@gmail.com sau vizitând sediul nostru din Chișinău, Str. Sarmizegetusa 92." },
+    { "q": "Aveți sediu doar la Botanica sau și în alte sectoare?", "a": "Momentan activăm la sediul nostru din Chișinău, Str. Sarmizegetusa 92 (sectorul Botanica). Contactați-ne pentru mai multe detalii." },
+    { "q": "Aveți lecții Online sau doar Offline?", "a": "Contactați-ne pentru a afla despre formatele disponibile în prezent și orarul grupelor active." }
+  ]
+}

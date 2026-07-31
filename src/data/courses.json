@@ -1,0 +1,86 @@
+[
+  {
+    "id": "kids",
+    "label": "Copii (8-11 ani)",
+    "title": "Engleza pentru Copii",
+    "age": "8 - 11 ani",
+    "levels": [
+      { "label": "A1.1", "cls": "level-a1" },
+      { "label": "A1.2", "cls": "level-a1" },
+      { "label": "A2.1", "cls": "level-a2" }
+    ],
+    "series": "Super Minds 1, 2, 3",
+    "desc": "Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.",
+    "priceTotal": "7920",
+    "priceMonthly": "880",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii",
+      "7% achitare integrală + familii"
+    ]
+  },
+  {
+    "id": "teens",
+    "label": "Adolescenți (12-18 ani)",
+    "title": "Engleza pentru Adolescenți",
+    "age": "12 - 18 ani",
+    "levels": [
+      { "label": "A2.2", "cls": "level-a2" },
+      { "label": "B1.1", "cls": "level-b1" },
+      { "label": "B1.2", "cls": "level-b1" },
+      { "label": "B2.1", "cls": "level-b2" }
+    ],
+    "series": "Prepare 2, 3, 4, 5, 6",
+    "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
+    "priceTotal": "8820",
+    "priceMonthly": "980",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii",
+      "7% achitare integrală + familii"
+    ]
+  },
+  {
+    "id": "adults",
+    "label": "Adulți",
+    "title": "Engleza pentru Adulți",
+    "age": "18+ ani",
+    "levels": [
+      { "label": "A1 - C1", "cls": "level-b2" }
+    ],
+    "series": "Empower / English File",
+    "desc": "Cursuri axate pe conversație, engleză pentru afaceri și dezvoltare personală. Program flexibil, adaptat ritmului tău de viață.",
+    "priceTotal": "9720",
+    "priceMonthly": "1080",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii"
+    ]
+  },
+  {
+    "id": "cambridge",
+    "label": "Pregătire Cambridge",
+    "title": "Pregătire Examene Cambridge",
+    "age": "B2 First (FCE) / C1 Advanced (CAE)",
+    "levels": [
+      { "label": "B2 First", "cls": "level-b2" },
+      { "label": "C1 Advanced", "cls": "level-c1" }
+    ],
+    "series": "Complete First / Advanced",
+    "desc": "Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE). Scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
+    "priceTotal": "10620",
+    "priceMonthly": "1180",
+    "lessons": "8 lecții",
+    "manuals": "600",
+    "discounts": [
+      "5% achitare integrală",
+      "Simulare de examen gratuită"
+    ]
+  }
+]

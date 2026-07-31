@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: cyberfolksmd/progres-cls
+  branch: main
+  site_domain: progres-cls.vercel.app
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "ro"
+
+collections:
+  - name: "general"
+    label: "⚙️ Setări Generale & Header"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general_settings"
+        label: "Informații Contact & Typewriter"
+        file: "src/data/general.json"
+        fields:
+          - { label: "Titlu Site", name: "siteTitle", widget: "string" }
+          - { label: "Telefon Studio (Vizibil)", name: "phone", widget: "string" }
+          - { label: "Telefon Studio (Direct)", name: "phoneRaw", widget: "string" }
+          - { label: "Adresă Studio", name: "address", widget: "string" }
+          - { label: "Frază Peceat (Typewriter)", name: "typewriterWords", widget: "list", summary: "{{fields.word}}" }
+
+  - name: "courses"
+    label: "📚 Cursuri & Prețuri"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "all_courses"
+        label: "Toate Cursurile"
+        file: "src/data/courses.json"
+        fields:
+          - label: "Lista de Cursuri"
+            name: "courses"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "ID Curs (ex: kids, teens, adults, cambridge)", name: "id", widget: "string" }
+              - { label: "Etichetă Tab", name: "label", widget: "string" }
+              - { label: "Titlu Curs", name: "title", widget: "string" }
+              - { label: "Vârstă / Nivel", name: "age", widget: "string" }
+              - { label: "Serie Manuale", name: "series", widget: "string" }
+              - { label: "Descriere", name: "text", widget: "text" }
+              - { label: "Preț Total (Lei)", name: "priceTotal", widget: "string" }
+              - { label: "Preț Lunar (Lei)", name: "priceMonthly", widget: "string" }
+              - { label: "Cost Manuale (Lei)", name: "manuals", widget: "string" }
+
+  - name: "team"
+    label: "👩‍🏫 Echipa de Profesori"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "all_teachers"
+        label: "Membrii Echipă"
+        file: "src/data/team.json"
+        fields:
+          - label: "Profesori"
+            name: "team"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Nume & Prenume", name: "name", widget: "string" }
+              - { label: "Rol / Funcție", name: "role", widget: "string" }
+              - { label: "Foto Profil", name: "img", widget: "image" }
+
+  - name: "faq"
+    label: "❓ Întrebări Frecvente (FAQ)"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "all_faq"
+        label: "Întrebări & Răspunsuri"
+        file: "src/data/faq.json"
+        fields:
+          - label: "Întrebări Cambridge"
+            name: "cambridgeFaq"
+            widget: "list"
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Întrebare", name: "q", widget: "string" }
+              - { label: "Răspuns", name: "a", widget: "text" }
+          - label: "Întrebări Generale"
+            name: "generalFaq"
+            widget: "list"
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Întrebare", name: "q", widget: "string" }
+              - { label: "Răspuns", name: "a", widget: "text" }
