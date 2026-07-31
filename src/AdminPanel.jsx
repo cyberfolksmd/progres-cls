@@ -4,6 +4,54 @@ import {
   Layout, BookOpen, Award, Users, Star, MessageSquare, Newspaper, HelpCircle, Phone, Globe
 } from 'lucide-react';
 
+function RichTextEditor({ label, value, onChange, placeholder, minHeight = 120 }) {
+  const [editorId] = useState(() => `wysiwyg-${Math.random().toString(36).substring(2, 9)}`);
+
+  const insertTag = (tagStart, tagEnd = '') => {
+    const textarea = document.getElementById(editorId);
+    if (!textarea) return;
+    const start = textarea.selectionStart || 0;
+    const end = textarea.selectionEnd || 0;
+    const selectedText = value.substring(start, end);
+    const replacement = `${tagStart}${selectedText || 'text'}${tagEnd}`;
+    const newValue = value.substring(0, start) + replacement + value.substring(end);
+    onChange(newValue);
+  };
+
+  return (
+    <div className="wysiwyg-wrapper">
+      <div className="wysiwyg-header">
+        <label className="wysiwyg-label">{label}</label>
+      </div>
+
+      {/* WYSIWYG Toolbar */}
+      <div className="wysiwyg-toolbar">
+        <button type="button" onClick={() => insertTag('<b>', '</b>')} title="Bold"><b>B</b></button>
+        <button type="button" onClick={() => insertTag('<i>', '</i>')} title="Italic"><i>I</i></button>
+        <button type="button" onClick={() => insertTag('<u>', '</u>')} title="Subliniere"><u>U</u></button>
+        <button type="button" onClick={() => insertTag('<span style="color: var(--color-primary-light); font-weight: 700;">', '</span>')} title="Accent Color">🎨 Accent</button>
+        <button type="button" onClick={() => insertTag('<br />')} title="Rand Nou">↵ Rând Nou</button>
+      </div>
+
+      <textarea
+        id={editorId}
+        className="wysiwyg-textarea"
+        style={{ minHeight: `${minHeight}px` }}
+        placeholder={placeholder}
+        value={value || ''}
+        onChange={(e) => onChange(e.target.value)}
+      />
+
+      {value && (
+        <div className="wysiwyg-preview">
+          <span className="wysiwyg-preview-label">Afișare în timp real pe site:</span>
+          <div dangerouslySetInnerHTML={{ __html: value }} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AdminPanel({ onClose, onSaveData, initialData }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
@@ -266,12 +314,12 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                   </div>
                 </div>
 
-                <div className="form-group" style={{ marginTop: '1rem' }}>
-                  <label>Subtitlu Banner</label>
-                  <textarea 
-                    rows={3} 
-                    value={data.hero.subtitle} 
-                    onChange={(e) => setData({ ...data, hero: { ...data.hero, subtitle: e.target.value } })} 
+                <div style={{ marginTop: '1rem' }}>
+                  <RichTextEditor
+                    label="Subtitlu Banner (Text complet)"
+                    value={data.hero.subtitle}
+                    onChange={(val) => setData({ ...data, hero: { ...data.hero, subtitle: val } })}
+                    minHeight={140}
                   />
                 </div>
 
@@ -407,16 +455,16 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                         />
                       </div>
                     </div>
-                    <div className="form-group" style={{ marginTop: '0.75rem' }}>
-                      <label>Descriere Curs</label>
-                      <textarea 
-                        rows={2} 
-                        value={course.desc} 
-                        onChange={(e) => {
+                    <div style={{ marginTop: '1rem' }}>
+                      <RichTextEditor
+                        label="Descriere Curs (Rich Text / Formatat)"
+                        value={course.desc}
+                        onChange={(val) => {
                           const updated = [...data.courses];
-                          updated[idx].desc = e.target.value;
+                          updated[idx].desc = val;
                           setData({ ...data, courses: updated });
-                        }} 
+                        }}
+                        minHeight={130}
                       />
                     </div>
                   </div>

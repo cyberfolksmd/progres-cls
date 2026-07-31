@@ -1956,3 +1956,88 @@ img { max-width: 100%; display: block; }
   border-radius: var(--radius-lg);
   padding: 1.25rem;
 }
+
+/* ==============================
+   WYSIWYG RICH TEXT EDITOR
+============================== */
+.wysiwyg-wrapper {
+  margin-top: 0.75rem;
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+
+.wysiwyg-header {
+  background: var(--color-bg);
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.wysiwyg-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.wysiwyg-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.wysiwyg-toolbar button {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wysiwyg-toolbar button:hover {
+  background: var(--color-primary-light);
+  color: white;
+  border-color: var(--color-primary-light);
+}
+
+.wysiwyg-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  background: #ffffff;
+}
+
+.wysiwyg-textarea:focus {
+  background: #fafafa;
+}
+
+.wysiwyg-preview {
+  background: #f8fafc;
+  border-top: 1px dashed var(--color-border);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.wysiwyg-preview-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.35rem;
+}
