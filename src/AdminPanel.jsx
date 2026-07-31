@@ -549,16 +549,39 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                           />
                         </div>
                         <div className="form-group" style={{ marginTop: '0.5rem' }}>
-                          <label>Calea Imaginii (/teacher_name.png)</label>
-                          <input 
-                            type="text" 
-                            value={member.img} 
-                            onChange={(e) => {
-                              const updated = [...data.team];
-                              updated[idx].img = e.target.value;
-                              setData({ ...data, team: updated });
-                            }} 
-                          />
+                          <label>Foto Profesor</label>
+                          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginTop: '0.25rem' }}>
+                            <input 
+                              type="text" 
+                              value={member.img} 
+                              onChange={(e) => {
+                                const updated = [...data.team];
+                                updated[idx].img = e.target.value;
+                                setData({ ...data, team: updated });
+                              }} 
+                              style={{ flex: 1 }}
+                            />
+                            <label className="btn btn-ghost btn-sm" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', margin: 0 }}>
+                              📁 Încarcă
+                              <input 
+                                type="file" 
+                                accept="image/*" 
+                                style={{ display: 'none' }}
+                                onChange={(e) => {
+                                  const file = e.target.files && e.target.files[0];
+                                  if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = (event) => {
+                                      const updated = [...data.team];
+                                      updated[idx].img = event.target.result;
+                                      setData({ ...data, team: updated });
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
+                                }}
+                              />
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -732,18 +755,43 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                           }} 
                         />
                       </div>
-                      <div className="form-group">
-                        <label>Fotografie Articol — 📐 Recomandat format PĂTRAT (1:1, 500x500px, calea: /hero.png sau URL)</label>
-                        <input 
-                          type="text" 
-                          placeholder="/blog_photo.png sau https://..." 
-                          value={post.img || ''} 
-                          onChange={(e) => {
-                            const updated = [...data.blog];
-                            updated[idx].img = e.target.value;
-                            setData({ ...data, blog: updated });
-                          }} 
-                        />
+                      <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                        <label style={{ fontWeight: 700 }}>
+                          Fotografie Articol — 📐 Recomandat format PĂTRAT (1:1, ex: 500x500px)
+                        </label>
+                        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginTop: '0.35rem' }}>
+                          <input 
+                            type="text" 
+                            placeholder="/hero.png sau URL..." 
+                            value={post.img || ''} 
+                            onChange={(e) => {
+                              const updated = [...data.blog];
+                              updated[idx].img = e.target.value;
+                              setData({ ...data, blog: updated });
+                            }} 
+                            style={{ flex: 1 }}
+                          />
+                          <label className="btn btn-primary btn-sm" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', margin: 0 }}>
+                            📁 ÎNCARCĂ FOTO (1:1)
+                            <input 
+                              type="file" 
+                              accept="image/*" 
+                              style={{ display: 'none' }}
+                              onChange={(e) => {
+                                const file = e.target.files && e.target.files[0];
+                                if (file) {
+                                  const reader = new FileReader();
+                                  reader.onload = (event) => {
+                                    const updated = [...data.blog];
+                                    updated[idx].img = event.target.result;
+                                    setData({ ...data, blog: updated });
+                                  };
+                                  reader.readAsDataURL(file);
+                                }
+                              }}
+                            />
+                          </label>
+                        </div>
                       </div>
                     </div>
 
