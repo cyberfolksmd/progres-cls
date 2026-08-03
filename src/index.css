@@ -283,6 +283,23 @@ img { max-width: 100%; display: block; }
   transform: scale(1);
 }
 
+/* ── 3D SPATIAL REVEAL ANIMATION (3D perspective depth reveal) ── */
+.spatial-reveal {
+  opacity: 0;
+  transform: perspective(1200px) translateZ(-90px) rotateX(8deg) scale(0.93);
+  filter: blur(4px);
+  will-change: transform, opacity, filter;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spatial-reveal.visible {
+  opacity: 1;
+  transform: perspective(1200px) translateZ(0) rotateX(0deg) scale(1);
+  filter: blur(0);
+}
+
 .delay-1 { transition-delay: 0.1s; animation-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; animation-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; animation-delay: 0.3s; }

@@ -285,7 +285,7 @@ function TeacherCard({ member, index }) {
 
   return (
     <div
-      className={`team-member fade-in delay-${(index % 6) + 1}`}
+      className={`team-member spatial-reveal delay-${(index % 6) + 1}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -351,7 +351,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
   const currentSub = subLevels[selectedSubLevelIndex] || subLevels[0] || {};
 
   return (
-    <div id={course.id} className="course-block-card fade-in">
+    <div id={course.id} className="course-block-card spatial-reveal">
       {/* Course Cover Banner Image (like Fantastic English) */}
       {course.img && (
         <div className="course-cover-wrap">

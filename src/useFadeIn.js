@@ -14,7 +14,7 @@ export function useFadeIn() {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const selectors = '.fade-in, .slide-in-left, .slide-in-right, .slide-in-up, .zoom-in';
+    const selectors = '.fade-in, .slide-in-left, .slide-in-right, .slide-in-up, .zoom-in, .spatial-reveal';
     const elements = document.querySelectorAll(selectors);
     elements.forEach((el) => observer.observe(el));
 
