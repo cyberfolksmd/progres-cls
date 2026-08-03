@@ -272,7 +272,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
       {/* Sub-level Switcher Buttons */}
       {subLevels.length > 0 && (
         <div className="sublevel-switcher-bar">
-          <span className="sublevel-switcher-title">Alege Nivelul / Formatul:</span>
+          <span className="sublevel-switcher-title">Alege Nivelul:</span>
           <div className="sublevel-buttons-wrap">
             {subLevels.map((lvl, idx) => (
               <button
@@ -427,7 +427,7 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
           {subLevels.length > 0 && (
             <div style={{ background: '#f1f5f9', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '0.75rem 1.1rem', marginBottom: '1.5rem' }}>
               <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-                Selectează Nivelul / Formatul:
+                Selectează Nivelul:
               </div>
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {subLevels.map((s, idx) => (
@@ -463,6 +463,16 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
             </h4>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Format instruire</span>
+                  <span className="detail-value">Lecții Offline (cu prezență fizică)</span>
+                </div>
+              </div>
+
               <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
                 <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
                   <Calendar size={18} />
