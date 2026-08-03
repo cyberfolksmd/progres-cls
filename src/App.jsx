@@ -947,7 +947,6 @@ export default function App() {
         <div className="container hero-container">
           <div className="hero-content slide-in-left">
             <div className="hero-award-badge animate-fade-up">
-              <span className="award-icon">🏆</span>
               <span className="award-text">{siteData.hero.awardText1}</span>
               <span className="award-divider">·</span>
               <span className="award-text">{siteData.hero.awardText2}</span>

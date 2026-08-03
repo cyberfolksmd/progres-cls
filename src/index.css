@@ -2286,7 +2286,7 @@ html, body {
 
   /* HERO MOBILE CLEANUP */
   .hero-uk-theme {
-    padding-top: 5.5rem !important;
+    padding-top: 6.8rem !important;
     min-height: auto !important;
     padding-bottom: 2.5rem !important;
   }
@@ -2297,15 +2297,22 @@ html, body {
     padding: 0 0.85rem !important;
   }
   .hero-award-badge {
-    max-width: 96% !important;
-    padding: 0.35rem 0.75rem !important;
-    margin: 0 auto 1rem auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
+    flex-wrap: wrap !important;
+    width: auto !important;
+    max-width: 94% !important;
+    padding: 0.45rem 1rem !important;
+    margin: 0.5rem auto 1.25rem auto !important;
+    border-radius: 1.25rem !important;
+    box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4) !important;
   }
   .award-text {
-    font-size: 0.7rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
     white-space: normal !important;
-    line-height: 1.25 !important;
   }
   .hero-h1 {
     font-size: 1.5rem !important;
