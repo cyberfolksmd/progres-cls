@@ -2584,15 +2584,34 @@ img { max-width: 100%; display: block; }
   }
 
   .sublevel-switcher-bar {
-    background: rgba(241, 245, 249, 0.85) !important;
-    border: 1px solid rgba(203, 213, 225, 0.7) !important;
+    background: url('/mobile_card_bg.png') center/cover no-repeat, linear-gradient(135deg, #f8fafc, #f1f5f9) !important;
+    border: 1px solid rgba(203, 213, 225, 0.8) !important;
     border-radius: var(--radius-2xl) !important;
-    padding: 1.15rem 0.85rem !important;
+    padding: 1.25rem 0.9rem !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.85rem;
     margin-bottom: 1.25rem !important;
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.05) !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sublevel-switcher-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.88) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sublevel-switcher-title,
+  .sublevel-buttons-wrap,
+  .mobile-active-level-summary {
+    position: relative;
+    z-index: 1;
   }
 
   .course-mobile-actions {
