@@ -260,7 +260,18 @@ function TeacherCard({ member, index }) {
     });
   }
 
-  const images = rawPhotos.length > 0 ? rawPhotos : (member.img ? [member.img] : []);
+  const fallbackPhotos = ['/course_kids.webp', '/course_teens.webp', '/course_adults.webp', '/cambridge.webp', '/hero.webp'];
+  let images = rawPhotos.filter(Boolean);
+  if (images.length === 0 && member.img) images.push(member.img);
+
+  let fallbackIdx = index;
+  while (images.length < 3) {
+    const nextFb = fallbackPhotos[fallbackIdx % fallbackPhotos.length];
+    if (!images.includes(nextFb)) {
+      images.push(nextFb);
+    }
+    fallbackIdx++;
+  }
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -905,10 +916,23 @@ export default function App() {
           };
         });
 
+        const savedTeam = (parsed.team && Array.isArray(parsed.team)) ? parsed.team : TEAM;
+        const mergedTeam = TEAM.map((defMember) => {
+          const found = savedTeam.find(m => m.name === defMember.name);
+          if (!found) return defMember;
+          return {
+            ...defMember,
+            ...found,
+            img: found.img || defMember.img,
+            images: (found.images && found.images.length > 0) ? found.images : (defMember.images || [defMember.img, defMember.img2, defMember.img3].filter(Boolean))
+          };
+        });
+
         return {
           ...defaultData,
           ...parsed,
           courses: mergedCourses,
+          team: mergedTeam,
           hero: { ...defaultData.hero, ...(parsed.hero || {}) },
           faq: { ...defaultData.faq, ...(parsed.faq || {}) },
           contacts: { ...defaultData.contacts, ...(parsed.contacts || {}) }
