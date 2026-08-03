@@ -1212,9 +1212,9 @@ export default function App() {
 
       {/* ── FAQ GENERAL ──────────────────────── */}
       <section id="faq" className="section">
-        <div className="container">
+        <div className="faq-big-ben-bg" style={{ backgroundImage: "url('/big_ben.webp')" }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-header fade-in">
-            <span className="section-tag">Întrebări</span>
             <h2 className="section-title">Întrebări frecvente</h2>
           </div>
           <div className="faq-list fade-in delay-2">
@@ -1568,11 +1568,11 @@ Curs: ${courseName}`;
                   <option value="teens_c1">Nivel C1 (Prepare 6)</option>
                 </optgroup>
                 <optgroup label="Adulți / Cursuri intensive (18+ ani)">
-                  <option value="adults_a1">Nivel A1 (4 luni — 1440 lei/lună)</option>
-                  <option value="adults_a2">Nivel A2 (4.5 luni — 1680 lei/lună)</option>
-                  <option value="adults_b1">Nivel B1 (4.5 luni — 1680 lei/lună)</option>
-                  <option value="adults_b1plus">Nivel B1+ (4.5 luni — 1750 lei/lună)</option>
-                  <option value="adults_b2">Nivel B2 (4.5 luni — 1750 lei/lună)</option>
+                  <option value="adults_a1">Nivel A1 (4 luni - 1440 lei/lună)</option>
+                  <option value="adults_a2">Nivel A2 (4.5 luni - 1680 lei/lună)</option>
+                  <option value="adults_b1">Nivel B1 (4.5 luni - 1680 lei/lună)</option>
+                  <option value="adults_b1plus">Nivel B1+ (4.5 luni - 1750 lei/lună)</option>
+                  <option value="adults_b2">Nivel B2 (4.5 luni - 1750 lei/lună)</option>
                 </optgroup>
                 <optgroup label="Pregătire Examene Cambridge (FCE / CAE)">
                   <option value="fce_intensive">B2 First (FCE) Intensiv (3.5 luni)</option>

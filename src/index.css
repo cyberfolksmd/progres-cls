@@ -192,10 +192,26 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* FAQ section — subtle blue */
+/* FAQ section — subtle blue with Big Ben background */
 #faq {
   position: relative;
   overflow: hidden;
+}
+.faq-big-ben-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+  filter: contrast(1.05) saturate(1.1);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 35%, transparent 100%);
 }
 #faq::before {
   content: '';
