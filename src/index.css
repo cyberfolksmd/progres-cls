@@ -555,7 +555,7 @@ img { max-width: 100%; display: block; }
   50% { opacity: 0; }
 }
 
-/* HERO BRITISH RED PHONE BOOTH THEME */
+/* HERO BRITISH RED PHONE BOOTH LIGHT THEME */
 .hero-uk-theme {
   position: relative;
   min-height: 100vh;
@@ -563,43 +563,46 @@ img { max-width: 100%; display: block; }
   align-items: center;
   overflow: hidden;
   padding-top: 7.5rem;
-  background: #0b1329 !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 45%, #e2e8f0 100%) !important;
 }
 
 .hero-uk-bg-photo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
   background-position: center right;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
-  opacity: 0.42;
-  filter: contrast(1.05) saturate(1.1);
-  transform: scale(1.02);
+  opacity: 0.85;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,1) 40%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,1) 40%);
 }
 
 .hero-uk-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg, 
-    #0f172a 0%, 
-    rgba(15, 23, 42, 0.88) 45%, 
-    rgba(15, 23, 42, 0.4) 75%, 
-    rgba(15, 23, 42, 0.15) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-uk-theme .hero-h1 {
-  color: #ffffff !important;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+  color: #0f172a !important;
+  text-shadow: none !important;
 }
 
 .hero-uk-theme .hero-subtitle {
-  color: #cbd5e1 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  color: #334155 !important;
+  text-shadow: none !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 900px) {
+  .hero-uk-bg-photo {
+    width: 100%;
+    opacity: 0.25;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 100%);
+  }
 }
 
 .hero-bg-circle {
