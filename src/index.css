@@ -106,6 +106,23 @@ img { max-width: 100%; display: block; }
 .section--dark { background-color: var(--color-primary); }
 .section--alt { background-color: var(--color-surface-2); }
 
+/* DESKTOP HOVER CURSOR: BRITISH FLAG ICON ON BUTTONS & LINKS */
+@media (min-width: 769px) {
+  button, 
+  .btn, 
+  a, 
+  .sublevel-btn, 
+  .top-bar-cta-btn, 
+  .social-icon-link,
+  .hero-call-btn,
+  .mobile-act-btn,
+  .course-cover-wrap,
+  .btn-messenger,
+  [role="button"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='1.5' stdDeviation='1.2' flood-color='%23000' flood-opacity='0.4'/%3E%3C/filter%3E%3CclipPath id='c'%3E%3Ccircle cx='13' cy='13' r='11'/%3E%3C/clipPath%3E%3Cg filter='url(%23s)'%3E%3Cg clip-path='url(%23c)'%3E%3Crect width='26' height='26' fill='%2300247d'/%3E%3Cpath d='M0 0l26 26M26 0L0 26' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M0 0l26 26M26 0L0 26' stroke='%23cf142b' stroke-width='2.5'/%3E%3Cpath d='M13 0v26M0 13h26' stroke='%23ffffff' stroke-width='6'/%3E%3Cpath d='M13 0v26M0 13h26' stroke='%23cf142b' stroke-width='3.5'/%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 13 13, pointer !important;
+  }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
