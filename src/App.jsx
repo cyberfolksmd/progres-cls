@@ -1288,24 +1288,24 @@ Curs: ${courseName}`;
                 style={{ padding: '0.75rem 1rem', fontSize: '0.95rem', borderRadius: 'var(--radius-lg)' }}
               >
                 <optgroup label="Copii (8-11 ani)">
-                  <option value="kids_a1.1">Copii (8-11 ani) — Nivel A1.1</option>
-                  <option value="kids_a1.2">Copii (8-11 ani) — Nivel A1.2</option>
-                  <option value="kids_a2.1">Copii (8-11 ani) — Nivel A2.1</option>
+                  <option value="kids_a1.1">Nivel A1.1 (Super Minds 1)</option>
+                  <option value="kids_a1.2">Nivel A1.2 (Super Minds 2)</option>
+                  <option value="kids_a2.1">Nivel A2.1 (Super Minds 3)</option>
                 </optgroup>
                 <optgroup label="Adolescenți (12-18 ani)">
-                  <option value="teens_a1_a2">Adolescenți (12-18 ani) — Nivel A1 & A2</option>
-                  <option value="teens_b1_b1plus">Adolescenți (12-18 ani) — Nivel B1 & B1+</option>
-                  <option value="teens_b2_c1">Adolescenți (12-18 ani) — Nivel B2 & C1</option>
+                  <option value="teens_a1_a2">Nivel A1 & A2 (Prepare 1-2)</option>
+                  <option value="teens_b1_b1plus">Nivel B1 & B1+ (Prepare 3-4)</option>
+                  <option value="teens_b2_c1">Nivel B2 & C1 (Prepare 5-6)</option>
                 </optgroup>
-                <optgroup label="Adulți / Cursuri intensive">
-                  <option value="adults_a1_a2">Adulți — Nivel A1 & A2</option>
-                  <option value="adults_b1">Adulți — Nivel B1</option>
-                  <option value="adults_b1plus">Adulți — Nivel B1+</option>
-                  <option value="adults_b2">Adulți — Nivel B2</option>
+                <optgroup label="Adulți / Cursuri intensive (18+ ani)">
+                  <option value="adults_a1_a2">Nivel A1 & A2</option>
+                  <option value="adults_b1">Nivel B1</option>
+                  <option value="adults_b1plus">Nivel B1+</option>
+                  <option value="adults_b2">Nivel B2</option>
                 </optgroup>
-                <optgroup label="Pregătire Examene Cambridge">
-                  <option value="cambridge_intensive">Pregătire Cambridge — Curs Intensiv (3.5 luni)</option>
-                  <option value="cambridge_extensive">Pregătire Cambridge — Curs Extensiv (9 luni)</option>
+                <optgroup label="Pregătire Examene Cambridge (FCE / CAE)">
+                  <option value="cambridge_intensive">Curs Intensiv (3.5 luni)</option>
+                  <option value="cambridge_extensive">Curs Extensiv (9 luni)</option>
                 </optgroup>
               </select>
             </div>

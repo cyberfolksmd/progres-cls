@@ -1,8 +1,8 @@
 [
   {
     "id": "kids",
-    "label": "Copii (8-11 ani)",
-    "title": "Engleza pentru Copii (8-11 ani)",
+    "label": "Copii",
+    "title": "Engleza pentru Copii",
     "age": "8 - 11 ani",
     "series": "Super Minds 1, 2, 3",
     "desc": "Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.",
@@ -65,8 +65,8 @@
   },
   {
     "id": "teens",
-    "label": "Adolescenți (12-18 ani)",
-    "title": "Engleza pentru Adolescenți (12-18 ani)",
+    "label": "Adolescenți",
+    "title": "Engleza pentru Adolescenți",
     "age": "12 - 18 ani",
     "series": "Prepare 1, 2, 3, 4, 5, 6",
     "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
@@ -213,7 +213,7 @@
     "id": "cambridge",
     "label": "Pregătire Cambridge",
     "title": "Pregătire pentru Examenele Cambridge B2 First (FCE) / C1 Advanced (CAE)",
-    "age": "B2 First (FCE) / C1 Advanced (CAE)",
+    "age": "FCE / CAE",
     "series": "Complete First / Advanced",
     "desc": "Centru de pregătire în parteneriat cu Alianța Franceză. Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE) cu scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
     "subLevels": [
