@@ -956,41 +956,9 @@ export default function App() {
       />
 
       {/* ── HERO ─────────────────────────────── */}
-      <section id="acasa" className="hero hero-bleu-marine-modern">
-        {/* Soft Ambient Bokeh Glows */}
-        <div className="hero-bokeh-glow hero-bokeh-glow-1" />
-        <div className="hero-bokeh-glow hero-bokeh-glow-2" />
-        <div className="hero-bokeh-glow hero-bokeh-glow-3" />
-
-        {/* Subtle British Union Jack Watermark Accent */}
-        <div className="uk-flag-watermark" aria-hidden="true">
-          <svg viewBox="0 0 60 30" width="100%" height="100%">
-            <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
-            <path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
-            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" clipPath="url(#s)"/>
-            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#cf142b" strokeWidth="4" clipPath="url(#s)"/>
-            <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
-            <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" strokeWidth="6"/>
-          </svg>
-        </div>
-
-        {/* Floating 3D Interactive Badge Elements */}
-        <div className="floating-hero-badge float-badge-1">
-          <span className="float-icon">🎓</span>
-          <span>Metodologie Cambridge</span>
-        </div>
-        <div className="floating-hero-badge float-badge-2">
-          <span className="float-icon">🇬🇧</span>
-          <span>Pregătire FCE / CAE</span>
-        </div>
-        <div className="floating-hero-badge float-badge-3">
-          <span className="float-icon">⚡</span>
-          <span>Rată de Promovare 98%</span>
-        </div>
-        <div className="floating-hero-badge float-badge-4">
-          <span className="float-icon">⭐</span>
-          <span>Profesori Certificați TEFL</span>
-        </div>
+      <section id="acasa" className="hero hero-uk-theme">
+        <div className="hero-uk-bg-photo" style={{ backgroundImage: "url('/hero_uk_booth.webp')" }} />
+        <div className="hero-uk-bg-overlay" />
 
         <div className="container hero-container">
           <div className="hero-content slide-in-left">
