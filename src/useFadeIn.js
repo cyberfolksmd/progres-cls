@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export function useFadeIn() {
   useEffect(() => {
@@ -11,10 +11,11 @@ export function useFadeIn() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const elements = document.querySelectorAll('.fade-in');
+    const selectors = '.fade-in, .slide-in-left, .slide-in-right, .slide-in-up, .zoom-in';
+    const elements = document.querySelectorAll(selectors);
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();

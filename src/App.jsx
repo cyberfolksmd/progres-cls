@@ -897,7 +897,7 @@ export default function App() {
         <div className="hero-bg-circle hero-bg-circle--1" />
         <div className="hero-bg-circle hero-bg-circle--2" />
         <div className="container hero-container">
-          <div className="hero-content">
+          <div className="hero-content slide-in-left">
             <div className="hero-award-badge animate-fade-up">
               <span className="award-icon">🏆</span>
               <span className="award-text">{siteData.hero.awardText1}</span>
@@ -923,7 +923,7 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="hero-image-wrap animate-fade-up animate-delay-2">
+          <div className="hero-image-wrap slide-in-right delay-2">
             <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
             <div className="hero-float-card hero-float-card--1">
               <div className="hero-float-icon" style={{ background: '#dcfce7', color: '#15803d' }}>
@@ -1256,6 +1256,24 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ── FLOATING CHATY WIDGET (like english-house.md) ── */}
+      <div className="floating-chaty-widget">
+        <a
+          href="https://t.me/+37369447768"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="chaty-btn"
+          aria-label="Telegram"
+          title="Contactează-ne pe Telegram"
+        >
+          <span className="chaty-pulse" />
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
+          </svg>
+        </a>
+      </div>
+
       {isModalOpen && (
         <RegistrationModal 
           isOpen={isModalOpen} 
