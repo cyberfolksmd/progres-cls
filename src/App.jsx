@@ -415,6 +415,20 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
             <h4 className="selected-level-name">{cleanSubName}</h4>
           </div>
 
+          {/* Level Info Thumbnail Photo to fill empty space on Desktop */}
+          {(currentSub.img || course.img) && (
+            <div className="level-info-thumbnail-wrap">
+              <img 
+                src={currentSub.img || course.img} 
+                alt={`${cleanSubName} - Progress CLS`} 
+                className="level-info-thumbnail-img" 
+              />
+              <span className="level-info-thumbnail-badge">
+                <CheckCircle size={14} color="#ffffff" /> Lecții Interactive
+              </span>
+            </div>
+          )}
+
           <div className="course-detail-list">
             <div className="course-detail-item">
               <div className="detail-icon"><Calendar size={18} /></div>
