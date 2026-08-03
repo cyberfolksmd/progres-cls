@@ -349,6 +349,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
   const subLevels = course.subLevels || [];
   const [selectedSubLevelIndex, setSelectedSubLevelIndex] = useState(0);
   const currentSub = subLevels[selectedSubLevelIndex] || subLevels[0] || {};
+  const isIntensive = (currentSub.id || '').includes('intensive') || (currentSub.label || '').toLowerCase().includes('intensiv');
 
   return (
     <div id={course.id} className="course-block-card spatial-reveal">
@@ -395,7 +396,10 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
       {/* Main Grid: Left Details & Right Pricing */}
       <div className="course-detail-grid">
         {/* Left: Active Level Info */}
-        <div className="course-info-card">
+        <div 
+          key={`info-${selectedSubLevelIndex}`}
+          className={`course-info-card ${course.id === 'cambridge' ? (isIntensive ? 'slide-in-left visible' : 'slide-in-right visible') : 'slide-in-left visible'}`}
+        >
           <div className="selected-level-header">
             <span className="level-badge-pill">{currentSub.label}</span>
             <h4 className="selected-level-name">{currentSub.name || currentSub.label}</h4>
@@ -449,7 +453,10 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
         </div>
 
         {/* Right: Pricing Card */}
-        <div className="price-card">
+        <div 
+          key={`price-${selectedSubLevelIndex}`}
+          className={`price-card ${course.id === 'cambridge' ? (isIntensive ? 'slide-in-right visible' : 'slide-in-left visible') : 'slide-in-right visible'}`}
+        >
           <span className="price-tag">Preț Curs</span>
           <div className="price-amount">
             {currentSub.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span>
