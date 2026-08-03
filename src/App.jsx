@@ -56,6 +56,8 @@ function Typewriter({ words, speed = 100, delay = 2200 }) {
   const [reverse, setReverse] = useState(false);
 
   useEffect(() => {
+    if (!words || words.length === 0) return;
+
     if (index >= words.length) {
       setIndex(0);
       return;
@@ -81,9 +83,11 @@ function Typewriter({ words, speed = 100, delay = 2200 }) {
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse, words, speed, delay]);
 
+  const currentText = (words && words[index]) ? words[index].substring(0, subIndex) : '';
+
   return (
     <span className="typewriter-box">
-      <span>{words[index].substring(0, subIndex)}</span>
+      <span>{currentText || '\u00A0'}</span>
       <span className="typewriter-cursor">|</span>
     </span>
   );
