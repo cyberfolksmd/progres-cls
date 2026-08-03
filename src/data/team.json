@@ -1,7 +1,7 @@
-﻿[
+[
   {
     "name": "Ludmila Cebotaru",
-    "role": "Director general / ProfesoarДѓ de englezДѓ",
+    "role": "Director general / Profesoară de engleză",
     "img": "/teacher_ludmila.webp",
     "images": [
       "/teacher_ludmila.webp",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Anastasia Falca",
-    "role": "ProfesoarДѓ de englezДѓ",
+    "role": "Profesoară de engleză",
     "img": "/teacher_anastasia.webp",
     "images": [
       "/teacher_anastasia.webp",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Cristina Chirica",
-    "role": "ProfesoarДѓ de englezДѓ",
+    "role": "Profesoară de engleză",
     "img": "/teacher_cristina.webp",
     "images": [
       "/teacher_cristina.webp",
@@ -31,7 +31,7 @@
   },
   {
     "name": "Irina Buliga",
-    "role": "ProfesoarДѓ de englezДѓ",
+    "role": "Profesoară de engleză",
     "img": "/teacher_irina.webp",
     "images": [
       "/teacher_irina.webp",
@@ -40,8 +40,8 @@
     ]
   },
   {
-    "name": "Adriana MusteaИ›Дѓ",
-    "role": "ProfesoarДѓ de englezДѓ",
+    "name": "Adriana Musteață",
+    "role": "Profesoară de engleză",
     "img": "/teacher_adriana.webp",
     "images": [
       "/teacher_adriana.webp",
@@ -51,7 +51,7 @@
   },
   {
     "name": "Eugenia Ichim",
-    "role": "ProfesoarДѓ de englezДѓ",
+    "role": "Profesoară de engleză",
     "img": "/teacher_eugenia.webp",
     "images": [
       "/teacher_eugenia.webp",
@@ -60,4 +60,3 @@
     ]
   }
 ]
-
