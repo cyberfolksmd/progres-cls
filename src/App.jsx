@@ -246,11 +246,21 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
 }
 
 function TeacherCard({ member, index }) {
-  const rawList = (member.images && member.images.length > 0)
-    ? member.images
-    : [member.img, member.img2, member.img3].filter(Boolean);
+  const rawPhotos = [];
+  if (member.img) rawPhotos.push(member.img);
+  if (member.img2) rawPhotos.push(member.img2);
+  if (member.img3) rawPhotos.push(member.img3);
 
-  const images = rawList.length > 0 ? rawList : (member.img ? [member.img] : []);
+  if (Array.isArray(member.images)) {
+    member.images.forEach((item) => {
+      const url = typeof item === 'string' ? item : (item && item.image);
+      if (url && !rawPhotos.includes(url)) {
+        rawPhotos.push(url);
+      }
+    });
+  }
+
+  const images = rawPhotos.length > 0 ? rawPhotos : (member.img ? [member.img] : []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 

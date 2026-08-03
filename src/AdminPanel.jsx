@@ -905,26 +905,29 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                             onChange={(newVal) => {
                               const updated = [...data.team];
                               updated[idx].img = newVal;
+                              updated[idx].images = [newVal, updated[idx].img2, updated[idx].img3].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
 
                           <ImageUploadBox 
                             label="Foto 2 (Galerie Carusel)"
-                            value={member.img2 || ''}
+                            value={member.img2 || (member.images && member.images[1]) || ''}
                             onChange={(newVal) => {
                               const updated = [...data.team];
                               updated[idx].img2 = newVal;
+                              updated[idx].images = [updated[idx].img, newVal, updated[idx].img3].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
 
                           <ImageUploadBox 
                             label="Foto 3 (Galerie Carusel)"
-                            value={member.img3 || ''}
+                            value={member.img3 || (member.images && member.images[2]) || ''}
                             onChange={(newVal) => {
                               const updated = [...data.team];
                               updated[idx].img3 = newVal;
+                              updated[idx].images = [updated[idx].img, updated[idx].img2, newVal].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
