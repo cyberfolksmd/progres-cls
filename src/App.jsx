@@ -616,9 +616,23 @@ export default function App() {
       const saved = localStorage.getItem('progress_cls_site_data');
       if (saved) {
         const parsed = JSON.parse(saved);
+        const savedCourses = (parsed.courses && Array.isArray(parsed.courses)) ? parsed.courses : COURSES;
+        const mergedCourses = COURSES.map((defCourse) => {
+          const found = savedCourses.find(c => c.id === defCourse.id);
+          if (!found) return defCourse;
+          return {
+            ...defCourse,
+            ...found,
+            subLevels: (found.subLevels && Array.isArray(found.subLevels) && found.subLevels.length > 0)
+              ? found.subLevels
+              : defCourse.subLevels
+          };
+        });
+
         return {
           ...defaultData,
           ...parsed,
+          courses: mergedCourses,
           hero: { ...defaultData.hero, ...(parsed.hero || {}) },
           faq: { ...defaultData.faq, ...(parsed.faq || {}) },
           contacts: { ...defaultData.contacts, ...(parsed.contacts || {}) }
