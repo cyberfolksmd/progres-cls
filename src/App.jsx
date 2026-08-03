@@ -354,35 +354,28 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
   const rawName = currentSub.name || currentSub.label || '';
   const cleanSubName = rawName.replace(/\s*\([A-Z0-9+]+\)\s*$/i, '');
   const levelPhotos = {
-    'a1.1': '/course_kids.png',
-    'a1.2': '/teacher_ludmila.png',
-    'a2.1': '/teacher_anastasia.png',
-    'a1_teen': '/course_teens.png',
-    'a2_teen': '/teacher_cristina.png',
-    'b1_teen': '/teacher_irina.png',
-    'b1plus_teen': '/teacher_eugenia.png',
-    'b2_teen': '/cambridge.png',
+    'a1.1': '/bg_kids.png',
+    'a1.2': '/bg_letters.png',
+    'a2.1': '/bg_flag.png',
+    'a1_teen': '/bg_teens.png',
+    'a2_teen': '/bg_desk.png',
+    'b1_teen': '/bg_books.png',
+    'b1plus_teen': '/bg_flag.png',
+    'b2_teen': '/bg_cambridge.png',
     'c1_teen': '/hero.png',
-    'adults_a1': '/course_adults.png',
-    'adults_a2': '/teacher_ludmila.png',
-    'adults_b1': '/teacher_anastasia.png',
-    'adults_b1plus': '/teacher_cristina.png',
-    'adults_b2': '/cambridge.png',
-    'fce_intensive': '/cambridge.png',
-    'fce_extensive': '/hero.png',
+    'adults_a1': '/bg_adults.png',
+    'adults_a2': '/bg_desk.png',
+    'adults_b1': '/bg_letters.png',
+    'adults_b1plus': '/bg_books.png',
+    'adults_b2': '/bg_cambridge.png',
+    'fce_intensive': '/bg_cambridge.png',
+    'fce_extensive': '/bg_books.png',
     'cae_intensive': '/cambridge.png',
     'cae_extensive': '/hero.png',
   };
 
-  const courseBgMap = {
-    kids: '/bg_kids.png',
-    teens: '/bg_teens.png',
-    adults: '/bg_adults.png',
-    cambridge: '/bg_cambridge.png',
-  };
-  const courseBg = courseBgMap[course.id] || '/bg_kids.png';
-
-  const thumbImg = currentSub.img || levelPhotos[currentSub.id] || course.img || '/hero.png';
+  const levelBgPhoto = currentSub.img || levelPhotos[currentSub.id] || course.img || '/bg_kids.png';
+  const thumbImg = levelBgPhoto;
 
   return (
     <div id={course.id} className="course-block-card spatial-reveal">
@@ -409,7 +402,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Sub-level Switcher Buttons & Level Detail Summary in ONE card */}
       {subLevels.length > 0 && (
-        <div className="sublevel-switcher-bar" style={{ '--card-bg-img': `url('${courseBg}')` }}>
+        <div className="sublevel-switcher-bar" style={{ '--card-bg-img': `url('${levelBgPhoto}')` }}>
           <span className="sublevel-switcher-title">Alege Nivelul:</span>
           <div className="sublevel-buttons-wrap">
             {subLevels.map((lvl, idx) => (
