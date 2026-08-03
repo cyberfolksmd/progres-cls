@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  BookOpen, Users, Award, Star, CheckCircle, GraduationCap,
+  BookOpen, Users, Award, Star, CheckCircle, CheckCircle2, GraduationCap,
   MapPin, Phone, Mail, ChevronDown, Clock, Calendar, Zap,
   Globe, TrendingUp, Heart, ShieldCheck, Menu, X,
-  ArrowRight, BadgeCheck, Trophy
+  ArrowRight, BadgeCheck, Trophy, CreditCard, Tag
 } from 'lucide-react';
 import { useFadeIn } from './useFadeIn';
 import './index.css';
@@ -397,45 +397,47 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card blog-modal-card" style={{ maxWidth: '680px' }} onClick={(e) => e.stopPropagation()}>
+      <div className="modal-card blog-modal-card" style={{ maxWidth: '700px' }} onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Închide">
           <X size={20} />
         </button>
 
-        <div className="blog-modal-body">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-            <span className="blog-tag">{course.label}</span>
+        <div className="blog-modal-body" style={{ padding: '2.25rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
+            <span className="blog-tag" style={{ fontSize: '0.85rem', fontWeight: 700 }}>{course.label}</span>
             {course.age && <span className="course-age-badge" style={{ fontSize: '0.8rem' }}>Vârstă: {course.age}</span>}
           </div>
 
-          <h2 className="blog-modal-title" style={{ marginBottom: '0.5rem' }}>
+          <h2 className="blog-modal-title" style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>
             {course.title}
           </h2>
 
-          <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1rem', fontSize: '0.95rem' }}>
+          <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem', fontSize: '0.95rem' }}>
             {course.desc}
           </p>
 
-          {/* Aligned Sub-levels Pill Switcher inside Popup */}
+          {/* Level selection switcher inside popup */}
           {subLevels.length > 0 && (
-            <div style={{ background: '#edf2f7', border: '1px solid rgba(30, 58, 138, 0.12)', borderRadius: 'var(--radius-xl)', padding: '0.65rem 1rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary-dark)' }}>Niveluri / Formate:</span>
-              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+            <div style={{ background: '#f1f5f9', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xl)', padding: '0.75rem 1.1rem', marginBottom: '1.5rem' }}>
+              <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                Selectează Nivelul / Formatul:
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {subLevels.map((s, idx) => (
                   <button
                     key={s.id || idx}
                     type="button"
                     onClick={() => setActiveSub(s)}
                     style={{
-                      background: activeSub.id === s.id || activeSub.label === s.label ? 'var(--color-primary)' : 'white',
-                      color: activeSub.id === s.id || activeSub.label === s.label ? 'white' : 'var(--color-primary-dark)',
+                      background: (activeSub.id === s.id || activeSub.label === s.label) ? 'var(--color-primary)' : 'white',
+                      color: (activeSub.id === s.id || activeSub.label === s.label) ? 'white' : 'var(--color-primary-dark)',
                       border: '1px solid var(--color-border)',
                       fontWeight: 700,
-                      fontSize: '0.85rem',
-                      padding: '0.35rem 0.95rem',
+                      fontSize: '0.875rem',
+                      padding: '0.45rem 1.1rem',
                       borderRadius: 'var(--radius-lg)',
                       cursor: 'pointer',
-                      boxShadow: activeSub.id === s.id || activeSub.label === s.label ? '0 4px 12px rgba(30, 58, 138, 0.25)' : 'none',
+                      boxShadow: (activeSub.id === s.id || activeSub.label === s.label) ? '0 4px 12px rgba(30, 58, 138, 0.2)' : 'none',
                       transition: 'all 0.2s ease'
                     }}
                   >
@@ -446,28 +448,88 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
             </div>
           )}
 
-          <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', marginBottom: '1.25rem' }}>
-            <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.75rem 0', fontSize: '1.05rem', fontWeight: 800 }}>
-              📋 Detaliile Nivelului ({activeSub.name || activeSub.label}):
+          {/* Clean 2-column detail specification grid */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 1rem 0', fontSize: '1.1rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Award size={20} color="var(--color-primary)" />
+              Specificații Nivel ({activeSub.name || activeSub.label})
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.925rem' }}>
-              <li><strong>⏱️ Durată:</strong> {activeSub.duration || '9 luni'}</li>
-              {activeSub.schedule && <li><strong>📅 Orar / Ritm:</strong> {activeSub.schedule}</li>}
-              <li><strong>📚 Lecții:</strong> {activeSub.lessons || '72 lecții'}</li>
-              <li><strong>👥 Locuri / Grupă:</strong> {activeSub.group || 'Max. 12 cursanți'}</li>
-              <li><strong>📖 Manuale:</strong> {course.series || 'Materiale Cambridge'} (Set manuale: +{activeSub.manuals || 500} lei)</li>
-              <li><strong>💰 Preț Lunar:</strong> {activeSub.priceMonthly} lei / lună ({activeSub.priceMonthlyCount || '8 lecții'})</li>
-              <li><strong>🏷️ Preț Total:</strong> {activeSub.priceTotal} lei</li>
-            </ul>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <Calendar size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Durată curs</span>
+                  <span className="detail-value">{activeSub.duration || '9 luni'}</span>
+                </div>
+              </div>
+
+              {activeSub.schedule && (
+                <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                  <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                    <Clock size={18} />
+                  </div>
+                  <div>
+                    <span className="detail-label">Orar / Ritm</span>
+                    <span className="detail-value">{activeSub.schedule}</span>
+                  </div>
+                </div>
+              )}
+
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <Zap size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Număr lecții</span>
+                  <span className="detail-value">{activeSub.lessons || '72 lecții'}</span>
+                </div>
+              </div>
+
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <Users size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Locuri per grupă</span>
+                  <span className="detail-value">{activeSub.group || 'Max. 12 cursanți'}</span>
+                </div>
+              </div>
+
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <BookOpen size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Seria manuale</span>
+                  <span className="detail-value">{course.series || 'Materiale Cambridge'} (+{activeSub.manuals || 500} lei)</span>
+                </div>
+              </div>
+
+              <div className="course-detail-item" style={{ background: '#f8fafc', border: '1px solid var(--color-border-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-lg)' }}>
+                <div className="detail-icon" style={{ background: 'var(--color-primary-glow)', color: 'var(--color-primary)' }}>
+                  <Tag size={18} />
+                </div>
+                <div>
+                  <span className="detail-label">Cost lunar / total</span>
+                  <span className="detail-value">{activeSub.priceMonthly} lei/lună ({activeSub.priceTotal} lei total)</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {activeSub.discounts && activeSub.discounts.length > 0 && (
-            <div style={{ marginBottom: '1.25rem' }}>
-              <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.5rem 0' }}>🎁 Reduceri disponibile:</h4>
+            <div style={{ background: 'rgba(245, 158, 11, 0.06)', border: '1px solid rgba(245, 158, 11, 0.2)', borderRadius: 'var(--radius-lg)', padding: '1rem 1.25rem', marginBottom: '1.5rem' }}>
+              <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.5rem 0', fontSize: '0.95rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <BadgeCheck size={18} color="var(--color-secondary)" />
+                Reduceri și facilități financiare aplicabile:
+              </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 {activeSub.discounts.map((disc, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
-                    <BadgeCheck size={16} color="var(--color-secondary)" />
+                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>
+                    <CheckCircle2 size={16} color="#16a34a" />
                     {disc}
                   </div>
                 ))}
@@ -479,9 +541,9 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
             <button 
               onClick={() => { onClose(); onRegister(course.id); }} 
               className="btn btn-primary btn-full"
-              style={{ justifyContent: 'center' }}
+              style={{ justifyContent: 'center', padding: '0.9rem 1.5rem', fontSize: '1rem' }}
             >
-              Înscrie-te la acest nivel ({activeSub.label}) <ArrowRight size={18} />
+              Înscrie-te la nivelul {activeSub.label} <ArrowRight size={18} />
             </button>
           </div>
         </div>
