@@ -248,6 +248,13 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
   return (
     <div id={course.id} className="course-block-card fade-in">
+      {/* Course Cover Banner Image (like Fantastic English) */}
+      {course.img && (
+        <div className="course-cover-wrap">
+          <img src={course.img} alt={course.title} className="course-cover-img" />
+        </div>
+      )}
+
       <div className="course-block-header">
         <div className="course-header-top">
           <span className="course-block-badge">{course.label}</span>

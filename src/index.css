@@ -865,6 +865,28 @@ img { max-width: 100%; display: block; }
   line-height: 1;
 }
 
+/* COURSE COVER IMAGE BANNER (like Fantastic English) */
+.course-cover-wrap {
+  width: 100%;
+  height: 260px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+  position: relative;
+}
+
+.course-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.course-block-card:hover .course-cover-img {
+  transform: scale(1.03);
+}
+
 .course-block-title {
   font-size: 1.75rem;
   font-weight: 800;
@@ -2440,6 +2462,12 @@ img { max-width: 100%; display: block; }
   .course-block-header {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .course-cover-wrap {
+    height: 190px;
+    border-radius: var(--radius-xl);
     margin-bottom: 1.25rem;
   }
 
