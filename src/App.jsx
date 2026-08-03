@@ -3,7 +3,7 @@ import {
   BookOpen, Users, Award, Star, CheckCircle, CheckCircle2, GraduationCap,
   MapPin, Phone, Mail, ChevronDown, ChevronLeft, ChevronRight, Clock, Calendar, Zap,
   Globe, TrendingUp, Heart, ShieldCheck, Menu, X,
-  ArrowRight, BadgeCheck, Trophy, CreditCard, Tag
+  ArrowRight, BadgeCheck, Trophy, CreditCard, Tag, MessageCircle
 } from 'lucide-react';
 import { useFadeIn } from './useFadeIn';
 import './index.css';
@@ -1450,9 +1450,7 @@ export default function App() {
           {isChatyMenuOpen ? (
             <X size={24} />
           ) : (
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
-            </svg>
+            <MessageCircle size={26} color="white" />
           )}
         </button>
       </div>
