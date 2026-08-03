@@ -1310,7 +1310,11 @@ export default function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} Progress CLS - Centrul de Limbă Engleză. Toate drepturile rezervate.</span>
+            <span>
+              © {new Date().getFullYear()} Progress CLS - Centrul de Limbă Engleză. Toate drepturile rezervate.
+              {' · '}
+              Site dezvoltat de echipa <a href="https://cyberfolks.md/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-secondary-light)', fontWeight: 700, textDecoration: 'underline' }}>CYBERFOLKSMD</a>
+            </span>
             <button 
               onClick={() => setIsAdminOpen(true)}
               style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '0.8rem' }}
