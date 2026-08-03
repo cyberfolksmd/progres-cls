@@ -393,24 +393,106 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
         </div>
       )}
 
-      {/* Action Buttons directly below Alege Nivelul (matching client's exact mockup) */}
-      <div className="course-card-actions" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', marginTop: '1.25rem' }}>
-        <button 
-          type="button"
-          onClick={() => onOpenDetailsModal(course, currentSub)} 
-          className="btn btn-outline"
-          style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white', borderRadius: 'var(--radius-xl)', fontSize: '0.95rem', fontWeight: 700 }}
+      {/* Main Grid: Left Details & Right Pricing */}
+      <div className="course-detail-grid">
+        {/* Left: Active Level Info (slides in from LEFT on scroll) */}
+        <div 
+          key={`info-${selectedSubLevelIndex}`}
+          className="course-info-card slide-in-left"
         >
-          Vezi Detalii
-        </button>
-        <button 
-          type="button"
-          onClick={() => onOpenModal(course.id)} 
-          className="btn btn-primary"
-          style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', borderRadius: 'var(--radius-xl)', fontSize: '0.95rem', fontWeight: 700 }}
+          <div className="selected-level-header">
+            <span className="level-badge-pill">{currentSub.label}</span>
+            <h4 className="selected-level-name">{currentSub.name || currentSub.label}</h4>
+          </div>
+
+          <div className="course-detail-list">
+            <div className="course-detail-item">
+              <div className="detail-icon"><Calendar size={18} /></div>
+              <div>
+                <span className="detail-label">Durată</span>
+                <span className="detail-value">{currentSub.duration}</span>
+              </div>
+            </div>
+
+            {currentSub.schedule && (
+              <div className="course-detail-item">
+                <div className="detail-icon"><Clock size={18} /></div>
+                <div>
+                  <span className="detail-label">Orar / Ritm</span>
+                  <span className="detail-value">{currentSub.schedule}</span>
+                </div>
+              </div>
+            )}
+
+            <div className="course-detail-item">
+              <div className="detail-icon"><Zap size={18} /></div>
+              <div>
+                <span className="detail-label">Număr lecții</span>
+                <span className="detail-value">{currentSub.lessons}</span>
+              </div>
+            </div>
+
+            <div className="course-detail-item">
+              <div className="detail-icon"><Users size={18} /></div>
+              <div>
+                <span className="detail-label">Locuri disponibile</span>
+                <span className="detail-value">{currentSub.group}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Pricing Card (slides in from RIGHT on scroll) */}
+        <div 
+          key={`price-${selectedSubLevelIndex}`}
+          className="price-card slide-in-right delay-2"
         >
-          Înscrie-te acum <ArrowRight size={18} />
-        </button>
+          <span className="price-tag">Preț Curs</span>
+          <div className="price-amount">
+            {currentSub.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span>
+          </div>
+          <div className="price-period">
+            {currentSub.priceMonthly} lei / lunar ({currentSub.priceMonthlyCount || '8 lecții'})
+          </div>
+
+          <div className="price-divider" />
+
+          <div className="price-features">
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> {currentSub.group}</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Set manuale: +{currentSub.manuals} lei</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Profesori certificați TEFL</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Feedback individual constant</div>
+          </div>
+
+          {currentSub.discounts && currentSub.discounts.length > 0 && (
+            <div className="discounts">
+              <h4>Reduceri disponibile</h4>
+              {currentSub.discounts.map((disc, idx) => (
+                <div key={idx} className="discount-item">
+                  <BadgeCheck size={16} color="var(--color-secondary)" style={{ flexShrink: 0 }} />
+                  {disc}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="price-card-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <button 
+              onClick={() => onOpenDetailsModal(course, currentSub)} 
+              className="btn btn-outline"
+              style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white' }}
+            >
+              Vezi Detalii
+            </button>
+            <button 
+              onClick={() => onOpenModal(course.id)} 
+              className="btn btn-primary"
+              style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem' }}
+            >
+              Înscrie-te acum <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
