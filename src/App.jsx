@@ -1254,8 +1254,9 @@ export default function App() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <div className="logo" style={{ color: 'white' }}>
-                <img src="/logo.webp" alt="Progress CLS" style={{ height: '38px', width: 'auto', display: 'block' }} />
+              <div className="logo" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <img src="/logo.webp" alt="Progress CLS Logo" style={{ height: '34px', width: 'auto', display: 'block' }} />
+                <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Progress CLS</span>
               </div>
               <p>Un pas spre succes. Centrul tău de excelență în limba engleză din Chișinău, bazat pe metodologia Cambridge.</p>
               <div className="footer-socials" style={{ display: 'flex', gap: '0.75rem', marginTop: '1.25rem' }}>
