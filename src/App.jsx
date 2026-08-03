@@ -1343,6 +1343,15 @@ export default function App() {
               </div>
             </div>
             <div>
+              <div className="footer-heading">Cursuri</div>
+              {['Engleza pentru Copii (8-11 ani)', 'Engleza pentru Adolescenți (12-18 ani)', 'Engleza pentru Adulți', 'Pregătire Cambridge FCE/CAE'].map(c => (
+                <div key={c} className="footer-contact-item" style={{ marginBottom: '0.5rem' }}>
+                  <CheckCircle size={14} color="var(--color-secondary)" style={{ flexShrink: 0, marginTop: 2 }} />
+                  <span style={{ fontSize: '0.875rem' }}>{c}</span>
+                </div>
+              ))}
+            </div>
+            <div>
               <div className="footer-heading">Contact</div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon"><Phone size={16} /></div>
@@ -1356,15 +1365,6 @@ export default function App() {
                 <div className="footer-contact-icon"><MapPin size={16} /></div>
                 <span>Chișinău, Str. Sarmizegetusa 92</span>
               </div>
-            </div>
-            <div>
-              <div className="footer-heading">Cursuri</div>
-              {['Engleza pentru Copii (8-11 ani)', 'Engleza pentru Adolescenți (12-18 ani)', 'Engleza pentru Adulți', 'Pregătire Cambridge FCE/CAE'].map(c => (
-                <div key={c} className="footer-contact-item" style={{ marginBottom: '0.5rem' }}>
-                  <CheckCircle size={14} color="var(--color-secondary)" style={{ flexShrink: 0, marginTop: 2 }} />
-                  <span style={{ fontSize: '0.875rem' }}>{c}</span>
-                </div>
-              ))}
             </div>
           </div>
           <div className="footer-bottom">
