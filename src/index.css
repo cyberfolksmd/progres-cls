@@ -2595,10 +2595,21 @@ img { max-width: 100%; display: block; }
   }
 
   .course-mobile-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    margin-top: 1rem;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    margin-top: 0.85rem !important;
+    width: 100% !important;
+  }
+
+  .course-mobile-actions .mobile-act-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.75rem 0.4rem !important;
+    font-size: 0.825rem !important;
+    border-radius: var(--radius-xl) !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
   }
 
   .mobile-active-level-summary {
