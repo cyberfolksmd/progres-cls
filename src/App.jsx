@@ -1308,8 +1308,10 @@ Curs: ${courseName}`;
                   <option value="adults_b2">Nivel B2 (4.5 luni — 1750 lei/lună)</option>
                 </optgroup>
                 <optgroup label="Pregătire Examene Cambridge (FCE / CAE)">
-                  <option value="cambridge_intensive">Curs Intensiv (3.5 luni)</option>
-                  <option value="cambridge_extensive">Curs Extensiv (9 luni)</option>
+                  <option value="fce_intensive">B2 First (FCE) — Curs Intensiv (3.5 luni)</option>
+                  <option value="fce_extensive">B2 First (FCE) — Curs Extensiv (9 luni)</option>
+                  <option value="cae_intensive">C1 Advanced (CAE) — Curs Intensiv (3.5 luni)</option>
+                  <option value="cae_extensive">C1 Advanced (CAE) — Curs Extensiv (9 luni)</option>
                 </optgroup>
               </select>
             </div>

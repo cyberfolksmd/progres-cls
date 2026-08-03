@@ -290,9 +290,9 @@
     "desc": "Centru de pregătire în parteneriat cu Alianța Franceză. Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE) cu scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
     "subLevels": [
       {
-        "id": "intensive",
-        "label": "Curs Intensiv",
-        "name": "Curs Intensiv Cambridge (3.5 luni)",
+        "id": "fce_intensive",
+        "label": "B2 First — Intensiv",
+        "name": "B2 First (FCE) — Curs Intensiv (3.5 luni)",
         "duration": "3,5 luni",
         "schedule": "Sâmbătă și duminică",
         "lessons": "30 lecții · 135 minute fiecare",
@@ -308,13 +308,49 @@
         ]
       },
       {
-        "id": "extensive",
-        "label": "Curs Extensiv",
-        "name": "Curs Extensiv Cambridge (9 luni)",
+        "id": "fce_extensive",
+        "label": "B2 First — Extensiv",
+        "name": "B2 First (FCE) — Curs Extensiv (9 luni)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
         "lessons": "72 lecții · 80 minute fiecare",
-        "group": "Max. 12 copii per grupă",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "9000",
+        "priceMonthly": "1000",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "cae_intensive",
+        "label": "C1 Advanced — Intensiv",
+        "name": "C1 Advanced (CAE) — Curs Intensiv (3.5 luni)",
+        "duration": "3,5 luni",
+        "schedule": "Sâmbătă și duminică",
+        "lessons": "30 lecții · 135 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "6000",
+        "priceMonthly": "2000",
+        "priceMonthlyCount": "10 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "cae_extensive",
+        "label": "C1 Advanced — Extensiv",
+        "name": "C1 Advanced (CAE) — Curs Extensiv (9 luni)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
         "priceTotal": "9000",
         "priceMonthly": "1000",
         "priceMonthlyCount": "8 lecții",
