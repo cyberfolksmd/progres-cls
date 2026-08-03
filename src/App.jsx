@@ -1293,9 +1293,12 @@ Curs: ${courseName}`;
                   <option value="kids_a2.1">Nivel A2.1 (Super Minds 3)</option>
                 </optgroup>
                 <optgroup label="Adolescenți (12-18 ani)">
-                  <option value="teens_a1_a2">Nivel A1 & A2 (Prepare 1-2)</option>
-                  <option value="teens_b1_b1plus">Nivel B1 & B1+ (Prepare 3-4)</option>
-                  <option value="teens_b2_c1">Nivel B2 & C1 (Prepare 5-6)</option>
+                  <option value="teens_a1">Nivel A1 (Prepare 1)</option>
+                  <option value="teens_a2">Nivel A2 (Prepare 2)</option>
+                  <option value="teens_b1">Nivel B1 (Prepare 3)</option>
+                  <option value="teens_b1plus">Nivel B1+ (Prepare 4)</option>
+                  <option value="teens_b2">Nivel B2 (Prepare 5)</option>
+                  <option value="teens_c1">Nivel C1 (Prepare 6)</option>
                 </optgroup>
                 <optgroup label="Adulți / Cursuri intensive (18+ ani)">
                   <option value="adults_a1">Nivel A1 (4 luni — 1440 lei/lună)</option>

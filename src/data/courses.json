@@ -72,9 +72,9 @@
     "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
     "subLevels": [
       {
-        "id": "a1_a2",
-        "label": "A1 & A2",
-        "name": "A1 (Nivel Începător) & A2 (Nivel Elementar)",
+        "id": "a1_teen",
+        "label": "A1",
+        "name": "Nivel Începător (A1)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
         "lessons": "72 lecții · 80 minute fiecare",
@@ -90,9 +90,27 @@
         ]
       },
       {
-        "id": "b1_b1plus",
-        "label": "B1 & B1+",
-        "name": "B1 (Pre-Intermediate) & B1+ (Intermediate)",
+        "id": "a2_teen",
+        "label": "A2",
+        "name": "Nivel Elementar (A2)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "8280",
+        "priceMonthly": "920",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b1_teen",
+        "label": "B1",
+        "name": "Nivel Pre-Intermediar (B1)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
         "lessons": "72 lecții · 80 minute fiecare",
@@ -108,9 +126,45 @@
         ]
       },
       {
-        "id": "b2_c1",
-        "label": "B2 & C1",
-        "name": "B2 (Upper-Intermediate) & C1 (Advanced)",
+        "id": "b1plus_teen",
+        "label": "B1+",
+        "name": "Nivel Intermediar (B1+)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "8280",
+        "priceMonthly": "960",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b2_teen",
+        "label": "B2",
+        "name": "Nivel Upper-Intermediate (B2)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "9000",
+        "priceMonthly": "1000",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "c1_teen",
+        "label": "C1",
+        "name": "Nivel Avansat (C1)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
         "lessons": "72 lecții · 80 minute fiecare",
