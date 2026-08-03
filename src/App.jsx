@@ -447,7 +447,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
               className="btn btn-ghost btn-full"
               style={{ justifyContent: 'center' }}
             >
-              Vreau Detalii
+              Vezi Detalii
             </button>
           </div>
         </div>
