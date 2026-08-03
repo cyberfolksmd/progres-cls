@@ -2622,7 +2622,7 @@ img { max-width: 100%; display: block; }
   }
 
   .sublevel-switcher-bar {
-    background: var(--card-bg-img, url('/bg_kids.png')) center/cover no-repeat, linear-gradient(135deg, #f8fafc, #e2e8f0) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%) !important;
     border: 1px solid rgba(30, 58, 138, 0.2) !important;
     border-radius: var(--radius-2xl) !important;
     padding: 1.35rem 1rem !important;
@@ -2643,9 +2643,11 @@ img { max-width: 100%; display: block; }
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.88) 100%);
+    background: var(--card-bg-img, url('/bg_kids.webp')) center/cover no-repeat !important;
+    opacity: 0.22 !important;
     pointer-events: none;
     z-index: 0;
+    filter: contrast(1.05) saturate(1.1);
   }
 
   .sublevel-switcher-title,
