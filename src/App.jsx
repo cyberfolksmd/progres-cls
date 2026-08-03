@@ -351,6 +351,9 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
   const currentSub = subLevels[selectedSubLevelIndex] || subLevels[0] || {};
   const isIntensive = (currentSub.id || '').includes('intensive') || (currentSub.label || '').toLowerCase().includes('intensiv');
 
+  const rawName = currentSub.name || currentSub.label || '';
+  const cleanSubName = rawName.replace(/\s*\([A-Z0-9+]+\)\s*$/i, '');
+
   return (
     <div id={course.id} className="course-block-card spatial-reveal">
       {/* Course Cover Banner Image (like Fantastic English) */}
@@ -402,7 +405,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
         >
           <div className="selected-level-header">
             <span className="level-badge-pill">{currentSub.label}</span>
-            <h4 className="selected-level-name">{currentSub.name || currentSub.label}</h4>
+            <h4 className="selected-level-name">{cleanSubName}</h4>
           </div>
 
           <div className="course-detail-list">
@@ -499,9 +502,11 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
       <div className="course-mobile-actions">
         {currentSub && (
           <div className="mobile-active-level-summary">
-            <span className="level-badge-pill">{currentSub.label}</span>
-            <span className="mobile-level-name">{currentSub.name || currentSub.label}</span>
-            {currentSub.duration && <span className="mobile-level-duration">· {currentSub.duration}</span>}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <span className="level-badge-pill">{currentSub.label}</span>
+              <span className="mobile-level-name">{cleanSubName}</span>
+            </div>
+            {currentSub.duration && <div className="mobile-level-duration">· {currentSub.duration}</div>}
           </div>
         )}
         <button 
