@@ -374,6 +374,14 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
     'cae_extensive': '/hero.png',
   };
 
+  const courseBgMap = {
+    kids: '/bg_kids.png',
+    teens: '/bg_teens.png',
+    adults: '/bg_adults.png',
+    cambridge: '/bg_cambridge.png',
+  };
+  const courseBg = courseBgMap[course.id] || '/bg_kids.png';
+
   const thumbImg = currentSub.img || levelPhotos[currentSub.id] || course.img || '/hero.png';
 
   return (
@@ -401,7 +409,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Sub-level Switcher Buttons & Level Detail Summary in ONE card */}
       {subLevels.length > 0 && (
-        <div className="sublevel-switcher-bar">
+        <div className="sublevel-switcher-bar" style={{ '--card-bg-img': `url('${courseBg}')` }}>
           <span className="sublevel-switcher-title">Alege Nivelul:</span>
           <div className="sublevel-buttons-wrap">
             {subLevels.map((lvl, idx) => (
