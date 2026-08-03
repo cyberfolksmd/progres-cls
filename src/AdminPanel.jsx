@@ -52,6 +52,82 @@ function RichTextEditor({ label, value, onChange, placeholder, minHeight = 120 }
   );
 }
 
+function ImageUploadBox({ label, value, onChange, placeholder = 'Trage imaginea aici sau click pentru a alege' }) {
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleFile = (file) => {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      onChange(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  return (
+    <div className="image-uploader-card">
+      {label && <label className="image-uploader-label">{label}</label>}
+      <div 
+        className={`image-dropzone ${isDragging ? 'dragging' : ''}`}
+        onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+      >
+        <div className="image-dropzone-preview">
+          {value ? (
+            <img src={value} alt="Preview" className="image-thumb-preview" />
+          ) : (
+            <div className="image-thumb-placeholder">📸</div>
+          )}
+        </div>
+        <div className="image-dropzone-info">
+          <input 
+            type="text" 
+            value={value || ''} 
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
+            className="image-url-input"
+          />
+          <div className="image-dropzone-actions">
+            <label className="btn btn-primary btn-sm image-upload-btn" style={{ cursor: 'pointer', margin: 0 }}>
+              📁 Trage sau Alege Poza
+              <input 
+                type="file" 
+                accept="image/*" 
+                style={{ display: 'none' }}
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    handleFile(e.target.files[0]);
+                  }
+                }}
+              />
+            </label>
+            {value && (
+              <button 
+                type="button" 
+                onClick={() => onChange('')} 
+                className="btn btn-outline btn-sm"
+                title="Șterge imaginea"
+                style={{ padding: '0.35rem 0.65rem' }}
+              >
+                <Trash2 size={14} /> Șterge
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 async function commitFileToGitHub(token, path, contentObj, commitMessage) {
   try {
     const url = `https://api.github.com/repos/cyberfolksmd/progres-cls/contents/${path}`;
@@ -737,12 +813,58 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
             {/* 5. TEAM SECTION */}
             {activeSection === 'team' && (
               <div className="admin-card-section">
-                <h3>Echipa de Profesori</h3>
-                <div className="admin-grid-2">
+                <div className="flex-between" style={{ marginBottom: '1.25rem' }}>
+                  <div>
+                    <h3>👩‍🏫 Echipa de Profesori</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+                      Poți încărca poze prin Drag & Drop (trage imaginea direct din calculator), alege din fișiere sau poți adăuga până la 3 poze de galerie pentru fiecare profesor.
+                    </p>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      const current = data.team || [];
+                      setData({
+                        ...data,
+                        team: [
+                          ...current,
+                          {
+                            name: 'Nume Profesor Nou',
+                            role: 'Profesoară de Limba Engleză · Certificată TEFL',
+                            img: '/teacher_ludmila.png',
+                            img2: '',
+                            img3: ''
+                          }
+                        ]
+                      });
+                    }}
+                    className="btn btn-ghost btn-sm"
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    <Plus size={16} /> Adaugă Profesor Nou
+                  </button>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   {data.team.map((member, idx) => (
-                    <div key={idx} className="admin-member-editor-card">
-                      <img src={member.img} alt={member.name} className="admin-member-thumb" />
-                      <div style={{ flex: 1 }}>
+                    <div key={idx} className="admin-inner-card" style={{ padding: '1.25rem' }}>
+                      <div className="flex-between" style={{ marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--color-border-light)' }}>
+                        <span style={{ fontWeight: 800, color: 'var(--color-primary-dark)', fontSize: '1rem' }}>
+                          👩‍🏫 Profesor #{idx + 1}: {member.name}
+                        </span>
+                        <button 
+                          onClick={() => {
+                            const updated = [...data.team];
+                            updated.splice(idx, 1);
+                            setData({ ...data, team: updated });
+                          }}
+                          className="btn-icon-danger"
+                          title="Șterge profesorul"
+                        >
+                          <Trash2 size={16} /> Șterge
+                        </button>
+                      </div>
+
+                      <div className="admin-grid-2">
                         <div className="form-group">
                           <label>Nume & Prenume</label>
                           <input 
@@ -753,10 +875,11 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                               updated[idx].name = e.target.value;
                               setData({ ...data, team: updated });
                             }} 
+                            placeholder="Ex: Ludmila M."
                           />
                         </div>
-                        <div className="form-group" style={{ marginTop: '0.5rem' }}>
-                          <label>Rol / Funcție</label>
+                        <div className="form-group">
+                          <label>Rol / Titlu / Titluri Cambridge</label>
                           <input 
                             type="text" 
                             value={member.role} 
@@ -765,42 +888,46 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                               updated[idx].role = e.target.value;
                               setData({ ...data, team: updated });
                             }} 
+                            placeholder="Ex: Fondatoare & Profesoară Senior TEFL"
                           />
                         </div>
-                        <div className="form-group" style={{ marginTop: '0.5rem' }}>
-                          <label>Foto Profesor</label>
-                          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginTop: '0.25rem' }}>
-                            <input 
-                              type="text" 
-                              value={member.img} 
-                              onChange={(e) => {
-                                const updated = [...data.team];
-                                updated[idx].img = e.target.value;
-                                setData({ ...data, team: updated });
-                              }} 
-                              style={{ flex: 1 }}
-                            />
-                            <label className="btn btn-ghost btn-sm" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', whiteSpace: 'nowrap', margin: 0 }}>
-                              📁 Încarcă
-                              <input 
-                                type="file" 
-                                accept="image/*" 
-                                style={{ display: 'none' }}
-                                onChange={(e) => {
-                                  const file = e.target.files && e.target.files[0];
-                                  if (file) {
-                                    const reader = new FileReader();
-                                    reader.onload = (event) => {
-                                      const updated = [...data.team];
-                                      updated[idx].img = event.target.result;
-                                      setData({ ...data, team: updated });
-                                    };
-                                    reader.readAsDataURL(file);
-                                  }
-                                }}
-                              />
-                            </label>
-                          </div>
+                      </div>
+
+                      <div style={{ marginTop: '1rem' }}>
+                        <label style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>
+                          📸 Galerie Foto Profesor (Încarcă prin Drag & Drop sau click)
+                        </label>
+
+                        <div className="admin-grid-3" style={{ gap: '1rem' }}>
+                          <ImageUploadBox 
+                            label="Foto Principală (Profil)"
+                            value={member.img}
+                            onChange={(newVal) => {
+                              const updated = [...data.team];
+                              updated[idx].img = newVal;
+                              setData({ ...data, team: updated });
+                            }}
+                          />
+
+                          <ImageUploadBox 
+                            label="Foto 2 (Galerie Carusel)"
+                            value={member.img2 || ''}
+                            onChange={(newVal) => {
+                              const updated = [...data.team];
+                              updated[idx].img2 = newVal;
+                              setData({ ...data, team: updated });
+                            }}
+                          />
+
+                          <ImageUploadBox 
+                            label="Foto 3 (Galerie Carusel)"
+                            value={member.img3 || ''}
+                            onChange={(newVal) => {
+                              const updated = [...data.team];
+                              updated[idx].img3 = newVal;
+                              setData({ ...data, team: updated });
+                            }}
+                          />
                         </div>
                       </div>
                     </div>

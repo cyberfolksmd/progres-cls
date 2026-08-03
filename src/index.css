@@ -3680,3 +3680,81 @@ html, body {
     border-top: 1px solid var(--color-border);
   }
 }
+
+/* DRAG & DROP IMAGE UPLOADER FOR ADMIN PANEL */
+.admin-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.image-uploader-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.image-uploader-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.image-dropzone {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: white;
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.image-dropzone.dragging {
+  border-color: var(--color-primary-light);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.image-dropzone-preview {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.image-thumb-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-thumb-placeholder {
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.image-dropzone-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.image-url-input {
+  font-size: 0.775rem !important;
+  padding: 0.35rem 0.6rem !important;
+}
+
+.image-dropzone-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
