@@ -408,11 +408,8 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Main Grid: Left Details & Right Pricing */}
       <div className="course-detail-grid">
-        {/* Left: Active Level Info (slides in from LEFT on scroll) */}
-        <div 
-          key={`info-${selectedSubLevelIndex}`}
-          className="course-info-card slide-in-left"
-        >
+        {/* Left: Active Level Info */}
+        <div className="course-info-card slide-in-left">
           <div className="selected-level-header">
             <span className="level-badge-pill">{currentSub.label}</span>
             <h4 className="selected-level-name">{cleanSubName}</h4>
@@ -455,11 +452,8 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
           </div>
         </div>
 
-        {/* Right: Pricing Card (slides in from RIGHT on scroll) */}
-        <div 
-          key={`price-${selectedSubLevelIndex}`}
-          className="price-card slide-in-right delay-2"
-        >
+        {/* Right: Pricing Card */}
+        <div className="price-card slide-in-right delay-2">
           <span className="price-tag">Preț Curs</span>
           <div className="price-amount">
             {currentSub.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span>
