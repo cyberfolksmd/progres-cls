@@ -494,6 +494,26 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
           </div>
         </div>
       </div>
+
+      {/* Mobile-only Action Buttons directly under Alege Nivelul (matching client's exact mockup) */}
+      <div className="course-mobile-actions">
+        <button 
+          type="button"
+          onClick={() => onOpenDetailsModal(course, currentSub)} 
+          className="btn btn-outline"
+          style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white', borderRadius: 'var(--radius-xl)', fontSize: '0.95rem', fontWeight: 700 }}
+        >
+          Vezi Detalii
+        </button>
+        <button 
+          type="button"
+          onClick={() => onOpenModal(course.id)} 
+          className="btn btn-primary"
+          style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', borderRadius: 'var(--radius-xl)', fontSize: '0.95rem', fontWeight: 700 }}
+        >
+          Înscrie-te acum <ArrowRight size={18} />
+        </button>
+      </div>
     </div>
   );
 }

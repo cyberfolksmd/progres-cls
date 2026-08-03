@@ -2567,14 +2567,24 @@ img { max-width: 100%; display: block; }
   transition: all var(--transition-fast);
 }
 
-.hero-carousel-dot.active {
-  background: var(--color-primary-light);
-  width: 28px;
-  border-radius: var(--radius-full);
+/* DESKTOP: Hide mobile action buttons */
+.course-mobile-actions {
+  display: none;
 }
 
 /* MOBILE OPTIMIZATIONS FOR COURSES SECTION */
 @media (max-width: 768px) {
+  .course-detail-grid {
+    display: none !important;
+  }
+
+  .course-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+
   #cursuri .container {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
