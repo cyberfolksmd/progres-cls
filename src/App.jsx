@@ -1239,6 +1239,74 @@ export default function App() {
         </div>
       </div>
 
+      {/* ── MAP & LOCATION SECTION ─────────────── */}
+      <section id="contacte" className="section location-map-section">
+        <div className="container">
+          <div className="section-header fade-in">
+            <span className="section-tag">Unde ne găsești</span>
+            <h2 className="section-title">Ne găsești ușor în Chișinău</h2>
+            <p className="section-subtitle">
+              Sediul nostru modern te așteaptă în sectorul Botanica, Str. Sarmizegetusa 92. Te așteptăm pentru o testare gratuită a nivelului tău de engleză!
+            </p>
+          </div>
+
+          <div className="map-card-wrapper fade-in delay-1">
+            <iframe
+              title="Progress CLS Map Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2721.4137258908865!2d28.8687!3d46.9882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c36a4392a83%3A0x6b8d4e9d3d3c8c88!2sStrada%20Sarmizegetusa%2092%2C%20Chi%C8%99in%C4%83u!5e0!3m2!1sro!2smd!4v1700000000000!5m2!1sro!2smd"
+              width="100%"
+              height="480"
+              style={{ border: 0, display: 'block', width: '100%', height: '480px' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            
+            <div className="map-info-float-card">
+              <div className="map-info-header">
+                <div className="map-info-badge">Sediul Central</div>
+                <h3 className="map-info-title">Progress CLS</h3>
+              </div>
+
+              <div className="map-info-list">
+                <div className="map-info-item">
+                  <MapPin size={18} className="map-info-icon" />
+                  <div>
+                    <strong>Adresă:</strong>
+                    <span>Chișinău, Str. Sarmizegetusa 92 (Botanica)</span>
+                  </div>
+                </div>
+
+                <div className="map-info-item">
+                  <Phone size={18} className="map-info-icon" />
+                  <div>
+                    <strong>Telefon:</strong>
+                    <a href="tel:+37369447768">+373 69 44 77 68</a>
+                  </div>
+                </div>
+
+                <div className="map-info-item">
+                  <Clock size={18} className="map-info-icon" />
+                  <div>
+                    <strong>Orar de lucru:</strong>
+                    <span>Lun - Vin: 09:00 - 19:00 · Sâm: 09:00 - 15:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=Strada+Sarmizegetusa+92,+Chisinau"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary map-directions-btn"
+              >
+                <Globe size={16} /> Deschide în Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── FOOTER ───────────────────────────── */}
       <footer id="contact" className="footer">
         <div className="container">

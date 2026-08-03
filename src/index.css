@@ -3113,3 +3113,112 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.35rem;
 }
+
+/* MAP & LOCATION SECTION */
+.location-map-section {
+  padding-bottom: 5rem;
+  background: var(--color-surface-2);
+}
+
+.map-card-wrapper {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(30, 58, 138, 0.12);
+  background: #f1f5f9;
+}
+
+.map-info-float-card {
+  position: absolute;
+  top: 1.75rem;
+  left: 1.75rem;
+  width: 360px;
+  max-width: calc(100% - 3.5rem);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(30, 58, 138, 0.08);
+  z-index: 10;
+}
+
+.map-info-header {
+  margin-bottom: 1.1rem;
+}
+
+.map-info-badge {
+  display: inline-block;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-light);
+  background: rgba(30, 58, 138, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.35rem;
+}
+
+.map-info-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+.map-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+}
+
+.map-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.map-info-icon {
+  flex-shrink: 0;
+  color: var(--color-secondary-dark);
+  margin-top: 0.15rem;
+}
+
+.map-info-item strong {
+  display: block;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.map-info-item a {
+  color: var(--color-primary-light);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.map-directions-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .map-info-float-card {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid var(--color-border);
+  }
+}
