@@ -1313,7 +1313,7 @@ export default function App() {
             <span>
               © {new Date().getFullYear()} Progress CLS - Centrul de Limbă Engleză. Toate drepturile rezervate.
               {' · '}
-              Site dezvoltat de echipa <a href="https://cyberfolks.md/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-secondary-light)', fontWeight: 700, textDecoration: 'underline' }}>CYBERFOLKSMD</a>
+              Site dezvoltat de echipa <a href="https://cyberfolks.md/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255, 255, 255, 0.75)', fontWeight: 'normal', textDecoration: 'underline' }}>CYBERFOLKSMD</a>
             </span>
             <button 
               onClick={() => setIsAdminOpen(true)}
