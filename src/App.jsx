@@ -755,6 +755,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isChatyMenuOpen, setIsChatyMenuOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState('');
   const [selectedDetailsCourse, setSelectedDetailsCourse] = useState(null);
   const [selectedDetailsSubLevel, setSelectedDetailsSubLevel] = useState(null);
@@ -1375,21 +1376,111 @@ export default function App() {
         </div>
       </footer>
 
-      {/* ── FLOATING CHATY WIDGET (like english-house.md) ── */}
+      {/* ── FLOATING CHATY WIDGET (EXPANDABLE POPUP MENU) ── */}
       <div className="floating-chaty-widget">
-        <a
-          href="https://t.me/+37369447768"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="chaty-btn"
-          aria-label="Telegram"
-          title="Contactează-ne pe Telegram"
+        {isChatyMenuOpen && (
+          <div className="chaty-popup-menu">
+            <div className="chaty-popup-header">
+              <span>Contactează-ne rapid</span>
+              <button 
+                type="button" 
+                onClick={() => setIsChatyMenuOpen(false)} 
+                aria-label="Închide meniu" 
+                className="chaty-popup-close"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <div className="chaty-popup-items">
+              <a href="tel:+37369447768" className="chaty-item chaty-item--phone">
+                <div className="chaty-item-icon"><Phone size={18} /></div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">Sună acum</span>
+                  <span className="chaty-item-sub">+373 69 44 77 68</span>
+                </div>
+              </a>
+
+              <a href="https://t.me/+37369447768" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--telegram">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">Telegram</span>
+                  <span className="chaty-item-sub">Mesaj rapid</span>
+                </div>
+              </a>
+
+              <a href="https://wa.me/37369447768" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--whatsapp">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.601 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">WhatsApp</span>
+                  <span className="chaty-item-sub">Mesaj direct</span>
+                </div>
+              </a>
+
+              <a href="https://www.facebook.com/p/PROGRESS-CLS-100064022590521/" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--facebook">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">Facebook</span>
+                  <span className="chaty-item-sub">Pagina oficială</span>
+                </div>
+              </a>
+
+              <a href="https://www.instagram.com/progress_cls/" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--instagram">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">Instagram</span>
+                  <span className="chaty-item-sub">@progress_cls</span>
+                </div>
+              </a>
+
+              <a href="https://www.tiktok.com/@progress_cls" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--tiktok">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.84V7.63a6.34 6.34 0 0 0-5.06 2.05A6.34 6.34 0 0 0 3 14.15a6.34 6.34 0 0 0 6.35 6.35 6.34 6.34 0 0 0 6.35-6.35V9.4a8.28 8.28 0 0 0 4.89 1.58V7.53a4.83 4.83 0 0 1-1-.84z"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">TikTok</span>
+                  <span className="chaty-item-sub">@progress_cls</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => setIsChatyMenuOpen(!isChatyMenuOpen)}
+          className={`chaty-btn ${isChatyMenuOpen ? 'active' : ''}`}
+          aria-label="Contactează-ne"
+          title="Contactează-ne"
         >
-          <span className="chaty-pulse" />
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
-          </svg>
-        </a>
+          {!isChatyMenuOpen && <span className="chaty-pulse" />}
+          {isChatyMenuOpen ? (
+            <X size={24} />
+          ) : (
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .54-1.43.53-.47-.01-1.37-.26-2.04-.48-.82-.27-1.47-.42-1.42-.88.03-.24.36-.49.99-.75 3.88-1.69 6.47-2.8 7.78-3.34 3.7-1.54 4.47-1.81 4.97-1.82.11 0 .36.03.52.16.14.11.18.26.2.37.02.11.04.37.02.62z"/>
+            </svg>
+          )}
+        </button>
       </div>
 
       {isModalOpen && (

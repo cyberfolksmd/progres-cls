@@ -3298,16 +3298,135 @@ html, body {
   }
 }
 
-/* FLOATING CHATY WIDGET (like english-house.md) */
+/* FLOATING CHATY WIDGET (EXPANDABLE POPUP MENU) */
 .floating-chaty-widget {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
+}
+
+.chaty-popup-menu {
+  position: absolute;
+  bottom: 68px;
+  right: 0;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 58, 138, 0.14);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  padding: 0.85rem;
+  z-index: 10000;
+  animation: slideUpChatyMenu 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUpChatyMenu {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chaty-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 0.775rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-dark);
+}
+
+.chaty-popup-close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+
+.chaty-popup-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-primary-dark);
+}
+
+.chaty-popup-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.chaty-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--color-primary-dark);
+  transition: all var(--transition-fast);
+  background: rgba(248, 250, 252, 0.85);
+  border: 1px solid transparent;
+}
+
+.chaty-item:hover {
+  background: white;
+  border-color: var(--color-border);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.chaty-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+}
+
+.chaty-item--phone .chaty-item-icon { background: #16a34a; }
+.chaty-item--telegram .chaty-item-icon { background: #0088cc; }
+.chaty-item--whatsapp .chaty-item-icon { background: #25D366; }
+.chaty-item--facebook .chaty-item-icon { background: #1877f2; }
+.chaty-item--instagram .chaty-item-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.chaty-item--tiktok .chaty-item-icon { background: #000000; }
+
+.chaty-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chaty-item-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.chaty-item-sub {
+  font-size: 0.725rem;
+  color: var(--color-text-secondary);
 }
 
 .chaty-btn {
@@ -3327,8 +3446,14 @@ html, body {
   animation: chaty-bounce 3s infinite ease-in-out;
 }
 
+.chaty-btn.active {
+  animation: none !important;
+  background: #dc2626 !important;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4) !important;
+}
+
 .chaty-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
   background: var(--color-primary-dark);
 }
 
