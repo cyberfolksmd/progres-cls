@@ -136,9 +136,27 @@
     "desc": "Cursuri axate pe conversație, engleză pentru afaceri și dezvoltare personală. Program flexibil, adaptat ritmului tău de viață.",
     "subLevels": [
       {
-        "id": "a1_a2_adult",
-        "label": "A1 & A2",
-        "name": "A1 & A2 (Nivel Începător & Elementar)",
+        "id": "a1_adult",
+        "label": "A1",
+        "name": "Nivel Începător (A1)",
+        "duration": "4,5 luni / 3 ori săptămânal",
+        "schedule": "Luni, Miercuri, Vineri de la 18:30",
+        "lessons": "56 lecții · 90 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "6720",
+        "priceMonthly": "1680",
+        "priceMonthlyCount": "14 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "a2_adult",
+        "label": "A2",
+        "name": "Nivel Elementar (A2)",
         "duration": "4,5 luni / 3 ori săptămânal",
         "schedule": "Luni, Miercuri, Vineri de la 18:30",
         "lessons": "56 lecții · 90 minute fiecare",
@@ -156,7 +174,7 @@
       {
         "id": "b1_adult",
         "label": "B1",
-        "name": "B1 (Nivel Pre-Intermediar)",
+        "name": "Nivel Pre-Intermediar (B1)",
         "duration": "4,5 luni / 3 ori săptămânal",
         "schedule": "Luni, Miercuri, Vineri de la 18:30",
         "lessons": "56 lecții · 90 minute fiecare",
@@ -174,7 +192,7 @@
       {
         "id": "b1plus_adult",
         "label": "B1+",
-        "name": "B1+ (Nivel Intermediar)",
+        "name": "Nivel Intermediar (B1+)",
         "duration": "4,5 luni / 3 ori săptămânal",
         "schedule": "Luni, Miercuri, Vineri de la 18:30",
         "lessons": "56 lecții · 90 minute fiecare",
@@ -192,7 +210,7 @@
       {
         "id": "b2_adult",
         "label": "B2",
-        "name": "B2 (Upper-Intermediate Level)",
+        "name": "Nivel Upper-Intermediate (B2)",
         "duration": "4,5 luni / 3 ori săptămânal",
         "schedule": "Luni, Miercuri, Vineri de la 18:30",
         "lessons": "56 lecții · 90 minute fiecare",

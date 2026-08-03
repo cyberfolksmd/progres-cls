@@ -716,11 +716,11 @@ export default function App() {
           const found = savedCourses.find(c => c.id === defCourse.id);
           if (!found) return defCourse;
           return {
-            ...defCourse,
             ...found,
-            subLevels: (found.subLevels && Array.isArray(found.subLevels) && found.subLevels.length > 0)
-              ? found.subLevels
-              : defCourse.subLevels
+            label: defCourse.label,
+            title: defCourse.title,
+            age: defCourse.age,
+            subLevels: defCourse.subLevels
           };
         });
 
