@@ -834,7 +834,7 @@ export default function App() {
           title: 'Start Înscrierilor pentru noul an de studii 2026-2027', 
           date: 'Iulie 2026', 
           tag: 'Noutăți',
-          img: '/hero.png',
+          img: '/blog1.webp',
           desc: 'Centrul Lingvistic Progress CLS anunță deschiderea înscrierilor pentru noul an academic 2026-2027!\n\nOferim cursuri moderne de engleză pentru copii (8-11 ani), adolescenți (12-18 ani) și adulți, precum și grupe speciale de pregătire intensivă pentru examenele Cambridge (FCE / CAE).\n\nÎnscrie-te înainte de 1 septembrie și beneficiezi de o reducere de 5% la achitarea integrală a cursului!'
         },
         { 
@@ -842,32 +842,16 @@ export default function App() {
           title: 'Progress CLS - decernare Centrul Lingvistic al Anului 2024', 
           date: 'Decembrie 2024', 
           tag: 'Premii',
-          img: '/cambridge.png',
+          img: '/blog2.webp',
           desc: 'Suntem mândri să vă anunțăm că Progress CLS a fost desemnat Centrul Lingvistic al Anului 2024!\n\nMulțumim echipei noastre fantastice de profesori dedicați și tuturor cursanților care au ales să învețe engleza alături de noi.'
         },
         { 
           id: 'b3', 
-          title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', 
-          date: 'Iunie 2025', 
-          tag: 'Premii',
-          img: '/hero.png',
-          desc: 'O nouă recunoaștere a muncii noastre! În cadrul galei ORPH Awards 2025, Progress CLS a obținut trofeul Visionary Brand pentru inovație în metodele de predare a limbii engleze.'
-        },
-        { 
-          id: 'b4', 
           title: 'Cum poți învăța engleza ușor și eficient?', 
           date: 'Martie 2025', 
           tag: 'Sfaturi',
-          img: '/teacher_ludmila.png',
+          img: '/blog3.webp',
           desc: 'Învățarea unei limbi străine nu trebuie să fie plictisitoare. Secretul constă în practică zilnică, vizionarea filmelor în engleză cu subtitrări și participarea la lecții interactive unde vorbești din prima zi.'
-        },
-        { 
-          id: 'b5', 
-          title: 'Curiozități despre limba engleză', 
-          date: 'Ianuarie 2025', 
-          tag: 'Curiozități',
-          img: '/teacher_anastasia.png',
-          desc: 'Știai că limba engleză are peste 1 milion de cuvinte și că cel mai scurt termen propozițional complet este "Go!"? Descoperă mai multe lucruri fascinante în cursurile noastre!'
         }
       ],
       faq: {
@@ -1196,18 +1180,24 @@ export default function App() {
                 style={{ cursor: 'pointer' }}
               >
                 <div 
-                  className="blog-card-img" 
+                  className="blog-card-img-wrap" 
                   style={{ 
-                    backgroundImage: post.img ? `url(${post.img})` : 'none',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    background: !post.img ? `linear-gradient(135deg, hsl(${202 + i * 15}, 85%, ${30 + i * 5}%), hsl(${202 + i * 5}, 70%, 45%))` : undefined,
-                    color: 'white', 
-                    fontSize: '3rem',
-                    minHeight: '180px'
+                    height: '220px', 
+                    width: '100%', 
+                    overflow: 'hidden',
+                    position: 'relative'
                   }}
                 >
-                  {!post.img && ['📚','🏆','✨','💡','🌍'][i % 5]}
+                  <img 
+                    src={post.img || `/blog${(i % 3) + 1}.webp`} 
+                    alt={post.title} 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      transition: 'transform 0.5s ease'
+                    }} 
+                  />
                 </div>
                 <div className="blog-card-body">
                   <span className="blog-tag">{post.tag || 'Noutăți'}</span>
