@@ -1,0 +1,63 @@
+﻿[
+  {
+    "name": "Ludmila Cebotaru",
+    "role": "Director general / ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_ludmila.webp",
+    "images": [
+      "/teacher_ludmila.webp",
+      "/course_adults.webp",
+      "/hero.webp"
+    ]
+  },
+  {
+    "name": "Anastasia Falca",
+    "role": "ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_anastasia.webp",
+    "images": [
+      "/teacher_anastasia.webp",
+      "/course_teens.webp",
+      "/cambridge.webp"
+    ]
+  },
+  {
+    "name": "Cristina Chirica",
+    "role": "ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_cristina.webp",
+    "images": [
+      "/teacher_cristina.webp",
+      "/course_kids.webp",
+      "/hero.webp"
+    ]
+  },
+  {
+    "name": "Irina Buliga",
+    "role": "ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_irina.webp",
+    "images": [
+      "/teacher_irina.webp",
+      "/course_adults.webp",
+      "/cambridge.webp"
+    ]
+  },
+  {
+    "name": "Adriana MusteaИ›Дѓ",
+    "role": "ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_adriana.webp",
+    "images": [
+      "/teacher_adriana.webp",
+      "/course_teens.webp",
+      "/hero.webp"
+    ]
+  },
+  {
+    "name": "Eugenia Ichim",
+    "role": "ProfesoarДѓ de englezДѓ",
+    "img": "/teacher_eugenia.webp",
+    "images": [
+      "/teacher_eugenia.webp",
+      "/course_kids.webp",
+      "/course_adults.webp"
+    ]
+  }
+]
+
