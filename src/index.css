@@ -569,7 +569,7 @@ img { max-width: 100%; display: block; }
 .hero-uk-bg-photo {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 58%;
   height: 100%;
   background-position: center center;
@@ -577,9 +577,9 @@ img { max-width: 100%; display: block; }
   background-repeat: no-repeat;
   z-index: 0;
   opacity: 0.88;
-  transform: scaleX(-1);
-  mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,1) 45%);
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,1) 45%);
+  transform: none;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 100%);
 }
 
 .hero-uk-bg-overlay {
