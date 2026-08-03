@@ -1119,7 +1119,7 @@ export default function App() {
           </div>
           <div className="benefits-grid">
             {BENEFITS.map((b, i) => (
-              <div className={`benefit-card fade-in delay-${(i % 4) + 1}`} key={i}>
+              <div className={`benefit-card benefit-card--color-${(i % 8) + 1} fade-in delay-${(i % 4) + 1}`} key={i}>
                 <div className="benefit-icon">{b.icon}</div>
                 <h3 className="benefit-title">{b.title}</h3>
                 <p className="benefit-desc">{b.desc}</p>
