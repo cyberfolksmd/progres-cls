@@ -248,6 +248,26 @@ function TeacherCard({ member, index }) {
 
   const images = rawList.length > 0 ? rawList : (member.img ? [member.img] : []);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (images.length <= 1 || isHovered) return;
+
+    let intervalId = null;
+    // Stagger initial delay per teacher: index * 500ms so they switch sequentially
+    const initialDelay = (index % 6) * 500;
+
+    const startTimeout = setTimeout(() => {
+      intervalId = setInterval(() => {
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+      }, 3000);
+    }, initialDelay);
+
+    return () => {
+      clearTimeout(startTimeout);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [images.length, index, isHovered]);
 
   const prevSlide = (e) => {
     e.stopPropagation();
@@ -260,7 +280,11 @@ function TeacherCard({ member, index }) {
   };
 
   return (
-    <div className={`team-member fade-in delay-${(index % 6) + 1}`}>
+    <div
+      className={`team-member fade-in delay-${(index % 6) + 1}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="member-photo-wrap">
         <img
           src={images[currentIndex] || member.img}
