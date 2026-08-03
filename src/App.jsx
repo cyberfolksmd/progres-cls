@@ -395,10 +395,10 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Main Grid: Left Details & Right Pricing */}
       <div className="course-detail-grid">
-        {/* Left: Active Level Info */}
+        {/* Left: Active Level Info (slides in from LEFT on scroll) */}
         <div 
           key={`info-${selectedSubLevelIndex}`}
-          className={`course-info-card ${course.id === 'cambridge' ? (isIntensive ? 'slide-in-left visible' : 'slide-in-right visible') : 'slide-in-left visible'}`}
+          className="course-info-card slide-in-left"
         >
           <div className="selected-level-header">
             <span className="level-badge-pill">{currentSub.label}</span>
@@ -452,10 +452,10 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
           </div>
         </div>
 
-        {/* Right: Pricing Card */}
+        {/* Right: Pricing Card (slides in from RIGHT on scroll) */}
         <div 
           key={`price-${selectedSubLevelIndex}`}
-          className={`price-card ${course.id === 'cambridge' ? (isIntensive ? 'slide-in-right visible' : 'slide-in-left visible') : 'slide-in-right visible'}`}
+          className="price-card slide-in-right delay-2"
         >
           <span className="price-tag">Preț Curs</span>
           <div className="price-amount">
