@@ -241,67 +241,216 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
   );
 }
 
-function CourseTabs({ onOpenModal }) {
-  const [active, setActive] = useState(0);
-  const course = COURSES[active];
+function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
+  const subLevels = course.subLevels || [];
+  const [selectedSubLevelIndex, setSelectedSubLevelIndex] = useState(0);
+  const currentSub = subLevels[selectedSubLevelIndex] || subLevels[0] || {};
+
   return (
-    <div>
-      <div className="tabs">
-        {COURSES.map((c, i) => (
-          <button key={c.id} className={`tab-btn ${active === i ? 'active' : ''}`} onClick={() => setActive(i)}>
-            {c.label}
-          </button>
-        ))}
-      </div>
-      <div className="course-detail-grid">
-        {/* Left: Info */}
-        <div className="course-info-card">
-          <h3 style={{ fontSize: '1.6rem', marginBottom: '0.75rem' }}>{course.title}</h3>
-          <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.5rem', lineHeight: 1.7, fontSize: '0.95rem' }}>{course.desc}</p>
-          {course.series && (
-            <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>Seria: <strong>{course.series}</strong></p>
-          )}
-          <div className="course-levels">
-            {course.levels.map(l => (
-              <span key={l.label} className={`level-badge ${l.cls}`}>{l.label}</span>
-            ))}
+    <div id={course.id} className="course-block-card fade-in">
+      <div className="course-block-header">
+        <div className="course-header-top">
+          <span className="course-block-badge">{course.label}</span>
+          {course.age && <span className="course-age-badge">Vârstă: {course.age}</span>}
+        </div>
+        <h3 className="course-block-title">{course.title}</h3>
+        <p className="course-block-desc">{course.desc}</p>
+        {course.series && (
+          <div className="course-series-tag">
+            📚 Manuale: <strong>{course.series}</strong>
           </div>
-          <div className="course-detail-list">
-            {course.details.map((d, i) => (
-              <div key={i} className="course-detail-item">
-                <div className="detail-icon">{d.icon}</div>
-                <div>
-                  <span className="detail-label">{d.label}</span>
-                  <span className="detail-value">{d.value}</span>
-                </div>
-              </div>
+        )}
+      </div>
+
+      {/* Sub-level Switcher Buttons */}
+      {subLevels.length > 0 && (
+        <div className="sublevel-switcher-bar">
+          <span className="sublevel-switcher-title">Alege Nivelul / Formatul:</span>
+          <div className="sublevel-buttons-wrap">
+            {subLevels.map((lvl, idx) => (
+              <button
+                key={lvl.id || idx}
+                type="button"
+                className={`sublevel-btn ${selectedSubLevelIndex === idx ? 'active' : ''}`}
+                onClick={() => setSelectedSubLevelIndex(idx)}
+              >
+                {lvl.label}
+              </button>
             ))}
           </div>
         </div>
-        {/* Right: Pricing */}
+      )}
+
+      {/* Main Grid: Left Details & Right Pricing */}
+      <div className="course-detail-grid">
+        {/* Left: Active Level Info */}
+        <div className="course-info-card">
+          <div className="selected-level-header">
+            <span className="level-badge-pill">{currentSub.label}</span>
+            <h4 className="selected-level-name">{currentSub.name || currentSub.label}</h4>
+          </div>
+
+          <div className="course-detail-list">
+            <div className="course-detail-item">
+              <div className="detail-icon"><Calendar size={18} /></div>
+              <div>
+                <span className="detail-label">Durată</span>
+                <span className="detail-value">{currentSub.duration}</span>
+              </div>
+            </div>
+
+            {currentSub.schedule && (
+              <div className="course-detail-item">
+                <div className="detail-icon"><Clock size={18} /></div>
+                <div>
+                  <span className="detail-label">Orar / Ritm</span>
+                  <span className="detail-value">{currentSub.schedule}</span>
+                </div>
+              </div>
+            )}
+
+            <div className="course-detail-item">
+              <div className="detail-icon"><Zap size={18} /></div>
+              <div>
+                <span className="detail-label">Număr lecții</span>
+                <span className="detail-value">{currentSub.lessons}</span>
+              </div>
+            </div>
+
+            <div className="course-detail-item">
+              <div className="detail-icon"><Users size={18} /></div>
+              <div>
+                <span className="detail-label">Locuri disponibile</span>
+                <span className="detail-value">{currentSub.group}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="course-card-footer">
+            <button 
+              onClick={() => onOpenDetailsModal(course, currentSub)} 
+              className="btn btn-ghost btn-full"
+              style={{ justifyContent: 'center' }}
+            >
+              Vreau Detalii
+            </button>
+          </div>
+        </div>
+
+        {/* Right: Pricing Card */}
         <div className="price-card">
-          <span className="price-tag">Preț</span>
-          <div className="price-amount">{course.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span></div>
-          <div className="price-period">{course.priceMonthly} lei / lunar ({course.lessons})</div>
+          <span className="price-tag">Preț Curs</span>
+          <div className="price-amount">
+            {currentSub.priceTotal} <span style={{ fontSize: '1rem', fontWeight: 500 }}>lei</span>
+          </div>
+          <div className="price-period">
+            {currentSub.priceMonthly} lei / lunar ({currentSub.priceMonthlyCount || '8 lecții'})
+          </div>
+
           <div className="price-divider" />
+
           <div className="price-features">
-            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Max. 12 cursanți per grupă</div>
-            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Materiale Cambridge incluse (manual: +{course.manuals} lei)</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> {currentSub.group}</div>
+            <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Set manuale: +{currentSub.manuals} lei</div>
             <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Profesori certificați TEFL</div>
             <div className="price-feature"><CheckCircle size={16} color="#4ade80" /> Feedback individual constant</div>
           </div>
-          <div className="discounts">
-            <h4>Reduceri disponibile</h4>
-            {course.discounts.map((d, i) => (
-              <div key={i} className="discount-item">
-                <BadgeCheck size={16} color="var(--color-secondary)" style={{ flexShrink: 0 }} />
-                {d}
-              </div>
-            ))}
+
+          {currentSub.discounts && currentSub.discounts.length > 0 && (
+            <div className="discounts">
+              <h4>Reduceri disponibile</h4>
+              {currentSub.discounts.map((disc, idx) => (
+                <div key={idx} className="discount-item">
+                  <BadgeCheck size={16} color="var(--color-secondary)" style={{ flexShrink: 0 }} />
+                  {disc}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="price-card-buttons">
+            <button 
+              onClick={() => onOpenModal(course.id)} 
+              className="btn btn-primary"
+              style={{ flex: 1, justifyContent: 'center' }}
+            >
+              Înscrie-te acum <ArrowRight size={18} />
+            </button>
+            <button 
+              onClick={() => onOpenDetailsModal(course, currentSub)} 
+              className="btn btn-ghost"
+              style={{ color: 'white', borderColor: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.1)' }}
+            >
+              Vreau Detalii
+            </button>
           </div>
-          <button onClick={() => onOpenModal(course.id)} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-            Înscrie-te acum <ArrowRight size={18} />
-          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
+  if (!course) return null;
+  const lvl = subLevel || {};
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card blog-modal-card" style={{ maxWidth: '650px' }} onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Închide">
+          <X size={20} />
+        </button>
+
+        <div className="blog-modal-body">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <span className="blog-tag">{course.label}</span>
+            {lvl.label && <span className="level-badge-pill" style={{ fontSize: '0.8rem' }}>{lvl.label}</span>}
+          </div>
+
+          <h2 className="blog-modal-title" style={{ marginBottom: '0.75rem' }}>
+            {course.title} {lvl.name ? `— ${lvl.name}` : ''}
+          </h2>
+
+          <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+            {course.desc}
+          </p>
+
+          <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', marginBottom: '1.25rem' }}>
+            <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.75rem 0' }}>📋 Detaliile cursului:</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.925rem' }}>
+              <li><strong>⏱️ Durată:</strong> {lvl.duration || '9 luni'}</li>
+              {lvl.schedule && <li><strong>📅 Orar:</strong> {lvl.schedule}</li>}
+              <li><strong>📚 Lecții:</strong> {lvl.lessons || '72 lecții'}</li>
+              <li><strong>👥 Locuri / Grupă:</strong> {lvl.group || 'Max. 12 cursanți'}</li>
+              <li><strong>📖 Manuale:</strong> {course.series || 'Materiale Cambridge'} (Set manuale: +{lvl.manuals || 500} lei)</li>
+              <li><strong>💰 Preț Lunar:</strong> {lvl.priceMonthly} lei / lună ({lvl.priceMonthlyCount || '8 lecții'})</li>
+              <li><strong>🏷️ Preț Total:</strong> {lvl.priceTotal} lei</li>
+            </ul>
+          </div>
+
+          {lvl.discounts && lvl.discounts.length > 0 && (
+            <div style={{ marginBottom: '1.25rem' }}>
+              <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.5rem 0' }}>🎁 Reduceri disponibile:</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                {lvl.discounts.map((disc, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
+                    <BadgeCheck size={16} color="var(--color-secondary)" />
+                    {disc}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
+            <button 
+              onClick={() => { onClose(); onRegister(course.id); }} 
+              className="btn btn-primary btn-full"
+              style={{ justifyContent: 'center' }}
+            >
+              Înscrie-te la acest curs <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -328,6 +477,8 @@ export default function App() {
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedDetailsCourse, setSelectedDetailsCourse] = useState(null);
+  const [selectedDetailsSubLevel, setSelectedDetailsSubLevel] = useState(null);
   const [selectedBlogArticle, setSelectedBlogArticle] = useState(null);
   const [blogPosts, setBlogPosts] = useState([
     { 
@@ -593,8 +744,18 @@ export default function App() {
               Descoperă plăcerea de a învăța limba engleză într-un mediu prietenos, modern și orientat spre rezultate!
             </p>
           </div>
-          <div>
-            <CourseTabs onOpenModal={openModal} />
+          <div className="courses-sequential-list">
+            {(siteData.courses || COURSES).map((courseItem) => (
+              <CourseBlock 
+                key={courseItem.id} 
+                course={courseItem} 
+                onOpenModal={openModal} 
+                onOpenDetailsModal={(crs, subLvl) => {
+                  setSelectedDetailsCourse(crs);
+                  setSelectedDetailsSubLevel(subLvl);
+                }} 
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -883,6 +1044,17 @@ export default function App() {
         <BlogArticleModal 
           article={selectedBlogArticle} 
           onClose={() => setSelectedBlogArticle(null)} 
+        />
+      )}
+      {selectedDetailsCourse && (
+        <CourseDetailsModal
+          course={selectedDetailsCourse}
+          subLevel={selectedDetailsSubLevel}
+          onClose={() => {
+            setSelectedDetailsCourse(null);
+            setSelectedDetailsSubLevel(null);
+          }}
+          onRegister={(courseId) => openModal(courseId)}
         />
       )}
     </>

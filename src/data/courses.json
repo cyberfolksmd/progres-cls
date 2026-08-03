@@ -2,85 +2,257 @@
   {
     "id": "kids",
     "label": "Copii (8-11 ani)",
-    "title": "Engleza pentru Copii",
+    "title": "Engleza pentru Copii (8-11 ani)",
     "age": "8 - 11 ani",
-    "levels": [
-      { "label": "A1.1", "cls": "level-a1" },
-      { "label": "A1.2", "cls": "level-a1" },
-      { "label": "A2.1", "cls": "level-a2" }
-    ],
     "series": "Super Minds 1, 2, 3",
     "desc": "Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.",
-    "priceTotal": "7920",
-    "priceMonthly": "880",
-    "lessons": "8 lecții",
-    "manuals": "500",
-    "discounts": [
-      "5% achitare integrală",
-      "5% membrii aceleiași familii",
-      "7% achitare integrală + familii"
+    "subLevels": [
+      {
+        "id": "a1.1",
+        "label": "A1.1",
+        "name": "Nivel Începător (A1.1)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 75 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "7920",
+        "priceMonthly": "880",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "a1.2",
+        "label": "A1.2",
+        "name": "Nivel Elementar (A1.2)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 75 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "7920",
+        "priceMonthly": "880",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "a2.1",
+        "label": "A2.1",
+        "name": "Nivel Pre-Intermediar (A2.1)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 75 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "7920",
+        "priceMonthly": "880",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      }
     ]
   },
   {
     "id": "teens",
     "label": "Adolescenți (12-18 ani)",
-    "title": "Engleza pentru Adolescenți",
+    "title": "Engleza pentru Adolescenți (12-18 ani)",
     "age": "12 - 18 ani",
-    "levels": [
-      { "label": "A2.2", "cls": "level-a2" },
-      { "label": "B1.1", "cls": "level-b1" },
-      { "label": "B1.2", "cls": "level-b1" },
-      { "label": "B2.1", "cls": "level-b2" }
-    ],
-    "series": "Prepare 2, 3, 4, 5, 6",
+    "series": "Prepare 1, 2, 3, 4, 5, 6",
     "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
-    "priceTotal": "8820",
-    "priceMonthly": "980",
-    "lessons": "8 lecții",
-    "manuals": "500",
-    "discounts": [
-      "5% achitare integrală",
-      "5% membrii aceleiași familii",
-      "7% achitare integrală + familii"
+    "subLevels": [
+      {
+        "id": "a1_a2",
+        "label": "A1 & A2",
+        "name": "A1 (Nivel Începător) & A2 (Nivel Elementar)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "8280",
+        "priceMonthly": "920",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b1_b1plus",
+        "label": "B1 & B1+",
+        "name": "B1 (Pre-Intermediate) & B1+ (Intermediate)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "8280",
+        "priceMonthly": "960",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b2_c1",
+        "label": "B2 & C1",
+        "name": "B2 (Upper-Intermediate) & C1 (Advanced)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "9000",
+        "priceMonthly": "1000",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      }
     ]
   },
   {
     "id": "adults",
     "label": "Adulți",
-    "title": "Engleza pentru Adulți",
+    "title": "Engleza pentru Adulți / Cursuri intensive",
     "age": "18+ ani",
-    "levels": [
-      { "label": "A1 - C1", "cls": "level-b2" }
-    ],
     "series": "Empower / English File",
     "desc": "Cursuri axate pe conversație, engleză pentru afaceri și dezvoltare personală. Program flexibil, adaptat ritmului tău de viață.",
-    "priceTotal": "9720",
-    "priceMonthly": "1080",
-    "lessons": "8 lecții",
-    "manuals": "500",
-    "discounts": [
-      "5% achitare integrală",
-      "5% membrii aceleiași familii"
+    "subLevels": [
+      {
+        "id": "a1_a2_adult",
+        "label": "A1 & A2",
+        "name": "A1 & A2 (Nivel Începător & Elementar)",
+        "duration": "4,5 luni / 3 ori săptămânal",
+        "schedule": "Luni, Miercuri, Vineri de la 18:30",
+        "lessons": "56 lecții · 90 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "6720",
+        "priceMonthly": "1680",
+        "priceMonthlyCount": "14 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b1_adult",
+        "label": "B1",
+        "name": "B1 (Nivel Pre-Intermediar)",
+        "duration": "4,5 luni / 3 ori săptămânal",
+        "schedule": "Luni, Miercuri, Vineri de la 18:30",
+        "lessons": "56 lecții · 90 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "6720",
+        "priceMonthly": "1680",
+        "priceMonthlyCount": "14 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b1plus_adult",
+        "label": "B1+",
+        "name": "B1+ (Nivel Intermediar)",
+        "duration": "4,5 luni / 3 ori săptămânal",
+        "schedule": "Luni, Miercuri, Vineri de la 18:30",
+        "lessons": "56 lecții · 90 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "7000",
+        "priceMonthly": "1750",
+        "priceMonthlyCount": "14 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "b2_adult",
+        "label": "B2",
+        "name": "B2 (Upper-Intermediate Level)",
+        "duration": "4,5 luni / 3 ori săptămânal",
+        "schedule": "Luni, Miercuri, Vineri de la 18:30",
+        "lessons": "56 lecții · 90 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "7000",
+        "priceMonthly": "1750",
+        "priceMonthlyCount": "14 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      }
     ]
   },
   {
     "id": "cambridge",
     "label": "Pregătire Cambridge",
-    "title": "Pregătire Examene Cambridge",
+    "title": "Pregătire pentru Examenele Cambridge B2 First (FCE) / C1 Advanced (CAE)",
     "age": "B2 First (FCE) / C1 Advanced (CAE)",
-    "levels": [
-      { "label": "B2 First", "cls": "level-b2" },
-      { "label": "C1 Advanced", "cls": "level-c1" }
-    ],
     "series": "Complete First / Advanced",
-    "desc": "Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE). Scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
-    "priceTotal": "10620",
-    "priceMonthly": "1180",
-    "lessons": "8 lecții",
-    "manuals": "600",
-    "discounts": [
-      "5% achitare integrală",
-      "Simulare de examen gratuită"
+    "desc": "Centru de pregătire în parteneriat cu Alianța Franceză. Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE) cu scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
+    "subLevels": [
+      {
+        "id": "intensive",
+        "label": "Curs Intensiv",
+        "name": "Curs Intensiv Cambridge (3.5 luni)",
+        "duration": "3,5 luni",
+        "schedule": "Sâmbătă și duminică",
+        "lessons": "30 lecții · 135 minute fiecare",
+        "group": "Max. 12 cursanți per grupă",
+        "priceTotal": "6000",
+        "priceMonthly": "2000",
+        "priceMonthlyCount": "10 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      },
+      {
+        "id": "extensive",
+        "label": "Curs Extensiv",
+        "name": "Curs Extensiv Cambridge (9 luni)",
+        "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
+        "schedule": "2 ori/săptămână",
+        "lessons": "72 lecții · 80 minute fiecare",
+        "group": "Max. 12 copii per grupă",
+        "priceTotal": "9000",
+        "priceMonthly": "1000",
+        "priceMonthlyCount": "8 lecții",
+        "manuals": "500",
+        "discounts": [
+          "5% achitare integrală",
+          "5% membrii aceleiași familii",
+          "7% achitare integrală pentru membrii aceleiași familii"
+        ]
+      }
     ]
   }
 ]
