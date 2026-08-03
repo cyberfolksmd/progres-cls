@@ -377,7 +377,7 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
         )}
       </div>
 
-      {/* Sub-level Switcher Buttons */}
+      {/* Sub-level Switcher Buttons & Level Detail Summary in ONE card */}
       {subLevels.length > 0 && (
         <div className="sublevel-switcher-bar">
           <span className="sublevel-switcher-title">Alege Nivelul:</span>
@@ -393,6 +393,16 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
               </button>
             ))}
           </div>
+
+          {currentSub && (
+            <div className="mobile-active-level-summary">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <span className="level-badge-pill">{currentSub.label}</span>
+                <span className="mobile-level-name">{cleanSubName}</span>
+              </div>
+              {currentSub.duration && <div className="mobile-level-duration">· {currentSub.duration}</div>}
+            </div>
+          )}
         </div>
       )}
 
@@ -500,15 +510,6 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Mobile-only Action Buttons directly under Alege Nivelul (matching client's exact mockup) */}
       <div className="course-mobile-actions">
-        {currentSub && (
-          <div className="mobile-active-level-summary">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <span className="level-badge-pill">{currentSub.label}</span>
-              <span className="mobile-level-name">{cleanSubName}</span>
-            </div>
-            {currentSub.duration && <div className="mobile-level-duration">· {currentSub.duration}</div>}
-          </div>
-        )}
         <button 
           type="button"
           onClick={() => onOpenDetailsModal(course, currentSub)} 
@@ -947,7 +948,7 @@ export default function App() {
               <a href="#cursuri" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 Descoperă cursurile <ArrowRight size={18} />
               </a>
-              <a href="tel:+37369447768" className="btn btn-ghost" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+              <a href="tel:+37369447768" className="btn btn-ghost hero-call-btn" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 <Phone size={18} /> Sună-ne
               </a>
             </div>
