@@ -1519,6 +1519,22 @@ Curs: ${courseName}`;
                 Telegram
               </button>
             </div>
+
+            {/* GDPR & Moldovan Law Data Protection Notice */}
+            <div className="modal-gdpr-notice">
+              <ShieldCheck size={16} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <span>
+                Prin trimiterea cererii, ești de acord cu prelucrarea datelor cu caracter personal conform legislației Republicii Moldova și GDPR. Consultați{' '}
+                <a 
+                  href="https://www.legis.md/cautare/getResults?doc_id=110496&lang=ro" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="gdpr-link"
+                >
+                  Legea privind protecția datelor
+                </a>.
+              </span>
+            </div>
           </form>
         ) : (
           <div style={{ textAlign: 'center', padding: '1rem 0' }}>
