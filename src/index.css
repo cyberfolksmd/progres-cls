@@ -2302,17 +2302,19 @@ html, body {
     justify-content: center !important;
     flex-wrap: wrap !important;
     width: auto !important;
-    max-width: 94% !important;
-    padding: 0.45rem 1rem !important;
+    max-width: 95% !important;
+    padding: 0.55rem 1.1rem !important;
     margin: 0.5rem auto 1.25rem auto !important;
     border-radius: 1.25rem !important;
     box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4) !important;
   }
   .award-text {
-    font-size: 0.75rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 800 !important;
     line-height: 1.35 !important;
     text-align: center !important;
     white-space: normal !important;
+    letter-spacing: 0.02em !important;
   }
   .hero-h1 {
     font-size: 1.5rem !important;
