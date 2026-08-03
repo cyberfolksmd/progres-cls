@@ -977,8 +977,8 @@ img { max-width: 100%; display: block; }
 
 /* SUBLEVEL SWITCHER BAR */
 .sublevel-switcher-bar {
-  background: var(--card-bg-img, linear-gradient(135deg, #edf2f7, #e2e8f0)) center/cover no-repeat;
-  border: 1px solid rgba(30, 58, 138, 0.18);
+  background: #edf2f7;
+  border: 1px solid rgba(30, 58, 138, 0.12);
   border-radius: var(--radius-xl);
   padding: 0.85rem 1.25rem;
   margin-bottom: 2rem;
@@ -988,7 +988,7 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
   flex-wrap: wrap;
   text-align: center;
-  box-shadow: 0 12px 28px -4px rgba(30, 58, 138, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.08);
 }
 
 .sublevel-switcher-title {
