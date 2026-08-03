@@ -927,6 +927,10 @@ img { max-width: 100%; display: block; }
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-lg);
   cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all var(--transition-fast);
 }
 
@@ -948,6 +952,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.25rem;
+  flex-wrap: wrap;
 }
 
 .level-badge-pill {
@@ -957,6 +962,8 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .selected-level-name {
@@ -2437,16 +2444,33 @@ img { max-width: 100%; display: block; }
   }
 
   .sublevel-switcher-bar {
-    padding: 0.65rem 0.75rem;
+    padding: 0.65rem 0.5rem;
     border-radius: var(--radius-lg);
     margin-bottom: 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sublevel-buttons-wrap {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .sublevel-btn {
     padding: 0.45rem 0.85rem;
-    font-size: 0.85rem;
-    flex: 1;
+    font-size: 0.825rem;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
     text-align: center;
+  }
+
+  .selected-level-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .course-detail-grid {

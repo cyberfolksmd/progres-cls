@@ -291,7 +291,7 @@
     "subLevels": [
       {
         "id": "fce_intensive",
-        "label": "B2 First Intensiv",
+        "label": "B2 Intensiv",
         "name": "B2 First (FCE) Curs Intensiv (3.5 luni)",
         "duration": "3,5 luni",
         "schedule": "Sâmbătă și duminică",
@@ -309,7 +309,7 @@
       },
       {
         "id": "fce_extensive",
-        "label": "B2 First Extensiv",
+        "label": "B2 Extensiv",
         "name": "B2 First (FCE) Curs Extensiv (9 luni)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
@@ -327,7 +327,7 @@
       },
       {
         "id": "cae_intensive",
-        "label": "C1 Advanced Intensiv",
+        "label": "C1 Intensiv",
         "name": "C1 Advanced (CAE) Curs Intensiv (3.5 luni)",
         "duration": "3,5 luni",
         "schedule": "Sâmbătă și duminică",
@@ -345,7 +345,7 @@
       },
       {
         "id": "cae_extensive",
-        "label": "C1 Advanced Extensiv",
+        "label": "C1 Extensiv",
         "name": "C1 Advanced (CAE) Curs Extensiv (9 luni)",
         "duration": "9 luni (septembrie - mai), 2 ori/săptămână",
         "schedule": "2 ori/săptămână",
