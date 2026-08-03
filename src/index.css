@@ -576,25 +576,31 @@ img { max-width: 100%; display: block; }
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
-  opacity: 0.88;
+  opacity: 0.22;
   transform: none;
+  filter: contrast(1.05) saturate(1.1);
   mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 100%);
 }
 
 .hero-uk-bg-overlay {
-  display: none;
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(248, 250, 252, 0.75) 0%, rgba(248, 250, 252, 0.4) 40%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-uk-theme .hero-h1 {
   color: #0f172a !important;
-  text-shadow: none !important;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9) !important;
 }
 
 .hero-uk-theme .hero-subtitle {
-  color: #334155 !important;
-  text-shadow: none !important;
-  font-weight: 500 !important;
+  color: #1e293b !important;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8) !important;
+  font-weight: 600 !important;
 }
 
 @media (max-width: 900px) {
