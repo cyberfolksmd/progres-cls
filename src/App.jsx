@@ -392,47 +392,80 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
 function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
   if (!course) return null;
-  const lvl = subLevel || {};
+  const subLevels = course.subLevels || [];
+  const [activeSub, setActiveSub] = useState(subLevel || subLevels[0] || {});
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card blog-modal-card" style={{ maxWidth: '650px' }} onClick={(e) => e.stopPropagation()}>
+      <div className="modal-card blog-modal-card" style={{ maxWidth: '680px' }} onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Închide">
           <X size={20} />
         </button>
 
         <div className="blog-modal-body">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
             <span className="blog-tag">{course.label}</span>
-            {lvl.label && <span className="level-badge-pill" style={{ fontSize: '0.8rem' }}>{lvl.label}</span>}
+            {course.age && <span className="course-age-badge" style={{ fontSize: '0.8rem' }}>Vârstă: {course.age}</span>}
           </div>
 
-          <h2 className="blog-modal-title" style={{ marginBottom: '0.75rem' }}>
-            {course.title} {lvl.name ? `— ${lvl.name}` : ''}
+          <h2 className="blog-modal-title" style={{ marginBottom: '0.5rem' }}>
+            {course.title}
           </h2>
 
-          <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+          <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: '1rem', fontSize: '0.95rem' }}>
             {course.desc}
           </p>
 
+          {/* Aligned Sub-levels Pill Switcher inside Popup */}
+          {subLevels.length > 0 && (
+            <div style={{ background: '#edf2f7', border: '1px solid rgba(30, 58, 138, 0.12)', borderRadius: 'var(--radius-xl)', padding: '0.65rem 1rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary-dark)' }}>Niveluri / Formate:</span>
+              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                {subLevels.map((s, idx) => (
+                  <button
+                    key={s.id || idx}
+                    type="button"
+                    onClick={() => setActiveSub(s)}
+                    style={{
+                      background: activeSub.id === s.id || activeSub.label === s.label ? 'var(--color-primary)' : 'white',
+                      color: activeSub.id === s.id || activeSub.label === s.label ? 'white' : 'var(--color-primary-dark)',
+                      border: '1px solid var(--color-border)',
+                      fontWeight: 700,
+                      fontSize: '0.85rem',
+                      padding: '0.35rem 0.95rem',
+                      borderRadius: 'var(--radius-lg)',
+                      cursor: 'pointer',
+                      boxShadow: activeSub.id === s.id || activeSub.label === s.label ? '0 4px 12px rgba(30, 58, 138, 0.25)' : 'none',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', marginBottom: '1.25rem' }}>
-            <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.75rem 0' }}>📋 Detaliile cursului:</h4>
+            <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.75rem 0', fontSize: '1.05rem', fontWeight: 800 }}>
+              📋 Detaliile Nivelului ({activeSub.name || activeSub.label}):
+            </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.925rem' }}>
-              <li><strong>⏱️ Durată:</strong> {lvl.duration || '9 luni'}</li>
-              {lvl.schedule && <li><strong>📅 Orar:</strong> {lvl.schedule}</li>}
-              <li><strong>📚 Lecții:</strong> {lvl.lessons || '72 lecții'}</li>
-              <li><strong>👥 Locuri / Grupă:</strong> {lvl.group || 'Max. 12 cursanți'}</li>
-              <li><strong>📖 Manuale:</strong> {course.series || 'Materiale Cambridge'} (Set manuale: +{lvl.manuals || 500} lei)</li>
-              <li><strong>💰 Preț Lunar:</strong> {lvl.priceMonthly} lei / lună ({lvl.priceMonthlyCount || '8 lecții'})</li>
-              <li><strong>🏷️ Preț Total:</strong> {lvl.priceTotal} lei</li>
+              <li><strong>⏱️ Durată:</strong> {activeSub.duration || '9 luni'}</li>
+              {activeSub.schedule && <li><strong>📅 Orar / Ritm:</strong> {activeSub.schedule}</li>}
+              <li><strong>📚 Lecții:</strong> {activeSub.lessons || '72 lecții'}</li>
+              <li><strong>👥 Locuri / Grupă:</strong> {activeSub.group || 'Max. 12 cursanți'}</li>
+              <li><strong>📖 Manuale:</strong> {course.series || 'Materiale Cambridge'} (Set manuale: +{activeSub.manuals || 500} lei)</li>
+              <li><strong>💰 Preț Lunar:</strong> {activeSub.priceMonthly} lei / lună ({activeSub.priceMonthlyCount || '8 lecții'})</li>
+              <li><strong>🏷️ Preț Total:</strong> {activeSub.priceTotal} lei</li>
             </ul>
           </div>
 
-          {lvl.discounts && lvl.discounts.length > 0 && (
+          {activeSub.discounts && activeSub.discounts.length > 0 && (
             <div style={{ marginBottom: '1.25rem' }}>
               <h4 style={{ color: 'var(--color-primary-dark)', margin: '0 0 0.5rem 0' }}>🎁 Reduceri disponibile:</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {lvl.discounts.map((disc, idx) => (
+                {activeSub.discounts.map((disc, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
                     <BadgeCheck size={16} color="var(--color-secondary)" />
                     {disc}
@@ -448,7 +481,7 @@ function CourseDetailsModal({ course, subLevel, onClose, onRegister }) {
               className="btn btn-primary btn-full"
               style={{ justifyContent: 'center' }}
             >
-              Înscrie-te la acest curs <ArrowRight size={18} />
+              Înscrie-te la acest nivel ({activeSub.label}) <ArrowRight size={18} />
             </button>
           </div>
         </div>
@@ -1185,16 +1218,33 @@ Curs: ${courseName}`;
             </div>
             
             <div className="form-group">
-              <label htmlFor="modal-course">Alege Cursul</label>
+              <label htmlFor="modal-course">Alege Cursul și Nivelul</label>
               <select 
                 id="modal-course"
                 value={course} 
                 onChange={(e) => setCourse(e.target.value)}
+                style={{ padding: '0.75rem 1rem', fontSize: '0.95rem', borderRadius: 'var(--radius-lg)' }}
               >
-                <option value="kids">Copii (8-11 ani)</option>
-                <option value="teens">Adolescenți (12-18 ani)</option>
-                <option value="adults">Adulți (curs intensiv)</option>
-                <option value="cambridge">Pregătire Cambridge (FCE/CAE)</option>
+                <optgroup label="Copii (8-11 ani)">
+                  <option value="kids_a1.1">Copii (8-11 ani) — Nivel A1.1</option>
+                  <option value="kids_a1.2">Copii (8-11 ani) — Nivel A1.2</option>
+                  <option value="kids_a2.1">Copii (8-11 ani) — Nivel A2.1</option>
+                </optgroup>
+                <optgroup label="Adolescenți (12-18 ani)">
+                  <option value="teens_a1_a2">Adolescenți (12-18 ani) — Nivel A1 & A2</option>
+                  <option value="teens_b1_b1plus">Adolescenți (12-18 ani) — Nivel B1 & B1+</option>
+                  <option value="teens_b2_c1">Adolescenți (12-18 ani) — Nivel B2 & C1</option>
+                </optgroup>
+                <optgroup label="Adulți / Cursuri intensive">
+                  <option value="adults_a1_a2">Adulți — Nivel A1 & A2</option>
+                  <option value="adults_b1">Adulți — Nivel B1</option>
+                  <option value="adults_b1plus">Adulți — Nivel B1+</option>
+                  <option value="adults_b2">Adulți — Nivel B2</option>
+                </optgroup>
+                <optgroup label="Pregătire Examene Cambridge">
+                  <option value="cambridge_intensive">Pregătire Cambridge — Curs Intensiv (3.5 luni)</option>
+                  <option value="cambridge_extensive">Pregătire Cambridge — Curs Extensiv (9 luni)</option>
+                </optgroup>
               </select>
             </div>
 
