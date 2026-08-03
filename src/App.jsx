@@ -93,7 +93,7 @@ function HeroCarousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const slideList = images && images.length > 0 ? images : ['/hero.png', '/cambridge.png'];
+  const slideList = images && images.length > 0 ? images : ['/hero.webp', '/cambridge.webp'];
 
   useEffect(() => {
     if (isPaused || slideList.length <= 1) return;
@@ -354,32 +354,32 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
   const rawName = currentSub.name || currentSub.label || '';
   const cleanSubName = rawName.replace(/\s*\([A-Z0-9+]+\)\s*$/i, '');
   const levelPhotos = {
-    'a1.1': '/bg_kids.png',
-    'a1.2': '/bg_letters.png',
-    'a2.1': '/bg_flag.png',
-    'a1_teen': '/bg_teens.png',
-    'a2_teen': '/bg_desk.png',
-    'b1_teen': '/bg_books.png',
-    'b1plus_teen': '/bg_flag.png',
-    'b2_teen': '/bg_cambridge.png',
-    'c1_teen': '/hero.png',
-    'a1_adult': '/bg_adults.png',
-    'a2_adult': '/bg_desk.png',
-    'b1_adult': '/bg_letters.png',
-    'b1plus_adult': '/bg_books.png',
-    'b2_adult': '/bg_cambridge.png',
-    'adults_a1': '/bg_adults.png',
-    'adults_a2': '/bg_desk.png',
-    'adults_b1': '/bg_letters.png',
-    'adults_b1plus': '/bg_books.png',
-    'adults_b2': '/bg_cambridge.png',
-    'fce_intensive': '/bg_cambridge.png',
-    'fce_extensive': '/bg_books.png',
-    'cae_intensive': '/cambridge.png',
-    'cae_extensive': '/hero.png',
+    'a1.1': '/bg_kids.webp',
+    'a1.2': '/bg_letters.webp',
+    'a2.1': '/bg_flag.webp',
+    'a1_teen': '/bg_teens.webp',
+    'a2_teen': '/bg_desk.webp',
+    'b1_teen': '/bg_books.webp',
+    'b1plus_teen': '/bg_flag.webp',
+    'b2_teen': '/bg_cambridge.webp',
+    'c1_teen': '/hero.webp',
+    'a1_adult': '/bg_adults.webp',
+    'a2_adult': '/bg_desk.webp',
+    'b1_adult': '/bg_letters.webp',
+    'b1plus_adult': '/bg_books.webp',
+    'b2_adult': '/bg_cambridge.webp',
+    'adults_a1': '/bg_adults.webp',
+    'adults_a2': '/bg_desk.webp',
+    'adults_b1': '/bg_letters.webp',
+    'adults_b1plus': '/bg_books.webp',
+    'adults_b2': '/bg_cambridge.webp',
+    'fce_intensive': '/bg_cambridge.webp',
+    'fce_extensive': '/bg_books.webp',
+    'cae_intensive': '/cambridge.webp',
+    'cae_extensive': '/hero.webp',
   };
 
-  const levelBgPhoto = currentSub.img || levelPhotos[currentSub.id] || course.img || '/bg_kids.png';
+  const levelBgPhoto = currentSub.img || levelPhotos[currentSub.id] || course.img || '/bg_kids.webp';
   const thumbImg = levelBgPhoto;
 
   return (
