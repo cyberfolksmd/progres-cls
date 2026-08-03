@@ -52,6 +52,51 @@ function RichTextEditor({ label, value, onChange, placeholder, minHeight = 120 }
   );
 }
 
+async function commitFileToGitHub(token, path, contentObj, commitMessage) {
+  try {
+    const url = `https://api.github.com/repos/cyberfolksmd/progres-cls/contents/${path}`;
+    const getRes = await fetch(url, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    let sha = null;
+    if (getRes.ok) {
+      const fileData = await getRes.json();
+      sha = fileData.sha;
+    }
+
+    const str = JSON.stringify(contentObj, null, 2);
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    const contentBase64 = btoa(binary);
+
+    const putRes = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: commitMessage,
+        content: contentBase64,
+        sha: sha,
+        branch: 'main'
+      })
+    });
+
+    return putRes.ok;
+  } catch (err) {
+    console.error('GitHub API error for ' + path, err);
+    return false;
+  }
+}
+
 export default function AdminPanel({ onClose, onSaveData, initialData }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
@@ -60,6 +105,9 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
   
   const [activeSection, setActiveSection] = useState('hero');
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [ghToken, setGhToken] = useState(() => localStorage.getItem('progress_cls_gh_token') || '');
+  const [isSyncingGh, setIsSyncingGh] = useState(false);
+  const [ghSyncStatus, setGhSyncStatus] = useState('');
 
   // Full Site Data State
   const [data, setData] = useState({
@@ -113,7 +161,62 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
     }
   };
 
-  const handleSave = () => {
+  const syncToGitHub = async (tokenToUse = ghToken) => {
+    if (!tokenToUse) return false;
+    setIsSyncingGh(true);
+    setGhSyncStatus('⏳ Se transmite către Vercel / GitHub...');
+
+    try {
+      const filesToSync = [
+        {
+          path: 'src/data/general.json',
+          content: {
+            siteTitle: 'Progress CLS',
+            phone: data.contacts.phone,
+            phoneRaw: data.contacts.phoneRaw,
+            address: data.contacts.address,
+            typewriterWords: data.hero.typewriterWords
+          }
+        },
+        {
+          path: 'src/data/courses.json',
+          content: data.courses
+        },
+        {
+          path: 'src/data/team.json',
+          content: data.team
+        },
+        {
+          path: 'src/data/faq.json',
+          content: data.faq
+        }
+      ];
+
+      let successCount = 0;
+      for (const f of filesToSync) {
+        const ok = await commitFileToGitHub(tokenToUse, f.path, f.content, `cms: update ${f.path} via Admin Panel`);
+        if (ok) successCount++;
+      }
+
+      if (successCount > 0) {
+        setGhSyncStatus(`✅ Sincronizat cu Vercel! (${successCount} fișiere actualizate)`);
+        setTimeout(() => setGhSyncStatus(''), 5000);
+        setIsSyncingGh(false);
+        return true;
+      } else {
+        setGhSyncStatus('❌ Eroare la sincronizare GitHub. Verificați token-ul.');
+        setIsSyncingGh(false);
+        return false;
+      }
+    } catch (err) {
+      console.error(err);
+      setGhSyncStatus('❌ Eroare GitHub API');
+      setIsSyncingGh(false);
+      return false;
+    }
+  };
+
+  const handleSave = async () => {
     try {
       localStorage.setItem('progress_cls_site_data', JSON.stringify(data));
     } catch (e) {
@@ -124,6 +227,39 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
     }
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
+
+    if (ghToken) {
+      await syncToGitHub(ghToken);
+    }
+  };
+
+  const handleExportBackup = () => {
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `progress_cls_backup_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportBackup = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        setData(parsed);
+        localStorage.setItem('progress_cls_site_data', JSON.stringify(parsed));
+        if (onSaveData) onSaveData(parsed);
+        alert('✅ Backup încărcat cu succes!');
+      } catch (err) {
+        alert('❌ Fișier JSON nevalid!');
+      }
+    };
+    reader.readAsText(file);
   };
 
   if (!isAuthenticated) {
@@ -253,6 +389,14 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
             >
               <Phone size={18} /> Contacte & Footer
             </button>
+
+            <button 
+              className={`admin-menu-item ${activeSection === 'github' ? 'active' : ''}`}
+              onClick={() => setActiveSection('github')}
+              style={{ marginTop: '0.5rem', background: activeSection === 'github' ? 'var(--color-primary-light)' : 'rgba(255,255,255,0.06)' }}
+            >
+              <Globe size={18} /> 🌐 Sincronizare Vercel
+            </button>
           </nav>
 
           <div className="admin-sidebar-footer">
@@ -277,6 +421,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                 {activeSection === 'blog' && '📰 Articole de Blog & Noutăți'}
                 {activeSection === 'faq' && '❓ Întrebări Frecvente (FAQ)'}
                 {activeSection === 'contacts' && '📞 Date de Contact & Footer'}
+                {activeSection === 'github' && '🌐 Sincronizare Vercel & Backup Data'}
               </h2>
             </div>
             <div className="admin-topbar-right">
@@ -1042,6 +1187,81 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                     value={data.contacts.address} 
                     onChange={(e) => setData({ ...data, contacts: { ...data.contacts, address: e.target.value } })} 
                   />
+                </div>
+              </div>
+            )}
+
+            {/* 10. GITHUB VERCEL AUTO-SYNC & BACKUP */}
+            {activeSection === 'github' && (
+              <div className="admin-card-section">
+                <h3>🌐 Sincronizare Cloud Vercel (Pus de pe orice dispozitiv pentru TOȚI vizitatorii)</h3>
+                <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.25rem' }}>
+                  Prin introducerea unui <strong>GitHub Personal Access Token (PAT)</strong>, orice salvare efectuată în această Panou de Administrare va fi trimisă direct în repozitoriu, iar <strong>Vercel va publica automat modificările pentru toți utilizatorii din lume</strong>!
+                </p>
+
+                <div className="admin-inner-card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid var(--color-primary-light)' }}>
+                  <h4 style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <ShieldCheck size={18} color="var(--color-primary-light)" /> Token GitHub (Personal Access Token)
+                  </h4>
+                  <div className="form-group">
+                    <label>Inserare GitHub PAT Token (ghp_...)</label>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <input 
+                        type="password" 
+                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" 
+                        value={ghToken} 
+                        onChange={(e) => {
+                          setGhToken(e.target.value);
+                          localStorage.setItem('progress_cls_gh_token', e.target.value);
+                        }} 
+                        style={{ flex: 1 }}
+                      />
+                      <button 
+                        onClick={() => syncToGitHub(ghToken)} 
+                        className="btn btn-primary" 
+                        disabled={!ghToken || isSyncingGh}
+                        style={{ whiteSpace: 'nowrap' }}
+                      >
+                        {isSyncingGh ? '⏳ Sincronizare...' : '🚀 Test & Trimite pe Vercel'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {ghSyncStatus && (
+                    <div style={{ marginTop: '0.75rem', fontWeight: 600, color: ghSyncStatus.includes('✅') ? '#10b981' : '#ef4444' }}>
+                      {ghSyncStatus}
+                    </div>
+                  )}
+
+                  <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#64748b' }}>
+                    💡 <em>Cum obții un token în 30 de secunde?</em><br />
+                    1. Intră pe GitHub → Settings → Developer Settings → Personal Access Tokens (Tokens classic).<br />
+                    2. Apasă <strong>Generate new token</strong> și bifează permisiunea <strong>repo</strong> (Full control of private/public repositories).<br />
+                    3. Lipește token-ul obținut în căsuța de mai sus!
+                  </div>
+                </div>
+
+                <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border-light)' }} />
+
+                <h3>📥 Export & Import Backup Local (JSON)</h3>
+                <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
+                  Poți descărca o copie de siguranță (Backup JSON) cu toate datele site-ului sau poți restaura date dintr-un fișier salvat anterior.
+                </p>
+
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <button onClick={handleExportBackup} className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                    💾 Descarcă Backup JSON
+                  </button>
+
+                  <label className="btn btn-ghost" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                    📂 Încarcă Backup JSON
+                    <input 
+                      type="file" 
+                      accept=".json" 
+                      style={{ display: 'none' }}
+                      onChange={handleImportBackup}
+                    />
+                  </label>
                 </div>
               </div>
             )}
