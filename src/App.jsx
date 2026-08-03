@@ -254,13 +254,17 @@ function TeacherCard({ member, index }) {
     if (images.length <= 1 || isHovered) return;
 
     let intervalId = null;
-    // Stagger initial delay per teacher: index * 1000ms so photos switch smoothly in 1s sequence
-    const initialDelay = (index % 6) * 1000;
+    // Round-robin sequence: 1 teacher photo changes every 3 seconds
+    const stepDuration = 3000;
+    const initialDelay = (index % 6) * stepDuration;
+    const loopPeriod = 6 * stepDuration; // 18000ms
 
     const startTimeout = setTimeout(() => {
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+
       intervalId = setInterval(() => {
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-      }, 5000);
+      }, loopPeriod);
     }, initialDelay);
 
     return () => {
