@@ -68,7 +68,10 @@ collections:
             fields:
               - { label: "Nume & Prenume", name: "name", widget: "string" }
               - { label: "Rol / Funcție", name: "role", widget: "string" }
-              - { label: "Foto Profil", name: "img", widget: "image" }
+              - { label: "Foto Profil (Foto 1)", name: "img", widget: "image" }
+              - { label: "Foto 2 (Galerie)", name: "img2", widget: "image", required: false }
+              - { label: "Foto 3 (Galerie)", name: "img3", widget: "image", required: false }
+              - label: "Galerie 3 Poze (Карусель)", name: "images", widget: "list", required: false, field: { label: "Poză", name: "image", widget: "image" }
 
   - name: "faq"
     label: "❓ Întrebări Frecvente (FAQ)"

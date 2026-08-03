@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   BookOpen, Users, Award, Star, CheckCircle, CheckCircle2, GraduationCap,
-  MapPin, Phone, Mail, ChevronDown, Clock, Calendar, Zap,
+  MapPin, Phone, Mail, ChevronDown, ChevronLeft, ChevronRight, Clock, Calendar, Zap,
   Globe, TrendingUp, Heart, ShieldCheck, Menu, X,
   ArrowRight, BadgeCheck, Trophy, CreditCard, Tag
 } from 'lucide-react';
@@ -238,6 +238,82 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
         )}
       </nav>
     </header>
+  );
+}
+
+function TeacherCard({ member, index }) {
+  const rawList = (member.images && member.images.length > 0)
+    ? member.images
+    : [member.img, member.img2, member.img3].filter(Boolean);
+
+  const images = rawList.length > 0 ? rawList : (member.img ? [member.img] : []);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextSlide = (e) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className={`team-member fade-in delay-${(index % 6) + 1}`}>
+      <div className="member-photo-wrap">
+        <img
+          src={images[currentIndex] || member.img}
+          alt={member.name}
+          className="member-photo"
+          loading="lazy"
+        />
+        <div className="member-badge">
+          <BadgeCheck size={13} color="white" />
+          <span>TEFL</span>
+        </div>
+
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              className="teacher-carousel-nav teacher-carousel-prev"
+              onClick={prevSlide}
+              aria-label="Previous photo"
+            >
+              <ChevronLeft size={16} />
+            </button>
+
+            <button
+              type="button"
+              className="teacher-carousel-nav teacher-carousel-next"
+              onClick={nextSlide}
+              aria-label="Next photo"
+            >
+              <ChevronRight size={16} />
+            </button>
+
+            <div className="teacher-carousel-dots">
+              {images.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  className={`teacher-dot ${currentIndex === dotIdx ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(dotIdx);
+                  }}
+                  aria-label={`Go to photo ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      <h3 className="member-name">{member.name}</h3>
+      <p className="member-role">{member.role}</p>
+    </div>
   );
 }
 
@@ -973,22 +1049,7 @@ export default function App() {
           </div>
           <div className="team-grid">
             {TEAM.map((m, i) => (
-              <div className={`team-member fade-in delay-${(i % 6) + 1}`} key={i}>
-                <div className="member-photo-wrap">
-                  <img
-                    src={m.img}
-                    alt={m.name}
-                    className="member-photo"
-                    loading="lazy"
-                  />
-                  <div className="member-badge">
-                    <BadgeCheck size={13} color="white" />
-                    <span>TEFL</span>
-                  </div>
-                </div>
-                <h3 className="member-name">{m.name}</h3>
-                <p className="member-role">{m.role}</p>
-              </div>
+              <TeacherCard member={m} index={i} key={i} />
             ))}
           </div>
         </div>

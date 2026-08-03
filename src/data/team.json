@@ -1,8 +1,62 @@
 [
-  { "name": "Ludmila Cebotaru", "role": "Director general / Profesoară de engleză", "img": "/teacher_ludmila.png" },
-  { "name": "Anastasia Falca", "role": "Profesoară de engleză", "img": "/teacher_anastasia.png" },
-  { "name": "Cristina Chirica", "role": "Profesoară de engleză", "img": "/teacher_cristina.png" },
-  { "name": "Irina Buliga", "role": "Profesoară de engleză", "img": "/teacher_irina.png" },
-  { "name": "Adriana Musteață", "role": "Profesoară de engleză", "img": "/teacher_adriana.png" },
-  { "name": "Eugenia Ichim", "role": "Profesoară de engleză", "img": "/teacher_eugenia.png" }
+  {
+    "name": "Ludmila Cebotaru",
+    "role": "Director general / Profesoară de engleză",
+    "img": "/teacher_ludmila.png",
+    "images": [
+      "/teacher_ludmila.png",
+      "/course_adults.png",
+      "/hero.png"
+    ]
+  },
+  {
+    "name": "Anastasia Falca",
+    "role": "Profesoară de engleză",
+    "img": "/teacher_anastasia.png",
+    "images": [
+      "/teacher_anastasia.png",
+      "/course_teens.png",
+      "/cambridge.png"
+    ]
+  },
+  {
+    "name": "Cristina Chirica",
+    "role": "Profesoară de engleză",
+    "img": "/teacher_cristina.png",
+    "images": [
+      "/teacher_cristina.png",
+      "/course_kids.png",
+      "/hero.png"
+    ]
+  },
+  {
+    "name": "Irina Buliga",
+    "role": "Profesoară de engleză",
+    "img": "/teacher_irina.png",
+    "images": [
+      "/teacher_irina.png",
+      "/course_adults.png",
+      "/cambridge.png"
+    ]
+  },
+  {
+    "name": "Adriana Musteață",
+    "role": "Profesoară de engleză",
+    "img": "/teacher_adriana.png",
+    "images": [
+      "/teacher_adriana.png",
+      "/course_teens.png",
+      "/hero.png"
+    ]
+  },
+  {
+    "name": "Eugenia Ichim",
+    "role": "Profesoară de engleză",
+    "img": "/teacher_eugenia.png",
+    "images": [
+      "/teacher_eugenia.png",
+      "/course_kids.png",
+      "/course_adults.png"
+    ]
+  }
 ]
