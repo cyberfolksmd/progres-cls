@@ -2378,3 +2378,59 @@ img { max-width: 100%; display: block; }
   width: 28px;
   border-radius: var(--radius-full);
 }
+
+/* MOBILE OPTIMIZATIONS FOR COURSES SECTION */
+@media (max-width: 768px) {
+  #cursuri .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .courses-sequential-list {
+    gap: 2.25rem;
+  }
+
+  .course-block-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .course-block-card:hover {
+    box-shadow: none !important;
+    border-color: transparent !important;
+  }
+
+  .course-block-header {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sublevel-switcher-bar {
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.25rem;
+  }
+
+  .sublevel-btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.85rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .course-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .course-info-card,
+  .price-card {
+    padding: 1.25rem;
+    border-radius: var(--radius-xl);
+    width: 100%;
+  }
+}
