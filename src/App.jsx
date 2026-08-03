@@ -1298,10 +1298,11 @@ Curs: ${courseName}`;
                   <option value="teens_b2_c1">Nivel B2 & C1 (Prepare 5-6)</option>
                 </optgroup>
                 <optgroup label="Adulți / Cursuri intensive (18+ ani)">
-                  <option value="adults_a1_a2">Nivel A1 & A2</option>
-                  <option value="adults_b1">Nivel B1</option>
-                  <option value="adults_b1plus">Nivel B1+</option>
-                  <option value="adults_b2">Nivel B2</option>
+                  <option value="adults_a1">Nivel A1 (4 luni — 1440 lei/lună)</option>
+                  <option value="adults_a2">Nivel A2 (4.5 luni — 1680 lei/lună)</option>
+                  <option value="adults_b1">Nivel B1 (4.5 luni — 1680 lei/lună)</option>
+                  <option value="adults_b1plus">Nivel B1+ (4.5 luni — 1750 lei/lună)</option>
+                  <option value="adults_b2">Nivel B2 (4.5 luni — 1750 lei/lună)</option>
                 </optgroup>
                 <optgroup label="Pregătire Examene Cambridge (FCE / CAE)">
                   <option value="cambridge_intensive">Curs Intensiv (3.5 luni)</option>
