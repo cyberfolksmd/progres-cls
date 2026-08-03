@@ -1400,6 +1400,18 @@ export default function App() {
                 </div>
               </a>
 
+              <a href="viber://chat?number=%2B37369447768" className="chaty-item chaty-item--viber">
+                <div className="chaty-item-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817.57 12.933.488 18.776 6.12 20.36h.003l-.004 2.416s-.037.977.61 1.177c.777.242 1.234-.5 1.98-1.302.407-.44.972-1.084 1.397-1.58 3.85.326 6.812-.416 7.15-.525.776-.252 5.176-.816 5.892-6.657.74-6.02-.36-9.83-2.34-11.546-.596-.55-3.006-2.3-8.375-2.323 0 0-.395-.025-1.037-.017zm.058 1.693c.545-.004.88.017.88.017 4.542.02 6.717 1.388 7.222 1.846 1.675 1.435 2.53 4.868 1.906 9.897v.002c-.604 4.878-4.174 5.184-4.832 5.395-.28.09-2.882.737-6.153.524 0 0-2.436 2.94-3.197 3.704-.12.12-.26.167-.352.144-.13-.033-.166-.188-.165-.414l.02-4.018c-4.762-1.32-4.485-6.292-4.43-8.895.054-2.604.543-4.738 1.996-6.173 1.96-1.773 5.474-2.018 7.11-2.03z"/>
+                  </svg>
+                </div>
+                <div className="chaty-item-info">
+                  <span className="chaty-item-title">Viber</span>
+                  <span className="chaty-item-sub">Mesaj pe Viber</span>
+                </div>
+              </a>
+
               <a href="https://t.me/+37369447768" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--telegram">
                 <div className="chaty-item-icon">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -1408,7 +1420,7 @@ export default function App() {
                 </div>
                 <div className="chaty-item-info">
                   <span className="chaty-item-title">Telegram</span>
-                  <span className="chaty-item-sub">Mesaj rapid</span>
+                  <span className="chaty-item-sub">Mesaj pe Telegram</span>
                 </div>
               </a>
 
@@ -1420,45 +1432,7 @@ export default function App() {
                 </div>
                 <div className="chaty-item-info">
                   <span className="chaty-item-title">WhatsApp</span>
-                  <span className="chaty-item-sub">Mesaj direct</span>
-                </div>
-              </a>
-
-              <a href="https://www.facebook.com/p/PROGRESS-CLS-100064022590521/" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--facebook">
-                <div className="chaty-item-icon">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </div>
-                <div className="chaty-item-info">
-                  <span className="chaty-item-title">Facebook</span>
-                  <span className="chaty-item-sub">Pagina oficială</span>
-                </div>
-              </a>
-
-              <a href="https://www.instagram.com/progress_cls/" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--instagram">
-                <div className="chaty-item-icon">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                </div>
-                <div className="chaty-item-info">
-                  <span className="chaty-item-title">Instagram</span>
-                  <span className="chaty-item-sub">@progress_cls</span>
-                </div>
-              </a>
-
-              <a href="https://www.tiktok.com/@progress_cls" target="_blank" rel="noopener noreferrer" className="chaty-item chaty-item--tiktok">
-                <div className="chaty-item-icon">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.84V7.63a6.34 6.34 0 0 0-5.06 2.05A6.34 6.34 0 0 0 3 14.15a6.34 6.34 0 0 0 6.35 6.35 6.34 6.34 0 0 0 6.35-6.35V9.4a8.28 8.28 0 0 0 4.89 1.58V7.53a4.83 4.83 0 0 1-1-.84z"/>
-                  </svg>
-                </div>
-                <div className="chaty-item-info">
-                  <span className="chaty-item-title">TikTok</span>
-                  <span className="chaty-item-sub">@progress_cls</span>
+                  <span className="chaty-item-sub">Mesaj pe WhatsApp</span>
                 </div>
               </a>
             </div>

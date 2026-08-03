@@ -3407,11 +3407,9 @@ html, body {
 }
 
 .chaty-item--phone .chaty-item-icon { background: #16a34a; }
+.chaty-item--viber .chaty-item-icon { background: #7360f2; }
 .chaty-item--telegram .chaty-item-icon { background: #0088cc; }
 .chaty-item--whatsapp .chaty-item-icon { background: #25D366; }
-.chaty-item--facebook .chaty-item-icon { background: #1877f2; }
-.chaty-item--instagram .chaty-item-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.chaty-item--tiktok .chaty-item-icon { background: #000000; }
 
 .chaty-item-info {
   display: flex;
