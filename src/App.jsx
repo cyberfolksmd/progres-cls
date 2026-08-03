@@ -440,16 +440,6 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
               </div>
             </div>
           </div>
-
-          <div className="course-card-footer">
-            <button 
-              onClick={() => onOpenDetailsModal(course, currentSub)} 
-              className="btn btn-ghost btn-full"
-              style={{ justifyContent: 'center' }}
-            >
-              Vezi Detalii
-            </button>
-          </div>
         </div>
 
         {/* Right: Pricing Card (slides in from RIGHT on scroll) */}
@@ -490,16 +480,9 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
             <button 
               onClick={() => onOpenModal(course.id)} 
               className="btn btn-primary"
-              style={{ flex: 1, justifyContent: 'center' }}
+              style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem' }}
             >
               Înscrie-te acum <ArrowRight size={18} />
-            </button>
-            <button 
-              onClick={() => onOpenDetailsModal(course, currentSub)} 
-              className="btn btn-outline"
-              style={{ color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white' }}
-            >
-              Vreau Detalii
             </button>
           </div>
         </div>
