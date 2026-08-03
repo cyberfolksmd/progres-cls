@@ -1526,7 +1526,7 @@ Curs: ${courseName}`;
               <span>
                 Prin trimiterea cererii, ești de acord cu prelucrarea datelor cu caracter personal conform legislației Republicii Moldova și GDPR. Consultați{' '}
                 <a 
-                  href="https://www.legis.md/cautare/getResults?doc_id=110496&lang=ro" 
+                  href="https://www.legis.md/cautare/getResults?doc_id=129123&lang=ro" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="gdpr-link"
