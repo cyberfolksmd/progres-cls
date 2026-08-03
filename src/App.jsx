@@ -353,6 +353,28 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
   const rawName = currentSub.name || currentSub.label || '';
   const cleanSubName = rawName.replace(/\s*\([A-Z0-9+]+\)\s*$/i, '');
+  const levelPhotos = {
+    'a1.1': '/course_kids.png',
+    'a1.2': '/teacher_ludmila.png',
+    'a2.1': '/teacher_anastasia.png',
+    'a1_teen': '/course_teens.png',
+    'a2_teen': '/teacher_cristina.png',
+    'b1_teen': '/teacher_irina.png',
+    'b1plus_teen': '/teacher_eugenia.png',
+    'b2_teen': '/cambridge.png',
+    'c1_teen': '/hero.png',
+    'adults_a1': '/course_adults.png',
+    'adults_a2': '/teacher_ludmila.png',
+    'adults_b1': '/teacher_anastasia.png',
+    'adults_b1plus': '/teacher_cristina.png',
+    'adults_b2': '/cambridge.png',
+    'fce_intensive': '/cambridge.png',
+    'fce_extensive': '/hero.png',
+    'cae_intensive': '/cambridge.png',
+    'cae_extensive': '/hero.png',
+  };
+
+  const thumbImg = currentSub.img || levelPhotos[currentSub.id] || course.img || '/hero.png';
 
   return (
     <div id={course.id} className="course-block-card spatial-reveal">
@@ -416,18 +438,16 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
           </div>
 
           {/* Level Info Thumbnail Photo to fill empty space on Desktop */}
-          {(currentSub.img || course.img) && (
-            <div className="level-info-thumbnail-wrap">
-              <img 
-                src={currentSub.img || course.img} 
-                alt={`${cleanSubName} - Progress CLS`} 
-                className="level-info-thumbnail-img" 
-              />
-              <span className="level-info-thumbnail-badge">
-                <CheckCircle size={14} color="#ffffff" /> Lecții Interactive
-              </span>
-            </div>
-          )}
+          <div className="level-info-thumbnail-wrap">
+            <img 
+              src={thumbImg} 
+              alt={`${cleanSubName} - Progress CLS`} 
+              className="level-info-thumbnail-img" 
+            />
+            <span className="level-info-thumbnail-badge">
+              <CheckCircle size={14} color="#ffffff" /> Lecții Interactive
+            </span>
+          </div>
 
           <div className="course-detail-list">
             <div className="course-detail-item">
