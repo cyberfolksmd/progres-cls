@@ -497,6 +497,13 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
 
       {/* Mobile-only Action Buttons directly under Alege Nivelul (matching client's exact mockup) */}
       <div className="course-mobile-actions">
+        {currentSub && (
+          <div className="mobile-active-level-summary">
+            <span className="level-badge-pill">{currentSub.label}</span>
+            <span className="mobile-level-name">{currentSub.name || currentSub.label}</span>
+            {currentSub.duration && <span className="mobile-level-duration">· {currentSub.duration}</span>}
+          </div>
+        )}
         <button 
           type="button"
           onClick={() => onOpenDetailsModal(course, currentSub)} 

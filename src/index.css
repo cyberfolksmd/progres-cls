@@ -2585,6 +2585,34 @@ img { max-width: 100%; display: block; }
     margin-top: 1.25rem;
   }
 
+  .mobile-active-level-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    background: rgba(30, 58, 138, 0.05);
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    flex-wrap: wrap;
+    text-align: center;
+    border: 1px solid rgba(30, 58, 138, 0.1);
+  }
+
+  .mobile-level-name {
+    font-weight: 700;
+    color: var(--color-primary-dark);
+  }
+
+  .mobile-level-duration {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
+
   #cursuri .container {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
