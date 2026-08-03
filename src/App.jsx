@@ -378,8 +378,8 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
             </button>
             <button 
               onClick={() => onOpenDetailsModal(course, currentSub)} 
-              className="btn btn-ghost"
-              style={{ color: 'white', borderColor: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.1)' }}
+              className="btn btn-outline"
+              style={{ color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white' }}
             >
               Vreau Detalii
             </button>
