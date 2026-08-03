@@ -476,7 +476,14 @@ function CourseBlock({ course, onOpenModal, onOpenDetailsModal }) {
             </div>
           )}
 
-          <div className="price-card-buttons">
+          <div className="price-card-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+            <button 
+              onClick={() => onOpenDetailsModal(course, currentSub)} 
+              className="btn btn-outline"
+              style={{ width: '100%', justifyContent: 'center', padding: '0.85rem 1.5rem', color: 'var(--color-primary-dark)', borderColor: 'var(--color-primary)', background: 'white' }}
+            >
+              Vezi Detalii
+            </button>
             <button 
               onClick={() => onOpenModal(course.id)} 
               className="btn btn-primary"
