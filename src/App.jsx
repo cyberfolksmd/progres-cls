@@ -889,11 +889,9 @@ export default function App() {
           const found = savedCourses.find(c => c.id === defCourse.id);
           if (!found) return defCourse;
           return {
+            ...defCourse,
             ...found,
-            label: defCourse.label,
-            title: defCourse.title,
-            age: defCourse.age,
-            subLevels: defCourse.subLevels
+            subLevels: (found.subLevels && found.subLevels.length > 0) ? found.subLevels : defCourse.subLevels
           };
         });
 
@@ -1106,9 +1104,9 @@ export default function App() {
             </p>
           </div>
           <div className="benefits-grid">
-            {BENEFITS.map((b, i) => (
+            {(siteData.benefits || BENEFITS).map((b, i) => (
               <div className={`benefit-card benefit-card--color-${(i % 8) + 1} fade-in delay-${(i % 4) + 1}`} key={i}>
-                <div className="benefit-icon">{b.icon}</div>
+                <div className="benefit-icon">{b.icon || [<BookOpen size={28} />, <Award size={28} />, <Users size={28} />, <Zap size={28} />, <TrendingUp size={28} />, <Globe size={28} />, <Heart size={28} />, <ShieldCheck size={28} />][i % 8]}</div>
                 <h3 className="benefit-title">{b.title}</h3>
                 <p className="benefit-desc">{b.desc}</p>
               </div>
@@ -1128,7 +1126,7 @@ export default function App() {
             </p>
           </div>
           <div className="team-grid">
-            {TEAM.map((m, i) => (
+            {((siteData.team && siteData.team.length > 0) ? siteData.team : TEAM).map((m, i) => (
               <TeacherCard member={m} index={i} key={i} />
             ))}
           </div>
@@ -1143,10 +1141,10 @@ export default function App() {
             <h2 className="section-title">Ce zic cursanții despre noi?</h2>
           </div>
           <div className="testimonials-grid">
-            {TESTIMONIALS.map((t, i) => (
+            {(siteData.testimonials || TESTIMONIALS).map((t, i) => (
               <div className={`testimonial-card fade-in delay-${i + 1}`} key={i}>
                 <div className="testimonial-stars">
-                  {Array.from({ length: t.rating }).map((_, j) => (
+                  {Array.from({ length: t.rating || 5 }).map((_, j) => (
                     <Star key={j} size={16} fill="var(--color-accent)" color="var(--color-accent)" />
                   ))}
                 </div>
@@ -1176,7 +1174,7 @@ export default function App() {
             <h2 className="section-title">Noutăți și articole</h2>
           </div>
           <div className="blog-grid">
-            {blogPosts.map((post, i) => (
+            {(siteData.blog || blogPosts).map((post, i) => (
               <div 
                 className={`blog-card fade-in delay-${(i % 5) + 1}`} 
                 key={i}
@@ -1222,7 +1220,7 @@ export default function App() {
             <h2 className="section-title">Întrebări frecvente</h2>
           </div>
           <div className="faq-list fade-in delay-2">
-            {GENERAL_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} light />)}
+            {((siteData.faq && siteData.faq.generalFaq && siteData.faq.generalFaq.length > 0) ? siteData.faq.generalFaq : GENERAL_FAQ).map((item, i) => <FaqItem key={i} q={item.q} a={item.a} light />)}
           </div>
         </div>
       </section>
@@ -1277,7 +1275,7 @@ export default function App() {
                   <MapPin size={18} className="map-info-icon" />
                   <div>
                     <strong>Adresă:</strong>
-                    <span>Chișinău, Str. Sarmizegetusa 92 (Botanica)</span>
+                    <span>{siteData.contacts?.address || 'Chișinău, Str. Sarmizegetusa 92'}</span>
                   </div>
                 </div>
 
@@ -1285,7 +1283,9 @@ export default function App() {
                   <Phone size={18} className="map-info-icon" />
                   <div>
                     <strong>Telefon:</strong>
-                    <a href="tel:+37369447768">+373 69 44 77 68</a>
+                    <a href={`tel:${siteData.contacts?.phoneRaw || siteData.contacts?.phone?.replace(/\s+/g, '') || '+37369447768'}`}>
+                      {siteData.contacts?.phone || '+373 69 44 77 68'}
+                    </a>
                   </div>
                 </div>
 
@@ -1359,15 +1359,19 @@ export default function App() {
               <div className="footer-heading">Contact</div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon"><Phone size={16} /></div>
-                <a href="tel:+37369447768" style={{ color: 'inherit' }}>+373 69 44 77 68</a>
+                <a href={`tel:${siteData.contacts?.phoneRaw || siteData.contacts?.phone?.replace(/\s+/g, '') || '+37369447768'}`} style={{ color: 'inherit' }}>
+                  {siteData.contacts?.phone || '+373 69 44 77 68'}
+                </a>
               </div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon"><Mail size={16} /></div>
-                <a href="mailto:progress.cls@gmail.com" style={{ color: 'inherit' }}>progress.cls@gmail.com</a>
+                <a href={`mailto:${siteData.contacts?.email || 'progress.cls@gmail.com'}`} style={{ color: 'inherit' }}>
+                  {siteData.contacts?.email || 'progress.cls@gmail.com'}
+                </a>
               </div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon"><MapPin size={16} /></div>
-                <span>Chișinău, Str. Sarmizegetusa 92</span>
+                <span>{siteData.contacts?.address || 'Chișinău, Str. Sarmizegetusa 92'}</span>
               </div>
             </div>
           </div>
