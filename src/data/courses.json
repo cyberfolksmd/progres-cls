@@ -4,7 +4,7 @@
     "label": "Copii",
     "title": "Engleza pentru Copii",
     "age": "8 - 11 ani",
-    "img": "/course_kids.webp",
+    "img": "/course_kids.png",
     "series": "Super Minds 1, 2, 3",
     "desc": "Oferă copilului tău o bază solidă în limba engleză prin jocuri educaționale, activități interactive și o metodologie Cambridge adaptată vârstei.",
     "subLevels": [
@@ -62,6 +62,47 @@
           "7% achitare integrală pentru membrii aceleiași familii"
         ]
       }
+    ],
+    "details": [
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Durată",
+        "value": "9 luni (septembrie-mai), 2 ori/săptămână"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Lecții",
+        "value": "72 lecții · 75 minute fiecare"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Grup",
+        "value": "Max. 12 copii per grupă"
+      }
     ]
   },
   {
@@ -69,7 +110,7 @@
     "label": "Adolescenți",
     "title": "Engleza pentru Adolescenți",
     "age": "12 - 18 ani",
-    "img": "/course_teens.webp",
+    "img": "/course_teens.png",
     "series": "Prepare 1, 2, 3, 4, 5, 6",
     "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
     "subLevels": [
@@ -181,6 +222,47 @@
           "7% achitare integrală pentru membrii aceleiași familii"
         ]
       }
+    ],
+    "details": [
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Durată",
+        "value": "9 luni (septembrie-mai), 2 ori/săptămână"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Lecții",
+        "value": "72 lecții · 75 minute fiecare"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Grup",
+        "value": "Max. 12 copii per grupă"
+      }
     ]
   },
   {
@@ -188,7 +270,7 @@
     "label": "Adulți",
     "title": "Engleza pentru Adulți / Cursuri intensive",
     "age": "18+ ani",
-    "img": "/course_adults.webp",
+    "img": "/course_adults.png",
     "series": "Empower / English File",
     "desc": "Cursuri axate pe conversație, engleză pentru afaceri și dezvoltare personală. Program flexibil, adaptat ritmului tău de viață.",
     "subLevels": [
@@ -282,6 +364,47 @@
           "7% achitare integrală pentru membrii aceleiași familii"
         ]
       }
+    ],
+    "details": [
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Durată",
+        "value": "9 luni (septembrie-mai), 2 ori/săptămână"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Lecții",
+        "value": "72 lecții · 75 minute fiecare"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Grup",
+        "value": "Max. 12 copii per grupă"
+      }
     ]
   },
   {
@@ -289,7 +412,7 @@
     "label": "Pregătire Cambridge",
     "title": "Pregătire pentru Examenele Cambridge B2 First (FCE) / C1 Advanced (CAE)",
     "age": "FCE / CAE",
-    "img": "/course_cambridge.webp",
+    "img": "/course_cambridge.png",
     "series": "Complete First / Advanced",
     "desc": "Centru de pregătire în parteneriat cu Alianța Franceză. Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE) cu scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
     "subLevels": [
@@ -364,6 +487,47 @@
           "5% membrii aceleiași familii",
           "7% achitare integrală pentru membrii aceleiași familii"
         ]
+      }
+    ],
+    "details": [
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Durată",
+        "value": "9 luni (septembrie-mai), 2 ori/săptămână"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Lecții",
+        "value": "72 lecții · 75 minute fiecare"
+      },
+      {
+        "icon": {
+          "type": {},
+          "key": null,
+          "props": {
+            "size": 18
+          },
+          "_owner": null,
+          "_store": {}
+        },
+        "label": "Grup",
+        "value": "Max. 12 copii per grupă"
       }
     ]
   }
