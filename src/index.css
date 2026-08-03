@@ -880,10 +880,10 @@ img { max-width: 100%; display: block; }
 
 /* SUBLEVEL SWITCHER BAR */
 .sublevel-switcher-bar {
-  background: #f8fafc;
-  border: 1px solid var(--color-border);
+  background: #edf2f7;
+  border: 1px solid rgba(30, 58, 138, 0.12);
   border-radius: var(--radius-xl);
-  padding: 0.85rem 1.25rem;
+  padding: 0.65rem 1rem;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -905,26 +905,27 @@ img { max-width: 100%; display: block; }
 
 .sublevel-btn {
   background: white;
-  border: 1.5px solid var(--color-border);
-  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary-dark);
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.45rem 1.1rem;
+  font-size: 0.925rem;
+  padding: 0.5rem 1.25rem;
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .sublevel-btn:hover {
+  background: #f1f5f9;
+  color: var(--color-primary-light);
   border-color: var(--color-primary-light);
-  color: var(--color-primary);
 }
 
 .sublevel-btn.active {
   background: var(--color-primary);
   border-color: var(--color-primary);
   color: white;
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
 }
 
 .selected-level-header {
@@ -958,22 +959,34 @@ img { max-width: 100%; display: block; }
 }
 
 .course-card-footer {
-  margin-top: 1.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .course-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-10);
-  align-items: start;
+  gap: 2rem;
+  align-items: stretch;
 }
 
 .course-info-card {
-  background: var(--color-surface);
+  background: #f8fafc;
   border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+@media (max-width: 992px) {
+  .course-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .course-levels {
