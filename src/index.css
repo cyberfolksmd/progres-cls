@@ -2666,6 +2666,28 @@ img { max-width: 100%; display: block; }
     font-size: 0.8rem;
   }
 
+  .course-block-title {
+    font-size: 1.75rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.25 !important;
+  }
+
+  .course-block-desc {
+    font-size: 0.95rem !important;
+    color: #334155 !important;
+    font-weight: 500 !important;
+  }
+
+  .sublevel-switcher-title {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  }
+
   #cursuri .container {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -2676,11 +2698,35 @@ img { max-width: 100%; display: block; }
   }
 
   .course-block-card {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
+    border-radius: var(--radius-2xl) !important;
+    padding: 1.5rem 1.25rem !important;
+    box-shadow: 
+      0 14px 35px -5px rgba(30, 58, 138, 0.18),
+      0 6px 16px -2px rgba(15, 23, 42, 0.12) !important;
+  }
+
+  /* 1. Copii: Light Sky Blue Gradient */
+  #kids.course-block-card {
+    background: linear-gradient(145deg, #f0f7ff 0%, #e0f2fe 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  }
+
+  /* 2. Adolescenți: Light Indigo Sapphire Gradient */
+  #teens.course-block-card {
+    background: linear-gradient(145deg, #f5f3ff 0%, #e0e7ff 100%) !important;
+    border: 1px solid rgba(99, 102, 241, 0.35) !important;
+  }
+
+  /* 3. Adulți: Light Teal Emerald Gradient */
+  #adults.course-block-card {
+    background: linear-gradient(145deg, #f0fdf4 0%, #ccfbf1 100%) !important;
+    border: 1px solid rgba(20, 184, 166, 0.35) !important;
+  }
+
+  /* 4. Cambridge: Light Royal Bleu Marine Gradient */
+  #cambridge.course-block-card {
+    background: linear-gradient(145deg, #f8fafc 0%, #dbeafe 100%) !important;
+    border: 1px solid rgba(30, 58, 138, 0.35) !important;
   }
 
   .course-block-card:hover {
