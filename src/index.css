@@ -2567,8 +2567,9 @@ img { max-width: 100%; display: block; }
   transition: all var(--transition-fast);
 }
 
-/* DESKTOP: Hide mobile action buttons */
-.course-mobile-actions {
+/* DESKTOP: Hide mobile action buttons & mobile active level summary */
+.course-mobile-actions,
+.mobile-active-level-summary {
   display: none;
 }
 
@@ -2613,7 +2614,7 @@ img { max-width: 100%; display: block; }
   }
 
   .mobile-active-level-summary {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: center;
