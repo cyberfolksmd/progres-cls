@@ -1014,8 +1014,8 @@ img { max-width: 100%; display: block; }
 
 /* SUBLEVEL SWITCHER BAR */
 .sublevel-switcher-bar {
-  background: var(--card-bg-img, linear-gradient(135deg, #edf2f7, #e2e8f0)) center/cover no-repeat;
-  border: 1px solid rgba(30, 58, 138, 0.18);
+  background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 50%, #e2e8f0 100%) !important;
+  border: 1px solid rgba(30, 58, 138, 0.16) !important;
   border-radius: var(--radius-xl);
   padding: 0.85rem 1.25rem;
   margin-bottom: 2rem;
@@ -1025,7 +1025,26 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
   flex-wrap: wrap;
   text-align: center;
-  box-shadow: 0 12px 28px -4px rgba(30, 58, 138, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 8px 20px -4px rgba(30, 58, 138, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.sublevel-switcher-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-bg-img) center/cover no-repeat !important;
+  opacity: 0.08 !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sublevel-switcher-title,
+.sublevel-buttons-wrap,
+.mobile-active-level-summary {
+  position: relative;
+  z-index: 1;
 }
 
 .sublevel-switcher-title {
