@@ -4030,3 +4030,49 @@ html, body {
     transform: translateY(-50%) scale(0.9);
   }
 }
+
+/* ROTATING TEXT CIRCLE - clean text only */
+.award-rotating-circle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+  pointer-events: none;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.mobile-badge-circle {
+  width: 80px;
+  height: 80px;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.desktop-badge-circle {
+  width: 120px;
+  height: 120px;
+  right: -50px;
+  bottom: -50px;
+}
+.award-rotating-circle svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin-circle 15s linear infinite;
+}
+@keyframes spin-circle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .mobile-badge-circle {
+    width: 70px;
+    height: 70px;
+    right: -20px;
+  }
+}

@@ -1144,15 +1144,12 @@ export default function App() {
                   <defs>
                     <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
                   </defs>
-                  <text fontSize="11" fontWeight="800" fill="#ffffff" letterSpacing="2.5" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
+                  <text fontSize="11" fontWeight="800" fill="#1a1a2e" letterSpacing="3" >
                     <textPath href="#circlePath" startOffset="0%">
                       CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
                     </textPath>
                   </text>
                 </svg>
-                <div className="award-rotating-inner" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
-                  <Star size={20} color="#ffffff" fill="#ffffff" />
-                </div>
 
               </div>
             </div>
@@ -1191,15 +1188,12 @@ export default function App() {
                   <defs>
                     <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
                   </defs>
-                  <text fontSize="11" fontWeight="800" fill="#ffffff" letterSpacing="2.5" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
+                  <text fontSize="11" fontWeight="800" fill="#1a1a2e" letterSpacing="3" >
                     <textPath href="#circlePath" startOffset="0%">
                       CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
                     </textPath>
                   </text>
                 </svg>
-                <div className="award-rotating-inner" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
-                  <Star size={20} color="#ffffff" fill="#ffffff" />
-                </div>
 
             </div>
             <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
