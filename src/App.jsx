@@ -272,7 +272,7 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-container">
           <a href="#acasa" className="logo">
-            <img src="/logo2.png" alt="Progress CLS" className="logo-img" style={{ height: '42px' }} />
+            <img src="/logo2.webp" alt="Progress CLS" className="logo-img" style={{ height: '42px' }} />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -886,7 +886,7 @@ export default function App() {
       title: 'Progress CLS - decernare ORPH Awards Visionary Brand 2025', 
       date: 'Iunie 2025', 
       tag: 'Premii',
-      img: '/hero.png',
+      img: '/hero.webp',
       desc: 'O nouă recunoaștere a muncii noastre! În cadrul galei ORPH Awards 2025, Progress CLS a obținut trofeul Visionary Brand pentru inovație în metodele de predare a limbii engleze.'
     },
     { 
@@ -894,7 +894,7 @@ export default function App() {
       title: 'Cum poți învăța engleza ușor și eficient?', 
       date: 'Martie 2025', 
       tag: 'Sfaturi',
-      img: '/teacher_ludmila.png',
+      img: '/teacher_ludmila.webp',
       desc: 'Învățarea unei limbi străine nu trebuie să fie plictisitoare. Secretul constă în practică zilnică, vizionarea filmelor în engleză cu subtitrări și participarea la lecții interactive unde vorbești din prima zi.'
     },
     { 
@@ -1086,12 +1086,12 @@ export default function App() {
             </div>
           </div>
           <div className="hero-image-wrap slide-in-right delay-2">
-            <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
+            <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
             <div className="hero-float-logo-badge hero-float-logo-badge--top-right">
-              <img src="/logo_cambridge.png" alt="Cambridge Assessment English" className="hero-float-logo-img" />
+              <img src="/logo_cambridge.webp" alt="Cambridge Assessment English" className="hero-float-logo-img" />
             </div>
             <div className="hero-float-logo-badge hero-float-logo-badge--bottom-left">
-              <img src="/cambr-black.png" alt="Cambridge English Qualification" className="hero-float-logo-img" />
+              <img src="/cambr-black.webp" alt="Cambridge English Qualification" className="hero-float-logo-img" />
             </div>
           </div>
         </div>
