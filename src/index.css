@@ -1046,23 +1046,35 @@ img { max-width: 100%; display: block; }
   z-index: 30;
 }
 
-.hero-float-logo-card {
-  padding: 0.5rem 1rem !important;
-  background: rgba(255, 255, 255, 0.96) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-  border-radius: 16px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.hero-float-logo-tag {
+  position: absolute;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.45));
+  transition: transform var(--transition-normal);
+}
+
+.hero-float-logo-tag:hover {
+  transform: translateY(-4px) scale(1.06);
+}
+
+.hero-float-logo-tag--1 {
+  bottom: -25px;
+  left: -25px;
+}
+
+.hero-float-logo-tag--2 {
+  top: -25px;
+  right: -25px;
 }
 
 .hero-float-logo-img {
-  height: 42px;
+  height: 54px;
   width: auto;
-  max-width: 140px;
+  max-width: 170px;
   object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
 }
 
 .hero-float-icon {

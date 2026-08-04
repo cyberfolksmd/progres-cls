@@ -1087,10 +1087,10 @@ export default function App() {
           </div>
           <div className="hero-image-wrap slide-in-right delay-2">
             <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
-            <div className="hero-float-card hero-float-logo-card hero-float-card--1">
+            <div className="hero-float-logo-tag hero-float-logo-tag--1">
               <img src="/logo_cambridge.png" alt="Cambridge Assessment English" className="hero-float-logo-img" />
             </div>
-            <div className="hero-float-card hero-float-logo-card hero-float-card--2">
+            <div className="hero-float-logo-tag hero-float-logo-tag--2">
               <img src="/Harvard-Emblem.png" alt="Harvard University" className="hero-float-logo-img" />
             </div>
           </div>
@@ -1150,7 +1150,7 @@ export default function App() {
               <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
             </div>
             <div className="faq-list">
-              {CAMBRIDGE_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} />)}
+              {CAMBRIDGE_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} light />)}
             </div>
           </div>
         </div>
