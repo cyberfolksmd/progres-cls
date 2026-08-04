@@ -1087,10 +1087,7 @@ export default function App() {
           </div>
           <div className="hero-image-wrap slide-in-right delay-2">
             <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
-            <div className="hero-float-logo-tag hero-float-logo-tag--1">
-              <img src="/Harvard-Emblem.png" alt="Harvard University" className="hero-float-logo-img" />
-            </div>
-            <div className="hero-float-logo-tag hero-float-logo-tag--2">
+            <div className="hero-float-logo-tag hero-float-logo-tag--cambridge">
               <img src="/logo_cambridge.png" alt="Cambridge Assessment English" className="hero-float-logo-img" />
             </div>
           </div>
