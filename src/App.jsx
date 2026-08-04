@@ -140,6 +140,69 @@ function HeroCarousel({ images }) {
   );
 }
 
+function TestimonialCarousel({ testimonials }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused || !testimonials || testimonials.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isPaused, testimonials]);
+
+  if (!testimonials || testimonials.length === 0) return null;
+
+  const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const t = testimonials[currentIndex];
+
+  return (
+    <div 
+      className="testimonial-carousel-wrap fade-in"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <button className="tc-nav tc-prev" onClick={prevSlide} aria-label="Înapoi"><ChevronLeft size={24} /></button>
+      
+      <div className="testimonial-card tc-slide-content">
+        <div className="testimonial-stars" style={{ justifyContent: 'center', marginBottom: '1.25rem' }}>
+          {Array.from({ length: t.rating || 5 }).map((_, j) => (
+            <Star key={j} size={20} fill="var(--color-accent)" color="var(--color-accent)" />
+          ))}
+        </div>
+        <p className="testimonial-text" style={{ textAlign: 'center', fontSize: '1.15rem', fontStyle: 'italic', marginBottom: '1.5rem' }}>"{t.text}"</p>
+        <div className="testimonial-author" style={{ justifyContent: 'center' }}>
+          <img
+            src={t.img || `https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=e2e8f0&color=1e3a8a&size=80`}
+            alt={t.author}
+            className="author-avatar"
+            loading="lazy"
+          />
+          <div style={{ textAlign: 'left' }}>
+            <div className="author-name">{t.author}</div>
+            <div className="author-course">{t.course}</div>
+          </div>
+        </div>
+      </div>
+
+      <button className="tc-nav tc-next" onClick={nextSlide} aria-label="Înainte"><ChevronRight size={24} /></button>
+      
+      <div className="tc-dots">
+        {testimonials.map((_, idx) => (
+          <button
+            key={idx}
+            className={`tc-dot ${idx === currentIndex ? 'active' : ''}`}
+            onClick={() => setCurrentIndex(idx)}
+            aria-label={`Vezi recenzia ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -1177,29 +1240,7 @@ export default function App() {
             <span className="section-tag">Recenzii</span>
             <h2 className="section-title">Ce zic cursanții despre noi?</h2>
           </div>
-          <div className="testimonials-grid">
-            {(siteData.testimonials || TESTIMONIALS).map((t, i) => (
-              <div className={`testimonial-card fade-in delay-${i + 1}`} key={i}>
-                <div className="testimonial-stars">
-                  {Array.from({ length: t.rating || 5 }).map((_, j) => (
-                    <Star key={j} size={16} fill="var(--color-accent)" color="var(--color-accent)" />
-                  ))}
-                </div>
-                <p className="testimonial-text">"{t.text}"</p>
-                <div className="testimonial-author">
-                  <img
-                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=e2e8f0&color=1e3a8a&size=80`}
-                    alt={t.author}
-                    className="author-avatar"
-                  />
-                  <div>
-                    <div className="author-name">{t.author}</div>
-                    <div className="author-course">{t.course}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialCarousel testimonials={siteData.testimonials || TESTIMONIALS} />
         </div>
       </section>
 
