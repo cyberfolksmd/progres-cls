@@ -1138,7 +1138,7 @@ export default function App() {
                 <span className="award-text">{siteData.hero.awardText2}</span>
                 <span className="award-shimmer" />
               </div>
-              <div className="award-rotating-circle mobile-badge-circle mobile-only">
+              <div className="award-rotating-circle badge-circle">
 
                 <svg viewBox="0 0 100 100" width="105" height="105">
                   <defs>
@@ -1181,20 +1181,6 @@ export default function App() {
             </div>
           </div>
           <div className="hero-image-wrap desktop-only slide-in-right delay-2">
-            <div className="award-rotating-circle desktop-badge-circle desktop-only">
-
-                <svg viewBox="0 0 100 100" width="105" height="105">
-                  <defs>
-                    <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
-                  </defs>
-                  <text fontSize="11" fontWeight="800" fill="#1a1a2e" letterSpacing="3" >
-                    <textPath href="#circlePath" startOffset="0%">
-                      CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
-                    </textPath>
-                  </text>
-                </svg>
-
-            </div>
             <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
             <div className="hero-float-logo-badge hero-float-logo-badge--top-right">
               <img src="/logo_cambridge.webp" alt="Cambridge Assessment English" className="hero-float-logo-img" />

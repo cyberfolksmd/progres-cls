@@ -3999,15 +3999,8 @@ html, body {
   z-index: 11;
   pointer-events: none;
 }
-.mobile-badge-circle {
-  right: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.desktop-badge-circle {
-  right: -40px;
-  bottom: -40px;
-}
+
+
 .award-rotating-circle svg {
   position: absolute;
   top: 0;
@@ -4024,37 +4017,35 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .mobile-badge-circle {
-    right: -25px;
-    top: 50%;
-    transform: translateY(-50%) scale(0.9);
-  }
+  
 }
 
-/* ROTATING TEXT CIRCLE - clean text only */
-.award-rotating-circle {
+/* ROTATING TEXT CIRCLE - attached to badge */
+.hero-award-badge-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  z-index: 10;
+}
+.hero-award-badge-wrapper .hero-award-badge {
+  margin-bottom: 0;
+}
+.award-rotating-circle.badge-circle {
   position: absolute;
+  right: -55px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 11;
   pointer-events: none;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-.mobile-badge-circle {
-  width: 80px;
-  height: 80px;
-  right: -25px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.desktop-badge-circle {
-  width: 120px;
-  height: 120px;
-  right: -50px;
-  bottom: -50px;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 .award-rotating-circle svg {
   position: absolute;
@@ -4070,9 +4061,15 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .mobile-badge-circle {
-    width: 70px;
-    height: 70px;
-    right: -20px;
+  .hero-award-badge-wrapper {
+    margin: 0.5rem auto 1.25rem auto !important;
+  }
+  .hero-award-badge-wrapper .hero-award-badge {
+    margin: 0 !important;
+  }
+  .award-rotating-circle.badge-circle {
+    right: -45px;
+    width: 100px;
+    height: 100px;
   }
 }
