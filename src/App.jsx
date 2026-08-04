@@ -364,8 +364,10 @@ function TeacherCard({ member, index }) {
         )}
       </div>
 
-      <h3 className="member-name">{member.name}</h3>
-      <p className="member-role">{member.role}</p>
+      <div className="member-info">
+        <h3 className="member-name">{member.name}</h3>
+        <p className="member-role">{member.role}</p>
+      </div>
     </div>
   );
 }

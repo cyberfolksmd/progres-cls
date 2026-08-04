@@ -1851,7 +1851,8 @@ img { max-width: 100%; display: block; }
 .team-member {
   background: var(--color-surface);
   border-radius: var(--radius-2xl);
-  padding: var(--space-6);
+  padding: 0;
+  overflow: hidden;
   box-shadow: var(--shadow-md), 0 4px 20px rgba(15, 23, 42, 0.03);
   border: 1px solid var(--color-border-light);
   text-align: center;
@@ -1869,10 +1870,15 @@ img { max-width: 100%; display: block; }
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   overflow: hidden;
-  margin-bottom: var(--space-5);
+  margin-bottom: 0;
   background: var(--color-surface-2);
+}
+
+.member-info {
+  padding: var(--space-5) var(--space-6) var(--space-6) var(--space-6);
+  text-align: center;
 }
 
 .member-photo {
