@@ -398,14 +398,15 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: linear-gradient(90deg, rgba(190, 18, 60, 0.92) 0%, rgba(225, 29, 72, 0.92) 50%, rgba(190, 18, 60, 0.92) 100%);
   color: white !important;
-  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.55), 0 0 12px rgba(29, 78, 216, 0.35) !important;
+  box-shadow: 4px 6px 16px rgba(37, 99, 235, 0.28) !important;
   z-index: 1;
   isolation: isolate;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
-  font-size: 0.925rem !important;
-  padding: 0.5rem 1.25rem !important;
+  font-size: 1rem !important;
+  padding: 0.65rem 1.6rem !important;
   font-weight: 800;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.05em;
 }
 .section-tag--uk-flag::before {
   content: '';
