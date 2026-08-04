@@ -208,32 +208,22 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* Cambridge blur section */
-.cambridge-blur-section {
-  position: relative !important;
-  overflow: hidden !important;
-  color: white !important;
-  padding: 4.5rem 0 !important;
-  background-color: #0b1329 !important;
-}
-
-.cambridge-blur-section-bg {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: url('/bg_cambridge.webp') center/cover no-repeat !important;
-  filter: blur(5px) brightness(0.35) !important;
-  transform: scale(1.08) !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
-}
-
-.cambridge-blur-section .section-title {
-  color: white !important;
+/* Cambridge background fade (matches Întrebări frecvente) */
+.cambridge-bg-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(1px) contrast(1.05) saturate(1.1);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 35%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 35%, transparent 100%);
 }
 
 #blog {

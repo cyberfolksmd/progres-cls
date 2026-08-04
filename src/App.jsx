@@ -1141,13 +1141,13 @@ export default function App() {
       </section>
 
       {/* ── CAMBRIDGE ────────────────────────── */}
-      <section id="cambridge" className="section cambridge-blur-section">
-        <div className="cambridge-blur-section-bg" />
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <section id="cambridge" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="cambridge-bg-fade" style={{ backgroundImage: "url('/bg_cambridge.webp')" }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="cambridge-faq fade-in">
             <div className="section-header" style={{ marginBottom: '2rem' }}>
               <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
-              <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
+              <h2 className="section-title">Pregătire Examene Cambridge</h2>
             </div>
             <div className="faq-list">
               {CAMBRIDGE_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} light />)}
