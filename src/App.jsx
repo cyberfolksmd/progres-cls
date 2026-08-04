@@ -1131,13 +1131,12 @@ export default function App() {
 
         <div className="container hero-container">
           <div className="hero-content slide-in-left">
-            <div className="hero-award-badge desktop-only animate-fade-up">
+            <div className="hero-award-badge animate-fade-up">
               <span className="award-text">{siteData.hero.awardText1}</span>
               <span className="award-divider">&middot;</span>
               <span className="award-text">{siteData.hero.awardText2}</span>
               <span className="award-shimmer" />
             </div>
-            <img src="/mobile_award_badge.png" alt="Award 2024" className="mobile-only mobile-award-img animate-fade-up" />
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
