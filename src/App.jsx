@@ -1141,6 +1141,9 @@ export default function App() {
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
             <p className="hero-subtitle animate-fade-up animate-delay-2" dangerouslySetInnerHTML={{ __html: siteData.hero.subtitle }} />
+            <div className="mobile-only mobile-hero-image-wrap slide-in-right delay-2" style={{ marginBottom: '1.5rem', width: '100%', overflow: 'hidden', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)' }}>
+              <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
+            </div>
             <div className="hero-pills animate-fade-up animate-delay-2">
               <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Interactiv</span>
               <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Eficient</span>
@@ -1155,7 +1158,7 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="hero-image-wrap slide-in-right delay-2">
+          <div className="hero-image-wrap desktop-only slide-in-right delay-2">
             <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
             <div className="hero-float-logo-badge hero-float-logo-badge--top-right">
               <img src="/logo_cambridge.webp" alt="Cambridge Assessment English" className="hero-float-logo-img" />
