@@ -39,9 +39,9 @@ const BENEFITS = [
 const TEAM = teamData;
 
 const TESTIMONIALS = [
-  { text: 'Fiica mea a avansat de la A1 la B1 în 18 luni! Profesoarele sunt extrem de dedicate și răbdătoare.', author: 'Maria D.', course: 'Engleza pentru Copii', rating: 5 },
-  { text: 'Am promovat examenul FCE cu nota B! Mulțumesc echipei Progress CLS pentru pregătirea excelentă.', author: 'Andrei C.', course: 'Pregătire Cambridge B2', rating: 5 },
-  { text: 'Atmosfera prietenoasă și lecțiile interactive m-au ajutat să depășesc teama de a vorbi engleză.', author: 'Elena M.', course: 'Engleza pentru Adulți', rating: 5 },
+  { text: 'Salutare!!! Eu ma numesc Galina si recent am finisat cursul beginner în această școală minunată. <mark>Ceea ce mi-a plăcut mai mult este profesionalismul profesorilor, nu doar ca pedagog, dar ca specialist, om și psiholog.</mark> Cunosc niste cuvinte de aur... Până a fi un specialist bun este nevoie să fii mai întâi un om bun, da, asta e despre ei 😄🥰. <mark>Este o școală cu un sistem de învățământ bine pus la punct. Ușor de învățat, înțeles și practicat.</mark> Recomand cu încredere 🥳🥳🥳😎😎😉.', author: 'Galina O.', course: 'Engleza pentru Adulți', rating: 5, date: '9 decembrie 2022' },
+  { text: '<mark>Fiica mea a avansat de la A1 la B1 in doar 18 luni!</mark> Profesoarele sunt extrem de dedicate și răbdătoare. Recomandăm cu drag Progress CLS.', author: 'Maria D.', course: 'Engleza pentru Copii', rating: 5, date: '15 martie 2023' },
+  { text: 'Am promovat examenul FCE cu nota B! <mark>Atmosfera prietenoasă și lecțiile interactive m-au ajutat să depășesc teama de a vorbi engleza fluent.</mark> Mulțumesc echipei Progress CLS pentru pregătirea excelentă.', author: 'Andrei C.', course: 'Pregatire Cambridge B2', rating: 5, date: '22 iunie 2024' },
 ];
 
 const CAMBRIDGE_FAQ = faqData.cambridgeFaq;
@@ -164,30 +164,33 @@ function TestimonialCarousel({ testimonials }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <button className="tc-nav tc-prev" onClick={prevSlide} aria-label="Înapoi"><ChevronLeft size={24} /></button>
-      
-      <div className="testimonial-card tc-slide-content">
-        <div className="testimonial-stars" style={{ justifyContent: 'center', marginBottom: '1.25rem' }}>
-          {Array.from({ length: t.rating || 5 }).map((_, j) => (
-            <Star key={j} size={20} fill="var(--color-accent)" color="var(--color-accent)" />
-          ))}
-        </div>
-        <p className="testimonial-text" style={{ textAlign: 'center', fontSize: '1.15rem', fontStyle: 'italic', marginBottom: '1.5rem' }}>"{t.text}"</p>
-        <div className="testimonial-author" style={{ justifyContent: 'center' }}>
+      <div className="tc-slide-content">
+        <div className="tc-header">
           <img
             src={t.img || `https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=e2e8f0&color=1e3a8a&size=80`}
             alt={t.author}
-            className="author-avatar"
+            className="tc-avatar"
             loading="lazy"
           />
-          <div style={{ textAlign: 'left' }}>
-            <div className="author-name">{t.author}</div>
-            <div className="author-course">{t.course}</div>
+          <div className="tc-header-text">
+            <div className="tc-author-row">
+              <span className="tc-author-name">{t.author}</span>
+              <span className="tc-recommends"> recomandă <strong>Progress CLS</strong>.</span>
+            </div>
+            <div className="tc-date">{t.date || 'Recent'}</div>
           </div>
         </div>
-      </div>
 
-      <button className="tc-nav tc-next" onClick={nextSlide} aria-label="Înainte"><ChevronRight size={24} /></button>
+        <div className="tc-body-container">
+          <button className="tc-nav tc-prev" onClick={prevSlide} aria-label="Înapoi"><ChevronLeft size={36} color="var(--color-primary)" /></button>
+          
+          <div className="tc-body">
+            <p className="testimonial-text" dangerouslySetInnerHTML={{ __html: t.text }}></p>
+          </div>
+
+          <button className="tc-nav tc-next" onClick={nextSlide} aria-label="Înainte"><ChevronRight size={36} color="var(--color-primary)" /></button>
+        </div>
+      </div>
       
       <div className="tc-dots">
         {testimonials.map((_, idx) => (
