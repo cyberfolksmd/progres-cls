@@ -66,43 +66,69 @@
     "details": [
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Calendar"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Durată",
         "value": "9 luni (septembrie-mai), 2 ori/săptămână"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Clock"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Lecții",
         "value": "72 lecții · 75 minute fiecare"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Users"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Grup",
         "value": "Max. 12 copii per grupă"
       }
+    ],
+    "levels": [
+      {
+        "label": "A1.1",
+        "cls": "level-a1"
+      },
+      {
+        "label": "A1.2",
+        "cls": "level-a1"
+      },
+      {
+        "label": "A2.1",
+        "cls": "level-a2"
+      }
+    ],
+    "priceTotal": "7920",
+    "priceMonthly": "880",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii",
+      "7% achitare integrală + familii"
     ]
   },
   {
@@ -111,7 +137,7 @@
     "title": "Engleza pentru Adolescenți",
     "age": "12 - 18 ani",
     "img": "/course_teens.png",
-    "series": "Prepare 1, 2, 3, 4, 5, 6",
+    "series": "Prepare 2, 3, 4, 5, 6",
     "desc": "Dezvoltă fluența, gândirea critică și încrederea în vorbire. Pregătire intensivă pentru examene școlare și certificări internaționale.",
     "subLevels": [
       {
@@ -226,43 +252,73 @@
     "details": [
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Calendar"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Durată",
         "value": "9 luni (septembrie-mai), 2 ori/săptămână"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Clock"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Lecții",
         "value": "72 lecții · 75 minute fiecare"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Users"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Grup",
         "value": "Max. 12 copii per grupă"
       }
+    ],
+    "levels": [
+      {
+        "label": "A2.2",
+        "cls": "level-a2"
+      },
+      {
+        "label": "B1.1",
+        "cls": "level-b1"
+      },
+      {
+        "label": "B1.2",
+        "cls": "level-b1"
+      },
+      {
+        "label": "B2.1",
+        "cls": "level-b2"
+      }
+    ],
+    "priceTotal": "8820",
+    "priceMonthly": "980",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii",
+      "7% achitare integrală + familii"
     ]
   },
   {
@@ -368,43 +424,60 @@
     "details": [
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Calendar"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Durată",
         "value": "9 luni (septembrie-mai), 2 ori/săptămână"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Clock"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Lecții",
         "value": "72 lecții · 75 minute fiecare"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Users"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Grup",
         "value": "Max. 12 copii per grupă"
       }
+    ],
+    "levels": [
+      {
+        "label": "A1 - C1",
+        "cls": "level-b2"
+      }
+    ],
+    "priceTotal": "9720",
+    "priceMonthly": "1080",
+    "lessons": "8 lecții",
+    "manuals": "500",
+    "discounts": [
+      "5% achitare integrală",
+      "5% membrii aceleiași familii"
     ]
   },
   {
@@ -414,7 +487,7 @@
     "age": "FCE / CAE",
     "img": "/course_cambridge.png",
     "series": "Complete First / Advanced",
-    "desc": "Centru de pregătire în parteneriat cu Alianța Franceză. Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE) cu scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
+    "desc": "Pregătire specializată pentru obținerea certificatelor Cambridge (FCE/CAE). Scutire de examenul de Bacalaureat cu nota 10 din oficiu!",
     "subLevels": [
       {
         "id": "fce_intensive",
@@ -492,43 +565,64 @@
     "details": [
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Calendar"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Durată",
         "value": "9 luni (septembrie-mai), 2 ori/săptămână"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Clock"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Lecții",
         "value": "72 lecții · 75 minute fiecare"
       },
       {
         "icon": {
-          "type": {},
+          "type": {
+            "displayName": "Users"
+          },
           "key": null,
+          "ref": null,
           "props": {
             "size": 18
-          },
-          "_owner": null,
-          "_store": {}
+          }
         },
         "label": "Grup",
         "value": "Max. 12 copii per grupă"
       }
+    ],
+    "levels": [
+      {
+        "label": "B2 First",
+        "cls": "level-b2"
+      },
+      {
+        "label": "C1 Advanced",
+        "cls": "level-c1"
+      }
+    ],
+    "priceTotal": "10620",
+    "priceMonthly": "1180",
+    "lessons": "8 lecții",
+    "manuals": "600",
+    "discounts": [
+      "5% achitare integrală",
+      "Simulare de examen gratuită"
     ]
   }
 ]
