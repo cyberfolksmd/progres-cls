@@ -36,6 +36,8 @@ const BENEFITS = [
   { icon: <ShieldCheck size={28} />, title: 'Rezultate certificate', desc: 'Pregătire pentru examene Cambridge recunoscute internațional, valabile pe viață.' },
 ];
 
+const TEAM = teamData;
+
 const TESTIMONIALS = [
   { text: 'Salutare!!! Eu ma numesc Galina si recent am finisat cursul beginner în această școală minunată. <mark>Ceea ce mi-a plăcut mai mult este profesionalismul profesorilor, nu doar ca pedagog, dar ca specialist, om și psiholog.</mark> Cunosc niste cuvinte de aur... Până a fi un specialist bun este nevoie să fii mai întâi un om bun, da, asta e despre ei 😄🥰. <mark>Este o școală cu un sistem de învățământ bine pus la punct.</mark> Ușor de învățat, înțeles și practicat. Recomand cu încredere 🥳🥳🥳😎😎😉.', author: 'Galina O.', course: 'Engleza pentru Adulți', rating: 5, date: '9 decembrie 2022' },
   { text: 'Bună ziua tuturor! Am absolvit recent cursul de pregătire pentru examenul Cambridge B2 First (FCE) și sunt extrem de mulțumit de rezultate. <mark>Profesorii de la Progress CLS știu exact cum să structureze lecțiile pentru a acoperi toate secțiunile examenului cu maximă eficiență.</mark> Atmosfera la ore a fost mereu prietenoasă, iar feedback-ul individual m-a ajutat enorm să-mi corectez greșelile. Am reușit să obțin nota B la examen, un rezultat pe care nici nu-l visam! <mark>Recomand din tot sufletul această școală oricui își dorește rezultate garantate și o experiență de învățare plăcută.</mark>', author: 'Andrei C.', course: 'Pregătire Cambridge B2', rating: 5, date: '15 martie 2023' },
