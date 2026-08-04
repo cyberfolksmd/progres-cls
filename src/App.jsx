@@ -1131,11 +1131,28 @@ export default function App() {
 
         <div className="container hero-container">
           <div className="hero-content slide-in-left">
-            <div className="hero-award-badge animate-fade-up">
-              <span className="award-text">{siteData.hero.awardText1}</span>
-              <span className="award-divider">&middot;</span>
-              <span className="award-text">{siteData.hero.awardText2}</span>
-              <span className="award-shimmer" />
+            <div className="hero-award-badge-wrapper animate-fade-up">
+              <div className="hero-award-badge">
+                <span className="award-text">{siteData.hero.awardText1}</span>
+                <span className="award-divider">&middot;</span>
+                <span className="award-text">{siteData.hero.awardText2}</span>
+                <span className="award-shimmer" />
+              </div>
+              <div className="award-rotating-circle">
+                <svg viewBox="0 0 100 100" width="70" height="70">
+                  <defs>
+                    <path id="circlePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" />
+                  </defs>
+                  <text fontSize="11" fontWeight="800" fill="var(--color-primary-dark)" letterSpacing="2.5">
+                    <textPath href="#circlePath" startOffset="0%">
+                      CAMBRIDGE METODOLOGY &bull; CAMBRIDGE METODOLOGY &bull; 
+                    </textPath>
+                  </text>
+                </svg>
+                <div className="award-rotating-inner">
+                  <Star size={16} color="var(--color-primary-dark)" />
+                </div>
+              </div>
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
