@@ -1156,7 +1156,7 @@ export default function App() {
       <section id="cambridge" className="section section--dark">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag section-tag--teal">Examene Internaționale</span>
+            <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
             <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
             <p className="section-subtitle section-subtitle--white">
               Centru de pregătire în parteneriat cu Alianța Franceză. Pregătim cursanți pentru <strong style={{ color: 'var(--color-secondary)' }}>B2 First (FCE)</strong> și <strong style={{ color: 'var(--color-secondary)' }}>C1 Advanced (CAE)</strong>.
@@ -1209,7 +1209,7 @@ export default function App() {
       <section id="beneficii" className="section">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">De ce noi?</span>
+            <span className="section-tag section-tag--red">De ce noi?</span>
             <h2 className="section-title">De ce să alegi Progress CLS?</h2>
             <p className="section-subtitle">
               Înveți mai mult decât o limbă - îți construiești încrederea, abilitățile și viitorul.
@@ -1231,7 +1231,7 @@ export default function App() {
       <section id="echipa" className="section section--alt">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">Echipa noastră</span>
+            <span className="section-tag section-tag--red">Echipa noastră</span>
             <h2 className="section-title">Profesori care inspiră</h2>
             <p className="section-subtitle">
               Toți membrii echipei sunt certificați internațional prin calificarea TEFL și au experiență în lucrul cu copii, adolescenți și adulți.
