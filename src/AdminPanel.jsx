@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, Lock, User, Save, LogOut, CheckCircle, Plus, Trash2, X, 
-  Layout, BookOpen, Award, Users, Star, MessageSquare, Newspaper, HelpCircle, Phone, Globe
+  Layout, BookOpen, Award, Users, Star, MessageSquare, Newspaper, HelpCircle, Phone, Globe, RefreshCw
 } from 'lucide-react';
 
 function RichTextEditor({ label, value, onChange, placeholder, minHeight = 120 }) {
