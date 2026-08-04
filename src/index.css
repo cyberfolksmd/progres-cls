@@ -415,6 +415,21 @@ img { max-width: 100%; display: block; }
   z-index: -1;
 }
 
+.section-tag--blue {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  font-size: 0.925rem !important;
+  padding: 0.5rem 1.35rem !important;
+  font-weight: 800;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.65);
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-full);
+}
+
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--color-text-secondary);

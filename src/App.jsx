@@ -1118,7 +1118,7 @@ export default function App() {
       <section id="cursuri" className="section section--alt">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag section-tag--uk-flag">Cursurile noastre</span>
+            <span className="section-tag section-tag--blue">Cursurile noastre</span>
             <h2 className="section-title">Alege drumul tău<br />spre noi oportunități</h2>
             <p className="section-subtitle">
               Descoperă plăcerea de a învăța limba engleză într-un mediu prietenos, modern și orientat spre rezultate!
@@ -1146,7 +1146,7 @@ export default function App() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="cambridge-faq fade-in">
             <div className="section-header" style={{ marginBottom: '2rem' }}>
-              <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
+              <span className="section-tag section-tag--blue">Examene Internaționale</span>
               <h2 className="section-title">Pregătire Examene Cambridge</h2>
             </div>
             <div className="faq-list">
@@ -1160,7 +1160,6 @@ export default function App() {
       <section id="beneficii" className="section">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag section-tag--uk-flag">De ce noi?</span>
             <h2 className="section-title">De ce să alegi Progress CLS?</h2>
             <p className="section-subtitle">
               Înveți mai mult decât o limbă - îți construiești încrederea, abilitățile și viitorul.
@@ -1182,7 +1181,7 @@ export default function App() {
       <section id="echipa" className="section section--alt">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag section-tag--uk-flag">Echipa noastră</span>
+            <span className="section-tag section-tag--blue">Echipa noastră</span>
             <h2 className="section-title">Profesori care inspiră</h2>
             <p className="section-subtitle">
               Toți membrii echipei sunt certificați internațional prin calificarea TEFL și au experiență în lucrul cu copii, adolescenți și adulți.
