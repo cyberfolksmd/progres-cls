@@ -922,10 +922,7 @@ export default function App() {
         { title: 'Lecții interactive', desc: 'Comunicare, jocuri și proiecte practice.' }
       ],
       team: TEAM,
-      testimonials: [
-        { author: 'Maria D.', course: 'Engleza pentru Copii', text: 'Fiica mea a avansat de la A1 la B1 în 18 luni!', rating: 5 },
-        { author: 'Andrei C.', course: 'Pregătire Cambridge B2', text: 'Am promovat examenul FCE cu nota B!', rating: 5 }
-      ],
+      testimonials: TESTIMONIALS,
       blog: [
         { 
           id: 'b1', 
@@ -1005,6 +1002,7 @@ export default function App() {
           ...parsed,
           courses: mergedCourses,
           team: mergedTeam,
+          testimonials: (parsed.testimonials && Array.isArray(parsed.testimonials) && parsed.testimonials.length >= 7) ? parsed.testimonials : TESTIMONIALS,
           benefits: (parsed.benefits && Array.isArray(parsed.benefits) && parsed.benefits.length >= 8) ? parsed.benefits : BENEFITS,
           hero: { ...defaultData.hero, ...(parsed.hero || {}) },
           faq: { ...defaultData.faq, ...(parsed.faq || {}) },
