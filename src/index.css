@@ -1105,7 +1105,7 @@ img { max-width: 100%; display: block; }
    STATS STRIP
 ============================= */
 .stats-strip {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   padding: var(--space-16) 0;
   position: relative;
   overflow: hidden;
@@ -3943,4 +3943,19 @@ html, body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+/* Responsive Visibility */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
+.mobile-award-img {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: var(--space-4);
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: block !important; }
+  .mobile-award-img { margin: 0 auto var(--space-4) auto; }
 }

@@ -1148,7 +1148,7 @@ export default function App() {
             </div>
             <div className="hero-cta animate-fade-up animate-delay-3">
               <a href="#cursuri" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
-                Descoperă cursurile <ArrowRight size={18} />
+                Vezi cursurile <ArrowRight size={18} />
               </a>
               <a href="tel:+37369447768" className="btn btn-ghost hero-call-btn" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 <Phone size={18} /> Sună-ne
