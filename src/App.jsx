@@ -1161,8 +1161,14 @@ export default function App() {
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
             <p className="hero-subtitle animate-fade-up animate-delay-2" dangerouslySetInnerHTML={{ __html: siteData.hero.subtitle }} />
-            <div className="mobile-only mobile-hero-image-wrap slide-in-right delay-2" style={{ marginBottom: '1.5rem', width: '100%', overflow: 'hidden', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)' }}>
+                        <div className="mobile-only mobile-hero-image-wrap slide-in-right delay-2" style={{ marginBottom: '1.5rem', width: '100%', position: 'relative' }}>
               <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
+              <div className="hero-float-logo-badge hero-float-logo-badge--top-right">
+                <img src="/logo_cambridge.webp" alt="Cambridge Assessment English" className="hero-float-logo-img" />
+              </div>
+              <div className="hero-float-logo-badge hero-float-logo-badge--bottom-left">
+                <img src="/cambr-black.webp" alt="Cambridge English Qualification" className="hero-float-logo-img" />
+              </div>
             </div>
             <div className="hero-pills animate-fade-up animate-delay-2">
               <span className="hero-pill"><CheckCircle size={16} color="var(--color-accent)" /> Interactiv</span>
