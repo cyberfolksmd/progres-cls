@@ -485,6 +485,19 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
           </nav>
 
           <div className="admin-sidebar-footer">
+            <button onClick={() => {
+              if (window.confirm('Atenție! Această acțiune va șterge toate modificările salvate local și va încărca datele originale ale site-ului (inclusiv noile recenzii). Continuați?')) {
+                localStorage.removeItem('progress_cls_site_data');
+                window.location.reload();
+              }
+            }} className="btn-logout-sidebar" style={{ backgroundColor: 'rgba(255,193,7,0.1)', color: '#ffc107', marginBottom: '0.5rem' }}>
+              <RefreshCw size={16} /> Resetează Datele
+            </button>
+            <button onClick={() => {
+              window.location.reload(true);
+            }} className="btn-logout-sidebar" style={{ backgroundColor: 'rgba(23,162,184,0.1)', color: '#17a2b8', marginBottom: '0.5rem' }}>
+              <RefreshCw size={16} /> Curăță Cache
+            </button>
             <button onClick={() => setIsAuthenticated(false)} className="btn-logout-sidebar">
               <LogOut size={16} /> Deconectare
             </button>
@@ -1377,6 +1390,9 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                     1. Intră pe GitHub → Settings → Developer Settings → Personal Access Tokens (Tokens classic).<br />
                     2. Apasă <strong>Generate new token</strong> și bifează permisiunea <strong>repo</strong> (Full control of private/public repositories).<br />
                     3. Lipește token-ul obținut în căsuța de mai sus!
+                  </div>
+                  <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: 'rgba(255, 193, 7, 0.1)', color: '#ffc107', borderRadius: '4px', fontSize: '0.9rem' }}>
+                    <strong>Atenție:</strong> Token-ul este salvat automat și permanent în memoria browserului dvs. Dacă îl introduceți într-o fereastră <strong>Incognito</strong> sau privată, el se va șterge automat la închiderea ferestrei! Vă rugăm să-l introduceți într-o filă obișnuită a browserului.
                   </div>
                 </div>
 
