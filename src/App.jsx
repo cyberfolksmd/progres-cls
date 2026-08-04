@@ -1087,23 +1087,11 @@ export default function App() {
           </div>
           <div className="hero-image-wrap slide-in-right delay-2">
             <HeroCarousel images={siteData.hero.images || ['/hero.png', '/cambridge.png', '/teacher_ludmila.png', '/teacher_anastasia.png']} />
-            <div className="hero-float-card hero-float-card--1">
-              <div className="hero-float-icon" style={{ background: '#dcfce7', color: '#15803d' }}>
-                <Users size={20} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{siteData.stats[0]?.label || 'Cursanți activi'}</div>
-                <div style={{ fontWeight: 800 }}>{siteData.stats[0]?.number || '500+'}</div>
-              </div>
+            <div className="hero-float-card hero-float-logo-card hero-float-card--1">
+              <img src="/logo_cambridge.png" alt="Cambridge Assessment English" className="hero-float-logo-img" />
             </div>
-            <div className="hero-float-card hero-float-card--2">
-              <div className="hero-float-icon" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#059669' }}>
-                <Award size={20} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>Centrul Anului</div>
-                <div>2024 & 2025</div>
-              </div>
+            <div className="hero-float-card hero-float-logo-card hero-float-card--2">
+              <img src="/Harvard-Emblem.png" alt="Harvard University" className="hero-float-logo-img" />
             </div>
           </div>
         </div>
