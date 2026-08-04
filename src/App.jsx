@@ -1249,7 +1249,6 @@ export default function App() {
       <section className="section">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">Recenzii</span>
             <h2 className="section-title">Ce zic cursanții despre noi?</h2>
           </div>
           <TestimonialCarousel testimonials={siteData.testimonials || TESTIMONIALS} />
@@ -1260,7 +1259,6 @@ export default function App() {
       <section id="blog" className="section section--alt">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">Blog</span>
             <h2 className="section-title">Noutăți și articole</h2>
           </div>
           <div className="blog-grid">
@@ -1335,7 +1333,6 @@ export default function App() {
       <section id="contacte" className="section location-map-section">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">Unde ne găsești</span>
             <h2 className="section-title">Ne găsești ușor în Chișinău</h2>
             <p className="section-subtitle">
               Sediul nostru modern te așteaptă în sectorul Botanica, Str. Sarmizegetusa 92. Te așteptăm pentru o testare gratuită a nivelului tău de engleză!
