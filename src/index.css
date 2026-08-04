@@ -1062,28 +1062,28 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.45));
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.65));
   transition: transform var(--transition-normal);
 }
 
 .hero-float-logo-tag:hover {
-  transform: translateY(-4px) scale(1.06);
+  transform: translateY(-4px) scale(1.08);
 }
 
 .hero-float-logo-tag--1 {
-  bottom: -25px;
-  left: -25px;
+  bottom: 20px;
+  left: 20px;
 }
 
 .hero-float-logo-tag--2 {
-  top: -25px;
-  right: -25px;
+  top: 20px;
+  right: 20px;
 }
 
 .hero-float-logo-img {
-  height: 54px;
+  height: 75px;
   width: auto;
-  max-width: 170px;
+  max-width: 230px;
   object-fit: contain;
 }
 
