@@ -323,31 +323,17 @@ function Navbar({ scrolled, onOpenModal, onOpenMapModal }) {
 }
 
 function TeacherCard({ member, index }) {
-  const rawPhotos = [];
-  if (member.img) rawPhotos.push(member.img);
-  if (member.img2) rawPhotos.push(member.img2);
-  if (member.img3) rawPhotos.push(member.img3);
-
-  if (Array.isArray(member.images)) {
-    member.images.forEach((item) => {
-      const url = typeof item === 'string' ? item : (item && item.image);
-      if (url && !rawPhotos.includes(url)) {
-        rawPhotos.push(url);
-      }
-    });
+  let images = [];
+  if (Array.isArray(member.images) && member.images.length > 0) {
+    images = member.images.map((item) => typeof item === 'string' ? item : (item && item.image)).filter(Boolean);
+  } else {
+    images = [member.img, member.img2, member.img3].filter(Boolean);
   }
 
-  const fallbackPhotos = ['/course_kids.webp', '/course_teens.webp', '/course_adults.webp', '/cambridge.webp', '/hero.webp'];
-  let images = rawPhotos.filter(Boolean);
-  if (images.length === 0 && member.img) images.push(member.img);
+  images = [...new Set(images)];
 
-  let fallbackIdx = index;
-  while (images.length < 3) {
-    const nextFb = fallbackPhotos[fallbackIdx % fallbackPhotos.length];
-    if (!images.includes(nextFb)) {
-      images.push(nextFb);
-    }
-    fallbackIdx++;
+  if (images.length === 0) {
+    images = [member.img || '/teacher_ludmila.webp'];
   }
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);

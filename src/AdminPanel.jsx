@@ -926,8 +926,12 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                             value={member.img}
                             onChange={(newVal) => {
                               const updated = [...data.team];
+                              const img2 = updated[idx].img2 || (updated[idx].images && updated[idx].images[1]) || '';
+                              const img3 = updated[idx].img3 || (updated[idx].images && updated[idx].images[2]) || '';
                               updated[idx].img = newVal;
-                              updated[idx].images = [newVal, updated[idx].img2, updated[idx].img3].filter(Boolean);
+                              updated[idx].img2 = img2;
+                              updated[idx].img3 = img3;
+                              updated[idx].images = [newVal, img2, img3].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
@@ -937,8 +941,12 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                             value={member.img2 || (member.images && member.images[1]) || ''}
                             onChange={(newVal) => {
                               const updated = [...data.team];
+                              const img1 = updated[idx].img || (updated[idx].images && updated[idx].images[0]) || '';
+                              const img3 = updated[idx].img3 || (updated[idx].images && updated[idx].images[2]) || '';
+                              updated[idx].img = img1;
                               updated[idx].img2 = newVal;
-                              updated[idx].images = [updated[idx].img, newVal, updated[idx].img3].filter(Boolean);
+                              updated[idx].img3 = img3;
+                              updated[idx].images = [img1, newVal, img3].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
@@ -948,8 +956,12 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                             value={member.img3 || (member.images && member.images[2]) || ''}
                             onChange={(newVal) => {
                               const updated = [...data.team];
+                              const img1 = updated[idx].img || (updated[idx].images && updated[idx].images[0]) || '';
+                              const img2 = updated[idx].img2 || (updated[idx].images && updated[idx].images[1]) || '';
+                              updated[idx].img = img1;
+                              updated[idx].img2 = img2;
                               updated[idx].img3 = newVal;
-                              updated[idx].images = [updated[idx].img, updated[idx].img2, newVal].filter(Boolean);
+                              updated[idx].images = [img1, img2, newVal].filter(Boolean);
                               setData({ ...data, team: updated });
                             }}
                           />
