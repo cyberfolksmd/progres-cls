@@ -491,7 +491,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
               onClick={() => setActiveSection('github')}
               style={{ marginTop: '0.5rem', background: activeSection === 'github' ? 'var(--color-primary-light)' : 'rgba(255,255,255,0.06)' }}
             >
-              <Globe size={18} /> 🌐 Sincronizare Vercel
+              <Globe size={18} /> Sincronizare Vercel
             </button>
           </nav>
 
@@ -526,16 +526,16 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
           <header className="admin-topbar">
             <div className="admin-topbar-left">
               <h2>
-                {activeSection === 'hero' && '🏆 Hero Banner & Efect de Peceat'}
-                {activeSection === 'stats' && '📊 Blocul de Statisică (Cifre rapide)'}
-                {activeSection === 'courses' && '📚 Cursuri, Prețuri & Manuale'}
-                {activeSection === 'benefits' && '⭐ Cardurile de Beneficii'}
-                {activeSection === 'team' && '👩‍🏫 Echipa de Profesori'}
-                {activeSection === 'testimonials' && '💬 Recenziile Cursanților'}
-                {activeSection === 'blog' && '📰 Articole de Blog & Noutăți'}
-                {activeSection === 'faq' && '❓ Întrebări Frecvente (FAQ)'}
-                {activeSection === 'contacts' && '📞 Date de Contact & Footer'}
-                {activeSection === 'github' && '🌐 Sincronizare Vercel & Backup Data'}
+                {activeSection === 'hero' && 'Hero Banner & Efect de Peceat'}
+                {activeSection === 'stats' && 'Blocul de Statistică (Cifre rapide)'}
+                {activeSection === 'courses' && 'Cursuri, Prețuri & Manuale'}
+                {activeSection === 'benefits' && 'Cardurile de Beneficii'}
+                {activeSection === 'team' && 'Echipa de Profesori'}
+                {activeSection === 'testimonials' && 'Recenziile Cursanților'}
+                {activeSection === 'blog' && 'Articole de Blog & Noutăți'}
+                {activeSection === 'faq' && 'Întrebări Frecvente (FAQ)'}
+                {activeSection === 'contacts' && 'Date de Contact & Footer'}
+                {activeSection === 'github' && 'Sincronizare Vercel & Backup Data'}
               </h2>
             </div>
             <div className="admin-topbar-right">
@@ -853,7 +853,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
               <div className="admin-card-section">
                 <div className="flex-between" style={{ marginBottom: '1.25rem' }}>
                   <div>
-                    <h3>👩‍🏫 Echipa de Profesori</h3>
+                    <h3>Echipa de Profesori</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
                       Poți încărca poze prin Drag & Drop (trage imaginea direct din calculator), alege din fișiere sau poți adăuga până la 3 poze de galerie pentru fiecare profesor.
                     </p>
@@ -1374,7 +1374,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
             {/* 10. GITHUB VERCEL AUTO-SYNC & BACKUP */}
             {activeSection === 'github' && (
               <div className="admin-card-section">
-                <h3>🌐 Sincronizare Cloud Vercel (Pus de pe orice dispozitiv pentru TOȚI vizitatorii)</h3>
+                <h3>Sincronizare Cloud Vercel (Pus de pe orice dispozitiv pentru TOȚI vizitatorii)</h3>
                 <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.25rem' }}>
                   Prin introducerea unui <strong>GitHub Personal Access Token (PAT)</strong>, orice salvare efectuată în această Panou de Administrare va fi trimisă direct în repozitoriu, iar <strong>Vercel va publica automat modificările pentru toți utilizatorii din lume</strong>!
                 </p>
@@ -1440,7 +1440,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
 
                 <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border-light)' }} />
 
-                <h3>📥 Export & Import Backup Local (JSON)</h3>
+                <h3>Export & Import Backup Local (JSON)</h3>
                 <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
                   Poți descărca o copie de siguranță (Backup JSON) cu toate datele site-ului sau poți restaura date dintr-un fișier salvat anterior.
                 </p>
