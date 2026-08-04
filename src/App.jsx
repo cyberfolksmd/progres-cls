@@ -1154,7 +1154,8 @@ export default function App() {
 
       {/* ── CAMBRIDGE ────────────────────────── */}
       <section id="cambridge" className="section cambridge-blur-section">
-        <div className="container">
+        <div className="cambridge-blur-section-bg" />
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="cambridge-faq fade-in">
             <div className="section-header" style={{ marginBottom: '2rem' }}>
               <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
