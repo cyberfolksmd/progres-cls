@@ -2490,7 +2490,7 @@ html, body {
     align-items: center !important;
     justify-content: center !important;
     flex-wrap: wrap !important;
-    width: auto !important;
+    width: fit-content !important;
     max-width: 90% !important;
     padding: 0.35rem 0.75rem !important;
     margin: 0.5rem auto 1.25rem auto !important;
