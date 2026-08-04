@@ -1153,7 +1153,6 @@ export default function App() {
 
               </div>
             </div>
-          </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
