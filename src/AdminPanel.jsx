@@ -181,7 +181,18 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
   
   const [activeSection, setActiveSection] = useState('hero');
   const [savedSuccess, setSavedSuccess] = useState(false);
-  const [ghToken, setGhToken] = useState(() => localStorage.getItem('progress_cls_gh_token') || '');
+  const [showToken, setShowToken] = useState(false);
+  const [ghToken, setGhToken] = useState(() => {
+    try {
+      return localStorage.getItem('progress_cls_gh_token') || 
+             localStorage.getItem('progress_cls_gh_token_bak') || 
+             sessionStorage.getItem('progress_cls_gh_token') || 
+             (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_GH_TOKEN) || 
+             '';
+    } catch(e) {
+      return '';
+    }
+  });
   const [isSyncingGh, setIsSyncingGh] = useState(false);
   const [ghSyncStatus, setGhSyncStatus] = useState('');
 
@@ -487,7 +498,12 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
           <div className="admin-sidebar-footer">
             <button onClick={() => {
               if (window.confirm('Atenție! Această acțiune va șterge toate modificările salvate local și va încărca datele originale ale site-ului (inclusiv noile recenzii). Continuați?')) {
+                const savedToken = localStorage.getItem('progress_cls_gh_token') || localStorage.getItem('progress_cls_gh_token_bak');
                 localStorage.removeItem('progress_cls_site_data');
+                if (savedToken) {
+                  localStorage.setItem('progress_cls_gh_token', savedToken);
+                  localStorage.setItem('progress_cls_gh_token_bak', savedToken);
+                }
                 window.location.reload();
               }
             }} className="btn-logout-sidebar" style={{ backgroundColor: 'rgba(255,193,7,0.1)', color: '#ffc107', marginBottom: '0.5rem' }}>
@@ -1371,15 +1387,29 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
                     <label>Inserare GitHub PAT Token (ghp_...)</label>
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                       <input 
-                        type="password" 
+                        type={showToken ? "text" : "password"} 
                         placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" 
                         value={ghToken} 
                         onChange={(e) => {
-                          setGhToken(e.target.value);
-                          localStorage.setItem('progress_cls_gh_token', e.target.value);
+                          const val = e.target.value;
+                          setGhToken(val);
+                          try {
+                            localStorage.setItem('progress_cls_gh_token', val);
+                            localStorage.setItem('progress_cls_gh_token_bak', val);
+                            sessionStorage.setItem('progress_cls_gh_token', val);
+                          } catch(err) {}
                         }} 
                         style={{ flex: 1 }}
                       />
+                      <button 
+                        type="button" 
+                        onClick={() => setShowToken(!showToken)} 
+                        className="btn btn-secondary" 
+                        style={{ padding: '0 0.75rem', fontSize: '0.85rem' }}
+                        title={showToken ? "Ascunde Token" : "Arată Token"}
+                      >
+                        {showToken ? '🙈' : '👁️'}
+                      </button>
                       <button 
                         onClick={() => syncToGitHub(ghToken)} 
                         className="btn btn-primary" 
