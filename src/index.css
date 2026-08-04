@@ -2540,8 +2540,7 @@ html, body {
     justify-content: center !important;
   }
   .hero-image-wrap {
-    display: block !important;
-    margin-top: 1.5rem;
+    display: none !important;
   }
 
   /* STATS MOBILE FIX */
