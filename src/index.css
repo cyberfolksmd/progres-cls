@@ -102,7 +102,7 @@ img { max-width: 100%; display: block; }
   padding: 0 var(--space-6);
 }
 
-.section { padding: var(--space-24) 0; }
+.section { padding: 3.5rem 0; }
 .section--dark { background-color: var(--color-primary); }
 .section--alt { background-color: var(--color-surface-2); }
 
@@ -373,7 +373,7 @@ img { max-width: 100%; display: block; }
 /* Section Header */
 .section-header {
   text-align: center;
-  margin-bottom: var(--space-16);
+  margin-bottom: 2.25rem;
 }
 
 .section-tag {
@@ -2163,13 +2163,14 @@ img { max-width: 100%; display: block; }
    CTA BANNER
 ============================== */
 .cta-banner {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   border-radius: var(--radius-2xl);
-  padding: var(--space-16) var(--space-12);
+  padding: 3rem 2.5rem;
   text-align: center;
+  color: white;
   position: relative;
   overflow: hidden;
-  margin: var(--space-24) 0;
+  margin: 3rem 0;
 }
 
 .cta-banner::before {
