@@ -2476,7 +2476,7 @@ html, body {
   /* HERO MOBILE CLEANUP */
   .hero-uk-theme {
     padding-top: 6.8rem !important;
-    min-height: auto !important;
+    min-height: 100vh !important;
     padding-bottom: 2.5rem !important;
   }
   .hero-container {
@@ -2485,7 +2485,7 @@ html, body {
     gap: 1.5rem !important;
     padding: 0 0.85rem !important;
   }
-  .hero-award-badge {
+  .hero-award-badge:not(.desktop-only) {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
