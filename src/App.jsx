@@ -933,6 +933,7 @@ export default function App() {
           ...parsed,
           courses: mergedCourses,
           team: mergedTeam,
+          benefits: (parsed.benefits && Array.isArray(parsed.benefits) && parsed.benefits.length >= 8) ? parsed.benefits : BENEFITS,
           hero: { ...defaultData.hero, ...(parsed.hero || {}) },
           faq: { ...defaultData.faq, ...(parsed.faq || {}) },
           contacts: { ...defaultData.contacts, ...(parsed.contacts || {}) }

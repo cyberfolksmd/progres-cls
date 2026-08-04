@@ -200,11 +200,15 @@ export default function AdminPanel({ onClose, onSaveData, initialData }) {
       { number: '100%', label: 'Dedicare și profesionalism' }
     ],
     courses: initialData.courses || [],
-    benefits: initialData.benefits || [
-      { title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne.' },
-      { title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate cu experiență.' },
-      { title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală.' },
-      { title: 'Lecții interactive', desc: 'Comunicare, jocuri și proiecte practice.' }
+    benefits: initialData.benefits && initialData.benefits.length >= 8 ? initialData.benefits : [
+      { title: 'Metodologie Cambridge', desc: 'Predare bazată pe standarde internaționale și materiale moderne, adaptate fiecărui nivel.' },
+      { title: 'Profesori certificați TEFL', desc: 'Echipă de profesoare dedicate, cu experiență internațională și certificare TEFL.' },
+      { title: 'Grupe restrânse', desc: 'Max. 12 cursanți per grupă - atenție individuală și participare activă garantată.' },
+      { title: 'Lecții interactive', desc: 'Comunicare, jocuri, proiecte și activități practice care dezvoltă fluența.' },
+      { title: 'Progres vizibil', desc: 'Monitorizăm constant evoluția și oferim feedback personalizat pentru fiecare cursant.' },
+      { title: 'Pentru toate vârstele', desc: 'Cursuri dedicate copiilor (8+), adolescenților și adulților, adaptate fiecărei categorii.' },
+      { title: 'Atmosferă prietenoasă', desc: 'Un mediu în care cursanții se simt încurajați să învețe, să pună întrebări, să comunice.' },
+      { title: 'Rezultate certificate', desc: 'Pregătire pentru examene Cambridge recunoscute internațional, valabile pe viață.' }
     ],
     team: initialData.team || [],
     testimonials: initialData.testimonials || [
