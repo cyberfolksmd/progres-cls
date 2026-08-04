@@ -399,6 +399,11 @@ img { max-width: 100%; display: block; }
 
 .section-title--white { color: white; }
 .section-tag--teal { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.section-tag--red { 
+  background: linear-gradient(90deg, #be123c 0%, #e11d48 40%, #f43f5e 50%, #e11d48 60%, #be123c 100%); 
+  color: white !important; 
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35); 
+}
 
 .section-subtitle {
   font-size: 1.05rem;

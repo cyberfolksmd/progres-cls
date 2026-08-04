@@ -1130,7 +1130,7 @@ export default function App() {
       <section id="cursuri" className="section section--alt">
         <div className="container">
           <div className="section-header fade-in">
-            <span className="section-tag">Cursurile noastre</span>
+            <span className="section-tag section-tag--red">Cursurile noastre</span>
             <h2 className="section-title">Alege drumul tău<br />spre noi oportunități</h2>
             <p className="section-subtitle">
               Descoperă plăcerea de a învăța limba engleză într-un mediu prietenos, modern și orientat spre rezultate!
