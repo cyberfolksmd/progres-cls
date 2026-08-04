@@ -39,20 +39,104 @@ const BENEFITS = [
 const TEAM = teamData;
 
 const TESTIMONIALS = [
-  { text: 'Salutare!!! Eu ma numesc Galina si recent am finisat cursul beginner în această școală minunată. <mark>Ceea ce mi-a plăcut mai mult este profesionalismul profesorilor, nu doar ca pedagog, dar ca specialist, om și psiholog.</mark> Cunosc niste cuvinte de aur... Până a fi un specialist bun este nevoie să fii mai întâi un om bun, da, asta e despre ei 😄🥰. <mark>Este o școală cu un sistem de învățământ bine pus la punct.</mark> Ușor de învățat, înțeles și practicat. Recomand cu încredere 🥳🥳🥳😎😎😉.', author: 'Galina O.', course: 'Engleza pentru Adulți', rating: 5, date: '9 decembrie 2022' },
-  { text: 'Bună ziua tuturor! Am absolvit recent cursul de pregătire pentru examenul Cambridge B2 First (FCE) și sunt extrem de mulțumit de rezultate. <mark>Profesorii de la Progress CLS știu exact cum să structureze lecțiile pentru a acoperi toate secțiunile examenului cu maximă eficiență.</mark> Atmosfera la ore a fost mereu prietenoasă, iar feedback-ul individual m-a ajutat enorm să-mi corectez greșelile. Am reușit să obțin nota B la examen, un rezultat pe care nici nu-l visam! <mark>Recomand din tot sufletul această școală oricui își dorește rezultate garantate și o experiență de învățare plăcută.</mark>', author: 'Andrei C.', course: 'Pregătire Cambridge B2', rating: 5, date: '15 martie 2023' },
-  { text: 'Sunt o mamă foarte fericită și recunoscătoare echipei Progress CLS! Fiica mea a început cursurile aici acum un an și jumătate, plecând de la zero absolut. <mark>Progresul pe care l-a făcut este incredibil, trecând de la nivelul A1 la B1 într-un timp record de doar 18 luni!</mark> Lecțiile sunt atât de captivante și interactive încât copilul meu așteaptă cu nerăbdare fiecare nouă întâlnire. Profesoarele au o răbdare de fier și o dedicare cum rar mai întâlnești. <mark>Este cea mai bună investiție pe care o puteam face în educația și viitorul copilului meu.</mark>', author: 'Maria D.', course: 'Engleza pentru Copii', rating: 5, date: '22 iunie 2023' },
-  { text: 'Am urmat cursul de engleză pentru adolescenți și pot spune că a fost o experiență transformațională pentru mine. Înainte îmi era foarte frică să vorbesc în engleză de teama de a nu face greșeli de gramatică. <mark>La Progress CLS am descoperit un mediu atât de primitor, unde greșelile sunt văzute ca niște pași spre succes, nu ca niște eșecuri.</mark> Am învățat să comunic liber, să mă exprim corect și am dobândit multă încredere în forțele proprii. Acum pot purta conversații lungi și chiar privesc filme fără subtitrare. <mark>Dacă vreți să scăpați de bariera conversațională, aceasta este școala perfectă!</mark>', author: 'Ion C.', course: 'Engleza pentru Adolescenți', rating: 5, date: '10 septembrie 2023' },
-  { text: 'Am început cursul de adulți la nivel începător, având emoții mari că îmi va fi greu să asimilez informații noi. Vreau să spun că absolut toate temerile mele au disparut încă de la prima lecție! <mark>Metodologia de predare este extrem de clară, modernă și adaptată ritmului fiecărui cursant în parte.</mark> Profesorii explică gramatica prin exemple din viața reală, ceea ce face procesul mult mai ușor și mai distractiv. Acum reușesc să citesc articole în engleză și să mă descurc excelent în vacanțele peste hotare. <mark>O școală de nota 10 pe care o voi recomanda tuturor cunoscuților mei!</mark>', author: 'Elena M.', course: 'Engleza pentru Adulți (A1)', rating: 5, date: '5 noiembrie 2023' },
-  { text: 'Pentru mine, învățarea limbii engleze era o necesitate urgentă la locul de muncă, deoarece colaborez cu parteneri internaționali. Am ales Progress CLS datorită recenziilor excelente și nu am regretat nicio secundă decizia luată. <mark>Focusul pe vocabularul practic și pe situațiile reale de comunicare m-au ajutat să mă integrez mult mai bine în ședințele echipei mele.</mark> Materialele didactice sunt de top, iar platforma interactivă folosită face ca fiecare minut din lecție să fie valorificat la maxim. Rezultatele s-au văzut chiar din primele luni de studiu intens. <mark>Sunt recunoscător echipei pentru profesionalismul și pasiunea pe care le depun în tot ceea ce fac.</mark>', author: 'Victor V.', course: 'Business English', rating: 5, date: '20 februarie 2024' },
-  { text: 'O școală extraordinară cu oameni minunați, care pun suflet în dezvoltarea fiecărui elev! Am încercat mai multe cursuri de-a lungul anilor, dar niciunul nu a reușit să mă motiveze la fel de mult ca cel de aici. <mark>Energia pozitivă de la ore, combinația perfectă dintre teorie și practică, plus răbdarea profesorilor fac din Progress CLS alegerea ideală.</mark> Fiecare lecție este o nouă aventură în care înveți lucruri noi fără să simți oboseală sau plictiseală. Am recomandat deja școala prietenilor mei și o voi face în continuare. <mark>Vă mulțumesc pentru că ați transformat procesul de învățare într-o adevărată plăcere!</mark>', author: 'Alina T.', course: 'Conversație Avansat', rating: 5, date: '14 mai 2024' },
-  { text: 'Recomand Progress CLS din tot sufletul! Am venit aici în clasa a XI-a cu scopul clar de a obține certificatul Cambridge C1 Advanced pentru a fi scutită de examenul de Bacalaureat. <mark>Echipa de profesori a fost extraordinară, oferindu-ne materiale actualizate și simulări periodice în condiții reale de examen.</mark> Datorită lor, am trecut examenul cu un scor excelent și am obținut nota 10 din oficiu la BAC. Pe lângă rezultate, am câștigat o fluență de invidiat pe care o folosesc zilnic la facultate. <mark>Dacă vreți performanță maximă fără stres inutil, alegeți cu încredere acest centru!</mark>', author: 'Cristina S.', course: 'Pregătire Cambridge C1 & BAC', rating: 5, date: '18 iulie 2024' },
-  { text: 'Băiatul nostru de 9 ani era foarte timid și nu voia sub nicio formă să învețe o limbă străină. După prima săptămână la Progress CLS, atitudinea lui s-a schimbat radical! <mark>Profesoarele folosesc tehnici moderne de joc, cântece și proiecte de grup care îi fac pe copii să îndrăgească engleza din primul moment.</mark> Acum vine acasă entuziasmat și ne povestește cu mândrie ce cuvinte noi a învățat. Progresul la școală a fost imediat observat și de învățătoare. <mark>Mulțumim pentru că transformați învățarea într-o experiență atât de frumoasă și plăcută!</mark>', author: 'Mihai P.', course: 'Engleza pentru Copii (8-11 ani)', rating: 5, date: '2 septembrie 2024' },
-  { text: 'Am urmat modulul de conversație intensivă pentru că aveam nevoie să-mi îmbunătățesc pronunția și să scap de ezitări în timpul discursurilor libere. <mark>Lecțiile sunt concepute extrem de inteligent, punând accent 100% pe comunicare activă și dezbateri pe teme actuale.</mark> Profesorii sunt foarte atenți la detaliile de vocabular și te corectează într-un mod blând și constructiv. În doar 3 luni am simțit o diferență uriașă în modul în care îmi construiesc frazele în engleză. <mark>Este locul ideal pentru oricine vrea să vorbească fluent, natural și fără rețineri.</mark>', author: 'Diana R.', course: 'Conversație Intensivă', rating: 5, date: '11 noiembrie 2024' },
-  { text: 'Lucrând în domeniul IT, aveam nevoie de o engleză tehnică impecabilă pentru a susține prezentări și interviuri cu clienți din SUA. <mark>La Progress CLS am găsit un program personalizat pe nevoile mele profesionale, cu accent pe terminologie și corespondență de afaceri.</mark> Orele au fost extrem de dinamice, iar feedback-ul primit m-a ajutat să-mi structurez ideile mult mai clar. În urma cursului, am reușit să obțin un job la o companie internațională de top. <mark>Un centru lingvistic de nivel premium pe care îl recomand cu toată căldura!</mark>', author: 'Radu M.', course: 'Engleză Tech & IT', rating: 5, date: '15 ianuarie 2025' },
-  { text: 'Am ales Progress CLS la recomandarea unei prietene și a fost cea mai bună alegere din acest an! Fiul meu a urmat cursul de pregătire pentru nivelul B1 Preliminary (PET) și a obținut rezultate fantastice. <mark>Răbdarea și pasiunea cu care profesoarele explică fiecare noțiune sunt cu adevărat admirabile.</mark> Copiii primesc sprijin continuu și sunt încurajați să-și depășească limitele la fiecare oră. Experiența de examinare a fost fără stres datorită numeroaselor testări simulate făcute în timpul anului. <mark>Sunteți o echipă de nota 10, vă mulțumim din suflet pentru tot!</mark>', author: 'Victoria B.', course: 'Pregătire Cambridge B1', rating: 5, date: '28 martie 2025' },
-  { text: 'Fiind plecat des în călătorii de afaceri, simțeam că nivelul meu de engleză nu mai era suficient pentru conversații complexe. Cursul B2 de la Progress CLS a depășit toate așteptările mele! <mark>Am apreciat în mod deosebit structura clară a modulului și echilibrul perfect între gramatică avansată și practică vorbită.</mark> Grupele sunt restrânse, ceea ce oferă fiecărui cursant oportunitatea de a vorbi și de a primi atenție individuală. Acum mă simt complet relaxat în orice discuție în limba engleză. <mark>Servicii educaționale impecabile și o atmosferă primitoare!</mark>', author: 'Sergiu D.', course: 'Engleză Adulți Intermediar (B2)', rating: 5, date: '10 mai 2025' },
-  { text: 'Am înscris ambii copii la școala de vară organizată de Progress CLS și pot spune că a fost cea mai reușită activitate a vacanței! <mark>Copiii au fost fascinați de activitățile interactive, workshop-urile de creație și jocurile în limba engleză.</mark> Pe lângă faptul că și-au menținut și îmbunătățit nivelul de engleză, și-au făcut mulți prieteni noi. Organizarea a fost impecabilă din toate punctele de vedere. <mark>Cu siguranță vom reveni și la toamnă pentru cursurile de durată lungă!</mark>', author: 'Nadejda K.', course: 'Școală de Vară Intensivă', rating: 5, date: '25 iulie 2025' }
+  {
+    text: "Cu mulțumire vă scriu acest mesaj prin care doresc să-mi exprim recunoștința pentru tot ceea ce faceți pentru copiii noștri în cadrul școlii de limbi străine \"Progress CLS\", pentru profesionalismul și învățământul de înaltă calitate, pentru maniera în sine cu care sunt abordați si tratați copiii noștri, pentru căldura și prietenia oferită. Progresul evident si atitudinea copiilor entuziasmați mă fac să-mi doresc să continuăm colaborarea și în anii următori.",
+    author: "Viorica B.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "20 iulie 2017"
+  },
+  {
+    text: "Progress CLS is a wonderful English center. I like it very much, here you can learn English with friends and in a very funny way. If you come here to learn English, you will not regret it. Take your family, friends and come to learn English with us.😉😉🧠😊",
+    author: "Ilinca B.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "21 mai 2020"
+  },
+  {
+    text: "I recommend Progress CLS because when I came two years ago at Progress CLS and I didn't now anything. At the moment I know English very well, I can write a text, I can translate from English into Romanian and vice versa, I can make a project in English and many other things . The teachers are very good here! ❤️ More students who want to study English can come to Progress CLS to improve their skills. It's really great!!!",
+    author: "Erika L.",
+    course: "Engleza pentru Adolescenți",
+    rating: 5,
+    date: "26 mai 2020"
+  },
+  {
+    text: "Cu mult respect și încredere în sine le recomab tuturor Progress CLS! Lecții captivante, profesori care iubesc ceea ce fac și te îndeamnă nu doar să înveți engleza, dar să și o iubești. Chiar dacă ești începător și ți se pare că e greu, aici la Progress CLS vei găsi mereu sprijinuk necesar. Lecțiile petrecute aici nu au fost niciodată plictisitoare, totul a fost la nivel cu informații noi acaparate lecție de lecție. Vreau să le mulțumesc profesorilor și celor care au înființat Progress CLS, au făcut și fac în continuare o treabă minunată! ❤️🥰",
+    author: "Iana G.",
+    course: "Engleza pentru Adolescenți",
+    rating: 5,
+    date: "2 ianuarie 2022"
+  },
+  {
+    text: "Nu regret nici o secundă că am ales această școală de engleză, indiferent de faptul că la început eram tentată să merg să fac engleza individual, în cel mai scurt timp am realizat că pentru CALITATE trebuie să investești timp și să alegi corect profesorii, inclusiv școala. RECOMAND cu inima deschisă Progress CLS! Having studied here, I may say that I am extremely happy that I can finally speak in English and think in English. I really consider that this is the BEST school where we can improve our English skills at the highest level! Thank you Progress CLS for all the knowledge I have acquired! ❤️",
+    author: "Marcela B.",
+    course: "Engleza pentru Adulți",
+    rating: 5,
+    date: "20 martie 2022"
+  },
+  {
+    text: "La sfârșitul acestui an de studii vreau să-mi exprim recunoștința pentru munca dvs. și să vă mulțumesc pentru implicarea, răbdarea și profesionismul cu care ați ghidat copiii noștri spre noi cunoștințe. Datorită atmosferei pozitive și sprijinului constant pe care îl oferiți, copilul meu a căpătat mai multă încredere și motivație. Vă mulțumim pentru tot și vă dorim o vacanță binemeritată, cu liniște și bucurie.",
+    author: "Svetlana B.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "27 mai 2025"
+  },
+  {
+    text: "Vă mulțumim din suflet pentru tot sprijinul, răbdarea și dăruirea cu care ne-ați ghidat copiii în procesul de învățare. Orele dvs de engleză au fost mereu pline de energie, creativitate și inspirație, iar modul în care i-ați ajutat să să-și dezvolte cunoștințele și încrderea în ei a făcut o diferență reală. Vă suntem recunsocători pentru profesionalismul și pasiunea pe care le transmiteți la fiecare lecție! 💚💐",
+    author: "Aliona. C",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "27 mai 2025"
+  },
+  {
+    text: "Vă mulțumim mult pentru efortul și munca depusă cu copiii noștri. Am rămas plăcut surprinsă și emoționată de succesele Alexandrei. Mereu vine la lecții cu cea mai mare plăcere. Mulțumesc! ❤️🌹",
+    author: "Daniela S.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "28 mai 2025"
+  },
+  {
+    text: "Vă mulțumim din inimă pentru implicarea, răbdarea și dragostea cu care ați ghidat copiii noștri în acest an la Progress CLS. Vă suntem recunoscători pentru felul în care ați reușit să cultivați în copii pasiunea pentru limba engleză, să le dezvoltați încrederea în sine și să șșe susțineți evoluția cu blândețe și profesionalism. Așteptăm cu bucurie revederea și continuarea acestei frumoase călătorii educaționale. ❤️❤️❤️",
+    author: "Elena G.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "29 mai 2025"
+  },
+  {
+    text: "Bună ziua. Anul acesta am terminat nivelul B1 în cadrul cursurilor de engleză la Progress_CLS și aș vrea să mulțumesc din tot sufletul profesoarei pentru sprijinul acordat. Lecțiile dumneavoastră m-au ajutat enorm să-mi consolidez cunoștințele și să mă pregătesc cu încredere pentru proba de bacalaureat la engleză. Datorită modului clar și structurat în care predați, dar și atmosferei plăcute din timpul orelor, am reușit să învăț eficient și să obțin un rezultat de care sunt mândră. Vă sunt foarte recunoscătoare pentru toată răbdarea și dedicarea cu care m-ați ghidat. Mulțumesc mult! Și recomand cu încredere tuturor care vor să-și îmbunătățească abilitățile în engleză și celor care au nevoie să susțină bacalaureatul sau alte examene!",
+    author: "Gabriela B.",
+    course: "Pregătire BAC",
+    rating: 5,
+    date: "29 iulie 2025"
+  },
+  {
+    text: "Vă mulțumim din suflet pentru răbdare, implicare și pentru felul frumos în care îi ghidați pe copii la engleză. Datorită dumneavoastră, lecțiile sunt interesante și plăcute, iar progresul se vede cu adevărat. Apreciem mult munca și dedicarea pe care o puneți în fiecare oră! 🌷",
+    author: "Violetta M.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "29 mai 2026"
+  },
+  {
+    text: "Vă mulțumim din suflet pentru răbdarea, dedicația, grija și sufletul depus zi de zi în instruirea copiilor.🌹 Munca și implicarea dumneavoastră se văd în rezultatele frumoase ale copiilor noștri. Vă dorim multă sănătate, putere și o VACANȚĂ frumoasă, liniștită și plină de culoare alături de familie!",
+    author: "Diana S.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "28 mai 2026"
+  },
+  {
+    text: "Vă mulțumim din suflet pentru tot ce ați făcut pentru copiii noștri pe parcursul acestui an! Pentru răbdare, grijă, încurajare și pentru atmosfera frumoasă pe care ați creat-o la fiecare lecție. Se simte cât suflet puneți în ceea ce faceți, iar pentru asta vă suntem foarte recunoscători.",
+    author: "Nadejda I.",
+    course: "Engleza pentru Copii",
+    rating: 5,
+    date: "28 mai 2026"
+  },
+  {
+    text: "Recomand această școală pentru profesionalismul și dedicarea cu suflet a profesorilor precum și a rezultatelor frumoase. Preț mai accesibil decât alte școli. A fost o experiență plăcută pentru copilul meu care a frecventat 3 ani această școală și a susținut anul acesta Cambridge la nivelul C1.",
+    author: "Aliona R.",
+    course: "Pregătire Cambridge C1",
+    rating: 5,
+    date: "15 iulie 2026"
+  }
 ];
 
 const CAMBRIDGE_FAQ = faqData.cambridgeFaq;
@@ -995,7 +1079,7 @@ export default function App() {
           ...parsed,
           courses: mergedCourses,
           team: mergedTeam,
-          testimonials: (parsed.testimonials && Array.isArray(parsed.testimonials) && parsed.testimonials.length >= 14) ? parsed.testimonials : TESTIMONIALS,
+          testimonials: (parsed.testimonials && Array.isArray(parsed.testimonials) && parsed.testimonials.length > 0) ? parsed.testimonials : TESTIMONIALS,
           benefits: (parsed.benefits && Array.isArray(parsed.benefits) && parsed.benefits.length >= 8) ? parsed.benefits : BENEFITS,
           hero: { ...defaultData.hero, ...(parsed.hero || {}) },
           faq: { ...defaultData.faq, ...(parsed.faq || {}) },

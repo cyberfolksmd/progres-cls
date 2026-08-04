@@ -2143,9 +2143,10 @@ img { max-width: 100%; display: block; }
   padding: 0 40px;
 }
 .tc-body mark {
-  background-color: #eaff00; /* lime green/yellow highlight */
+  background-color: transparent;
   color: inherit;
-  padding: 0 4px;
+  padding: 0;
+  border-radius: 0;
 }
 
 .tc-dots {
