@@ -237,6 +237,24 @@ img { max-width: 100%; display: block; }
 }
 
 /* Blog section — rose + teal */
+.cambridge-blur-section {
+  position: relative;
+  overflow: hidden;
+  color: white;
+  padding: 4.5rem 0;
+  isolation: isolate;
+}
+
+.cambridge-blur-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/bg_cambridge.webp') center/cover no-repeat;
+  filter: blur(8px) brightness(0.4);
+  transform: scale(1.08);
+  z-index: -1;
+}
+
 #blog {
   position: relative;
   overflow: hidden;

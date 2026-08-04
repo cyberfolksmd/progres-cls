@@ -1153,51 +1153,13 @@ export default function App() {
       </section>
 
       {/* ── CAMBRIDGE ────────────────────────── */}
-      <section id="cambridge" className="section section--dark">
+      <section id="cambridge" className="section cambridge-blur-section">
         <div className="container">
-          <div className="section-header fade-in">
-            <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
-            <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
-            <p className="section-subtitle section-subtitle--white">
-              Centru de pregătire în parteneriat cu Alianța Franceză. Pregătim cursanți pentru <strong style={{ color: 'var(--color-secondary)' }}>B2 First (FCE)</strong> și <strong style={{ color: 'var(--color-secondary)' }}>C1 Advanced (CAE)</strong>.
-            </p>
-          </div>
-
-          <div className="cambridge-wrap">
-            <div className="cambridge-card fade-in delay-1">
-              <div className="cambridge-card-header">
-                <div>
-                  <span className="cambridge-card-type">Intensiv</span>
-                </div>
-              </div>
-              <h3>Curs Intensiv</h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                Recomandat elevilor din clasa a XII-a sau celor care au nevoie să susțină examenul rapid. Ritm alert, concentrat pe rezultate maxime.
-              </p>
-              <div className="cambridge-detail"><Calendar size={18} /> 3.5 luni · Sâmbătă și duminică</div>
-              <div className="cambridge-detail"><Clock size={18} /> 30 lecții · 135 minute</div>
-              <div className="cambridge-detail"><Users size={18} /> Max. 12 cursanți / grupă</div>
-              <div className="cambridge-price">6000 lei <span style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.5)' }}>(2000 lei/lună)</span></div>
+          <div className="cambridge-faq fade-in">
+            <div className="section-header" style={{ marginBottom: '2rem' }}>
+              <span className="section-tag section-tag--uk-flag">Examene Internaționale</span>
+              <h2 className="section-title section-title--white">Pregătire Examene Cambridge</h2>
             </div>
-            <div className="cambridge-card fade-in delay-2">
-              <div className="cambridge-card-header">
-                <div>
-                  <span className="cambridge-card-type">Extensiv</span>
-                </div>
-              </div>
-              <h3>Curs Extensiv</h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                Recomandat elevilor din clasele X-XI. Proces gradual de 9 luni cu timp pentru consolidarea cunoștințelor, fără presiune.
-              </p>
-              <div className="cambridge-detail"><Calendar size={18} /> 9 luni · 2 ori săptămânal</div>
-              <div className="cambridge-detail"><Clock size={18} /> 72 lecții · 80 minute</div>
-              <div className="cambridge-detail"><Users size={18} /> Max. 12 cursanți / grupă</div>
-              <div className="cambridge-price">9000 lei <span style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.5)' }}>(1000 lei/lună)</span></div>
-            </div>
-          </div>
-
-          <div className="cambridge-faq">
-            <h3 className="cambridge-faq-title">Întrebări frecvente - Cambridge</h3>
             <div className="faq-list">
               {CAMBRIDGE_FAQ.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} />)}
             </div>
