@@ -3970,37 +3970,9 @@ html, body {
 .hero-award-badge-wrapper .hero-award-badge {
   margin-bottom: 0;
 }
-.award-rotating-circle {
-  position: absolute;
-  right: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 70px;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 11;
-  border: 1px solid rgba(0,0,0,0.05);
-  backdrop-filter: blur(4px);
-}
-.award-rotating-circle svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: spin-circle 12s linear infinite;
-}
-.award-rotating-inner {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+
+
 @keyframes spin-circle {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -4013,13 +3985,48 @@ html, body {
   .hero-award-badge-wrapper .hero-award-badge {
     margin: 0 !important;
   }
-  .award-rotating-circle {
-    right: -20px;
-    width: 60px;
-    height: 60px;
-  }
-  .award-rotating-circle svg {
-    transform: scale(0.85);
-    transform-origin: center;
+  
+  
+}
+
+.award-rotating-circle {
+  position: absolute;
+  width: 105px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+  pointer-events: none;
+}
+.mobile-badge-circle {
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.desktop-badge-circle {
+  right: -40px;
+  bottom: -40px;
+}
+.award-rotating-circle svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin-circle 15s linear infinite;
+}
+.award-rotating-inner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .mobile-badge-circle {
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
   }
 }

@@ -1138,22 +1138,25 @@ export default function App() {
                 <span className="award-text">{siteData.hero.awardText2}</span>
                 <span className="award-shimmer" />
               </div>
-              <div className="award-rotating-circle">
-                <svg viewBox="0 0 100 100" width="70" height="70">
+              <div className="award-rotating-circle mobile-badge-circle mobile-only">
+
+                <svg viewBox="0 0 100 100" width="105" height="105">
                   <defs>
-                    <path id="circlePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" />
+                    <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
                   </defs>
-                  <text fontSize="11" fontWeight="800" fill="var(--color-primary-dark)" letterSpacing="2.5">
+                  <text fontSize="11" fontWeight="800" fill="#ffffff" letterSpacing="2.5" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
                     <textPath href="#circlePath" startOffset="0%">
-                      CAMBRIDGE METODOLOGY &bull; CAMBRIDGE METODOLOGY &bull; 
+                      CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
                     </textPath>
                   </text>
                 </svg>
-                <div className="award-rotating-inner">
-                  <Star size={16} color="var(--color-primary-dark)" />
+                <div className="award-rotating-inner" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
+                  <Star size={20} color="#ffffff" fill="#ffffff" />
                 </div>
+
               </div>
             </div>
+          </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
             </h1>
@@ -1176,6 +1179,23 @@ export default function App() {
             </div>
           </div>
           <div className="hero-image-wrap desktop-only slide-in-right delay-2">
+            <div className="award-rotating-circle desktop-badge-circle desktop-only">
+
+                <svg viewBox="0 0 100 100" width="105" height="105">
+                  <defs>
+                    <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                  </defs>
+                  <text fontSize="11" fontWeight="800" fill="#ffffff" letterSpacing="2.5" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
+                    <textPath href="#circlePath" startOffset="0%">
+                      CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
+                    </textPath>
+                  </text>
+                </svg>
+                <div className="award-rotating-inner" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.8))' }}>
+                  <Star size={20} color="#ffffff" fill="#ffffff" />
+                </div>
+
+            </div>
             <HeroCarousel images={siteData.hero.images || ['/hero.webp', '/cambridge.webp', '/teacher_ludmila.webp', '/teacher_anastasia.webp']} />
             <div className="hero-float-logo-badge hero-float-logo-badge--top-right">
               <img src="/logo_cambridge.webp" alt="Cambridge Assessment English" className="hero-float-logo-img" />
