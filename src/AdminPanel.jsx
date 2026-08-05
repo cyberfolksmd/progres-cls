@@ -847,6 +847,11 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
           </header>
 
           <div className="admin-workspace">
+            {/* 0. ANALYTICS SECTION */}
+            {activeSection === 'analytics' && (
+              <AnalyticsDashboard />
+            )}
+
             {/* 1. HERO SECTION */}
             {activeSection === 'hero' && (
               <div className="admin-card-section">
