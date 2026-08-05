@@ -1222,10 +1222,10 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
                         </label>
 
                         <div className="admin-grid-3" style={{ gap: '1rem' }}>
-                          {Array.from({ length: Math.min((member.images || [member.img]).filter(Boolean).length + 1, 5) }).map((_, photoIdx) => {
-                            const imgs = (member.images && member.images.length > 0) ? member.images : [member.img].filter(Boolean);
+                          {[0, 1, 2, 3, 4].map((photoIdx) => {
+                            const imgs = (member.images && member.images.length > 0) ? member.images : [member.img, member.img2, member.img3].filter(Boolean);
                             const currentVal = imgs[photoIdx] || '';
-                            const label = photoIdx === 0 ? 'Foto Principală (Profil)' : `Foto ${photoIdx + 1} (Galerie Carusel)`;
+                            const label = photoIdx === 0 ? 'Foto 1 (Profil Principal)' : `Foto ${photoIdx + 1} (Carusel)`;
                             return (
                               <ImageUploadBox
                                 key={photoIdx}
@@ -1233,22 +1233,20 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
                                 value={currentVal}
                                 onChange={(newVal) => {
                                   const updated = [...data.team];
-                                  const currentImgs = [...((updated[idx].images && updated[idx].images.length > 0) ? updated[idx].images : [updated[idx].img].filter(Boolean))];
-                                  if (newVal) {
-                                    currentImgs[photoIdx] = newVal;
-                                  } else {
-                                    currentImgs.splice(photoIdx, 1);
-                                  }
-                                  updated[idx].images = currentImgs.filter(Boolean);
-                                  updated[idx].img = currentImgs[0] || '';
+                                  const currentImgs = [...((updated[idx].images && updated[idx].images.length > 0) ? updated[idx].images : [updated[idx].img, updated[idx].img2, updated[idx].img3].filter(Boolean))];
+                                  currentImgs[photoIdx] = newVal;
+                                  updated[idx].images = currentImgs;
+                                  if (photoIdx === 0) updated[idx].img = newVal;
+                                  if (photoIdx === 1) updated[idx].img2 = newVal;
+                                  if (photoIdx === 2) updated[idx].img3 = newVal;
                                   setData({ ...data, team: updated });
                                 }}
                               />
                             );
                           })}
                         </div>
-                        <p style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.5rem' }}>
-                          Maxim 5 fotografii per profesor. Adaugă o fotografie într-un slot gol pentru a debloca următorul.
+                        <p style={{ fontSize: '0.75rem', color: '#888', marginTop: '0.5rem' }}>
+                          Puteți adăuga până la 5 fotografii pentru fiecare profesor. Pe site se vor afișa doar cele completate.
                         </p>
                       </div>
                     </div>
