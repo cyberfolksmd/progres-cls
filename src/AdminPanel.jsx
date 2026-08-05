@@ -1222,51 +1222,34 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
                         </label>
 
                         <div className="admin-grid-3" style={{ gap: '1rem' }}>
-                          <ImageUploadBox 
-                            label="Foto Principală (Profil)"
-                            value={member.img}
-                            onChange={(newVal) => {
-                              const updated = [...data.team];
-                              const img2 = updated[idx].img2 || (updated[idx].images && updated[idx].images[1]) || '';
-                              const img3 = updated[idx].img3 || (updated[idx].images && updated[idx].images[2]) || '';
-                              updated[idx].img = newVal;
-                              updated[idx].img2 = img2;
-                              updated[idx].img3 = img3;
-                              updated[idx].images = [newVal, img2, img3].filter(Boolean);
-                              setData({ ...data, team: updated });
-                            }}
-                          />
-
-                          <ImageUploadBox 
-                            label="Foto 2 (Galerie Carusel)"
-                            value={member.img2 || (member.images && member.images[1]) || ''}
-                            onChange={(newVal) => {
-                              const updated = [...data.team];
-                              const img1 = updated[idx].img || (updated[idx].images && updated[idx].images[0]) || '';
-                              const img3 = updated[idx].img3 || (updated[idx].images && updated[idx].images[2]) || '';
-                              updated[idx].img = img1;
-                              updated[idx].img2 = newVal;
-                              updated[idx].img3 = img3;
-                              updated[idx].images = [img1, newVal, img3].filter(Boolean);
-                              setData({ ...data, team: updated });
-                            }}
-                          />
-
-                          <ImageUploadBox 
-                            label="Foto 3 (Galerie Carusel)"
-                            value={member.img3 || (member.images && member.images[2]) || ''}
-                            onChange={(newVal) => {
-                              const updated = [...data.team];
-                              const img1 = updated[idx].img || (updated[idx].images && updated[idx].images[0]) || '';
-                              const img2 = updated[idx].img2 || (updated[idx].images && updated[idx].images[1]) || '';
-                              updated[idx].img = img1;
-                              updated[idx].img2 = img2;
-                              updated[idx].img3 = newVal;
-                              updated[idx].images = [img1, img2, newVal].filter(Boolean);
-                              setData({ ...data, team: updated });
-                            }}
-                          />
+                          {Array.from({ length: Math.min((member.images || [member.img]).filter(Boolean).length + 1, 5) }).map((_, photoIdx) => {
+                            const imgs = (member.images && member.images.length > 0) ? member.images : [member.img].filter(Boolean);
+                            const currentVal = imgs[photoIdx] || '';
+                            const label = photoIdx === 0 ? 'Foto Principală (Profil)' : `Foto ${photoIdx + 1} (Galerie Carusel)`;
+                            return (
+                              <ImageUploadBox
+                                key={photoIdx}
+                                label={label}
+                                value={currentVal}
+                                onChange={(newVal) => {
+                                  const updated = [...data.team];
+                                  const currentImgs = [...((updated[idx].images && updated[idx].images.length > 0) ? updated[idx].images : [updated[idx].img].filter(Boolean))];
+                                  if (newVal) {
+                                    currentImgs[photoIdx] = newVal;
+                                  } else {
+                                    currentImgs.splice(photoIdx, 1);
+                                  }
+                                  updated[idx].images = currentImgs.filter(Boolean);
+                                  updated[idx].img = currentImgs[0] || '';
+                                  setData({ ...data, team: updated });
+                                }}
+                              />
+                            );
+                          })}
                         </div>
+                        <p style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.5rem' }}>
+                          Maxim 5 fotografii per profesor. Adaugă o fotografie într-un slot gol pentru a debloca următorul.
+                        </p>
                       </div>
                     </div>
                   ))}
