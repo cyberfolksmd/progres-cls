@@ -783,7 +783,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
               onClick={() => setActiveSection('github')}
               style={{ marginTop: '0.5rem', background: activeSection === 'github' ? 'var(--color-primary-light)' : 'rgba(255,255,255,0.06)' }}
             >
-              <Globe size={18} /> Sincronizare Vercel
+              <Globe size={18} /> Sincronizare
             </button>
           </nav>
 
@@ -828,7 +828,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
                 {activeSection === 'blog' && 'Articole de Blog & Noutăți'}
                 {activeSection === 'faq' && 'Întrebări Frecvente (FAQ)'}
                 {activeSection === 'contacts' && 'Date de Contact & Footer'}
-                {activeSection === 'github' && 'Sincronizare Vercel & Backup Data'}
+                {activeSection === 'github' && 'Sincronizare'}
               </h2>
             </div>
             <div className="admin-topbar-right">
@@ -1653,7 +1653,25 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
             {/* 10. GITHUB VERCEL AUTO-SYNC & BACKUP */}
             {activeSection === 'github' && (
               <div className="admin-card-section">
-                <h3>Sincronizare Cloud Vercel (Pus de pe orice dispozitiv pentru TOȚI vizitatorii)</h3>
+                <h3>Sincronizare Cloud Vercel & Integrări</h3>
+
+                <div className="admin-inner-card" style={{ marginBottom: '1.5rem', borderLeft: '4px solid #667eea' }}>
+                  <h4 style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <BarChart3 size={18} color="#667eea" /> Google Analytics 4 & Integrări
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
+                    Introduceți ID-ul de Măsurare Google Analytics (ex: <code>G-XXXXXXXXXX</code>) pentru a activa urmărirea automată a tuturor vizitatorilor.
+                  </p>
+                  <div className="form-group">
+                    <label>Google Analytics Measurement ID (G-XXXXXXXXXX)</label>
+                    <input 
+                      type="text" 
+                      placeholder="Ex: G-ABC123XYZ" 
+                      value={(data.contacts && data.contacts.gaId) || ''} 
+                      onChange={(e) => setData({ ...data, contacts: { ...(data.contacts || {}), gaId: e.target.value } })} 
+                    />
+                  </div>
+                </div>
                 <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.25rem' }}>
                   Prin introducerea unui <strong>GitHub Personal Access Token (PAT)</strong>, orice salvare efectuată în această Panou de Administrare va fi trimisă direct în repozitoriu, iar <strong>Vercel va publica automat modificările pentru toți utilizatorii din lume</strong>!
                 </p>
