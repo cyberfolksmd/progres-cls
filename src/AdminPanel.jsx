@@ -708,6 +708,14 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
 
           <nav className="admin-sidebar-menu">
             <button 
+              className={`admin-menu-item ${activeSection === 'analytics' ? 'active' : ''}`}
+              onClick={() => setActiveSection('analytics')}
+              style={{ background: activeSection === 'analytics' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : undefined, fontWeight: 700 }}
+            >
+              <BarChart3 size={18} /> Analitică Site
+            </button>
+
+            <button 
               className={`admin-menu-item ${activeSection === 'hero' ? 'active' : ''}`}
               onClick={() => setActiveSection('hero')}
             >
