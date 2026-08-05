@@ -4033,9 +4033,9 @@ html, body {
 }
 .award-rotating-circle.badge-circle {
   position: absolute;
-  right: -55px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
   width: 120px;
   height: 120px;
   display: flex;
@@ -4068,7 +4068,6 @@ html, body {
     margin: 0 !important;
   }
   .award-rotating-circle.badge-circle {
-    right: -45px;
     width: 100px;
     height: 100px;
   }

@@ -1146,7 +1146,7 @@ export default function App() {
                   </defs>
                   <text fontSize="11" fontWeight="800" fill="#1a1a2e" letterSpacing="3" >
                     <textPath href="#circlePath" startOffset="0%">
-                      CAMBRIDGE METHODOLOGY &bull; CAMBRIDGE METHODOLOGY &bull; 
+                      CAMBRIDGE &bull; METODOLOGY &bull; CAMBRIDGE &bull; METODOLOGY &bull; 
                     </textPath>
                   </text>
                 </svg>
