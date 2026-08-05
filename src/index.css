@@ -4033,9 +4033,8 @@ html, body {
 }
 .award-rotating-circle.badge-circle {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  transform: translate(50%, 50%);
+  left: calc(100% - 60px);
+  top: calc(100% - 60px);
   width: 120px;
   height: 120px;
   display: flex;

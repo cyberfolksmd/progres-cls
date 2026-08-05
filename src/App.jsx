@@ -1140,13 +1140,13 @@ export default function App() {
               </div>
               <div className="award-rotating-circle badge-circle">
 
-                <svg viewBox="0 0 100 100" width="105" height="105">
+                <svg viewBox="0 0 100 100" width="120" height="120">
                   <defs>
-                    <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+                    <path id="circlePath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                   </defs>
-                  <text fontSize="11" fontWeight="800" fill="#1a1a2e" letterSpacing="3" >
+                  <text fontSize="9.5" fontWeight="800" fill="#1a1a2e" letterSpacing="1.5" >
                     <textPath href="#circlePath" startOffset="0%">
-                      CAMBRIDGE &bull; METODOLOGY &bull; CAMBRIDGE &bull; METODOLOGY &bull; 
+                      CAMBRIDGE • METODOLOGY • CAMBRIDGE • METODOLOGY • 
                     </textPath>
                   </text>
                 </svg>
