@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, Lock, User, Save, LogOut, CheckCircle, Plus, Trash2, X, 
-  Layout, BookOpen, Award, Users, Star, MessageSquare, Newspaper, HelpCircle, Phone, Globe, RefreshCw
+  Layout, BookOpen, Award, Users, Star, MessageSquare, Newspaper, HelpCircle, Phone, Globe, RefreshCw,
+  BarChart3, TrendingUp, Activity, MapPin, Eye
 } from 'lucide-react';
 
 function RichTextEditor({ label, value, onChange, placeholder, minHeight = 120 }) {
@@ -171,6 +172,286 @@ async function commitFileToGitHub(token, path, contentObj, commitMessage) {
     console.error('GitHub API error for ' + path, err);
     return false;
   }
+}
+
+function AnalyticsDashboard() {
+  const [period, setPeriod] = useState('7d');
+  const [analyticsData, setAnalyticsData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Track current visit
+    const trackVisit = () => {
+      const visits = JSON.parse(localStorage.getItem('pcls_visits') || '[]');
+      const now = new Date();
+      const visit = {
+        ts: now.toISOString(),
+        path: window.location.pathname,
+        ref: document.referrer || 'direct',
+        ua: navigator.userAgent,
+        lang: navigator.language,
+        sw: screen.width,
+        sh: screen.height,
+      };
+      visits.push(visit);
+      // Keep last 10000 visits
+      if (visits.length > 10000) visits.splice(0, visits.length - 10000);
+      localStorage.setItem('pcls_visits', JSON.stringify(visits));
+    };
+    trackVisit();
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      const visits = JSON.parse(localStorage.getItem('pcls_visits') || '[]');
+      const now = new Date();
+      let daysBack = 7;
+      if (period === '24h') daysBack = 1;
+      else if (period === '7d') daysBack = 7;
+      else if (period === '30d') daysBack = 30;
+      else if (period === '90d') daysBack = 90;
+
+      const cutoff = new Date(now.getTime() - daysBack * 24 * 60 * 60 * 1000);
+      const filtered = visits.filter(v => new Date(v.ts) >= cutoff);
+
+      // Visits per day
+      const dailyMap = {};
+      filtered.forEach(v => {
+        const day = v.ts.substring(0, 10);
+        dailyMap[day] = (dailyMap[day] || 0) + 1;
+      });
+
+      // Fill missing days
+      const dailyData = [];
+      for (let d = new Date(cutoff); d <= now; d.setDate(d.getDate() + 1)) {
+        const key = d.toISOString().substring(0, 10);
+        dailyData.push({ date: key, count: dailyMap[key] || 0 });
+      }
+
+      // Country detection from language
+      const countryMap = {};
+      filtered.forEach(v => {
+        const lang = (v.lang || 'unknown').substring(0, 2).toUpperCase();
+        const countryNames = {
+          'RO': 'România', 'RU': 'Rusia', 'EN': 'UK/US', 'DE': 'Germania',
+          'FR': 'Franța', 'IT': 'Italia', 'ES': 'Spania', 'UK': 'Ucraina',
+          'MD': 'Moldova', 'BG': 'Bulgaria', 'PL': 'Polonia', 'HU': 'Ungaria',
+          'TR': 'Turcia', 'PT': 'Portugalia', 'NL': 'Olanda', 'CS': 'Cehia',
+        };
+        const country = countryNames[lang] || lang;
+        countryMap[country] = (countryMap[country] || 0) + 1;
+      });
+      const countries = Object.entries(countryMap)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+
+      // Device breakdown
+      const devices = { mobile: 0, tablet: 0, desktop: 0 };
+      filtered.forEach(v => {
+        if (v.sw <= 480) devices.mobile++;
+        else if (v.sw <= 1024) devices.tablet++;
+        else devices.desktop++;
+      });
+
+      // Referrer breakdown
+      const refMap = {};
+      filtered.forEach(v => {
+        let ref = 'Direct';
+        if (v.ref && v.ref !== 'direct') {
+          try { ref = new URL(v.ref).hostname; } catch { ref = v.ref; }
+        }
+        refMap[ref] = (refMap[ref] || 0) + 1;
+      });
+      const referrers = Object.entries(refMap)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+
+      setAnalyticsData({
+        totalVisits: filtered.length,
+        uniqueDays: Object.keys(dailyMap).length,
+        dailyData,
+        countries,
+        devices,
+        referrers,
+        avgPerDay: filtered.length > 0 ? Math.round(filtered.length / Math.max(daysBack, 1) * 10) / 10 : 0,
+      });
+      setLoading(false);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [period]);
+
+  const maxDaily = analyticsData ? Math.max(...analyticsData.dailyData.map(d => d.count), 1) : 1;
+
+  return (
+    <div className="admin-card-section">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+        <h3 style={{ margin: 0 }}>📊 Analitică Vizitatori</h3>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          {['24h', '7d', '30d', '90d'].map(p => (
+            <button
+              key={p}
+              onClick={() => setPeriod(p)}
+              style={{
+                padding: '0.4rem 1rem',
+                borderRadius: '20px',
+                border: period === p ? '2px solid var(--color-primary)' : '1px solid #ddd',
+                background: period === p ? 'var(--color-primary)' : '#fff',
+                color: period === p ? '#fff' : '#555',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+            >
+              {p === '24h' ? '24 ore' : p === '7d' ? '7 zile' : p === '30d' ? '30 zile' : '90 zile'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '3rem', color: '#888' }}>
+          <Activity size={32} style={{ animation: 'spin 1s linear infinite' }} />
+          <p>Se încarcă datele...</p>
+        </div>
+      ) : analyticsData && (
+        <>
+          {/* KPI Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+            <div className="admin-inner-card" style={{ padding: '1.25rem', textAlign: 'center', background: 'linear-gradient(135deg, #667eea22, #764ba222)', borderLeft: '4px solid #667eea' }}>
+              <Eye size={22} color="#667eea" />
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#333', marginTop: '0.5rem' }}>{analyticsData.totalVisits}</div>
+              <div style={{ fontSize: '0.8rem', color: '#888', fontWeight: 600 }}>Vizite Totale</div>
+            </div>
+            <div className="admin-inner-card" style={{ padding: '1.25rem', textAlign: 'center', background: 'linear-gradient(135deg, #f093fb22, #f5576c22)', borderLeft: '4px solid #f5576c' }}>
+              <TrendingUp size={22} color="#f5576c" />
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#333', marginTop: '0.5rem' }}>{analyticsData.avgPerDay}</div>
+              <div style={{ fontSize: '0.8rem', color: '#888', fontWeight: 600 }}>Media / Zi</div>
+            </div>
+            <div className="admin-inner-card" style={{ padding: '1.25rem', textAlign: 'center', background: 'linear-gradient(135deg, #4facfe22, #00f2fe22)', borderLeft: '4px solid #4facfe' }}>
+              <Activity size={22} color="#4facfe" />
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#333', marginTop: '0.5rem' }}>{analyticsData.uniqueDays}</div>
+              <div style={{ fontSize: '0.8rem', color: '#888', fontWeight: 600 }}>Zile Active</div>
+            </div>
+            <div className="admin-inner-card" style={{ padding: '1.25rem', textAlign: 'center', background: 'linear-gradient(135deg, #43e97b22, #38f9d722)', borderLeft: '4px solid #43e97b' }}>
+              <MapPin size={22} color="#43e97b" />
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: '#333', marginTop: '0.5rem' }}>{analyticsData.countries.length}</div>
+              <div style={{ fontSize: '0.8rem', color: '#888', fontWeight: 600 }}>Țări Unice</div>
+            </div>
+          </div>
+
+          {/* Chart - Daily Visits */}
+          <div className="admin-inner-card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+            <h4 style={{ margin: '0 0 1rem 0', fontSize: '1rem', color: '#444' }}>📈 Vizite pe Zi</h4>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '3px', height: '160px', borderBottom: '2px solid #eee', paddingBottom: '0.5rem' }}>
+              {analyticsData.dailyData.map((d, i) => (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#667eea', marginBottom: '4px' }}>
+                    {d.count > 0 ? d.count : ''}
+                  </div>
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '40px',
+                    height: `${Math.max((d.count / maxDaily) * 100, 2)}%`,
+                    background: d.count > 0 ? 'linear-gradient(180deg, #667eea, #764ba2)' : '#eee',
+                    borderRadius: '4px 4px 0 0',
+                    transition: 'height 0.5s ease',
+                    minHeight: '3px'
+                  }} />
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}>
+              <span style={{ fontSize: '0.7rem', color: '#aaa' }}>
+                {analyticsData.dailyData[0]?.date}
+              </span>
+              <span style={{ fontSize: '0.7rem', color: '#aaa' }}>
+                {analyticsData.dailyData[analyticsData.dailyData.length - 1]?.date}
+              </span>
+            </div>
+          </div>
+
+          {/* Two columns: Countries + Devices */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            {/* Countries */}
+            <div className="admin-inner-card" style={{ padding: '1.5rem' }}>
+              <h4 style={{ margin: '0 0 1rem 0', fontSize: '1rem', color: '#444' }}>🌍 Vizitatori pe Țări</h4>
+              {analyticsData.countries.length === 0 ? (
+                <p style={{ color: '#aaa', fontSize: '0.85rem' }}>Nicio dată disponibilă</p>
+              ) : (
+                analyticsData.countries.slice(0, 10).map((c, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#333', minWidth: '110px' }}>{c.name}</span>
+                    <div style={{ flex: 1, height: '8px', background: '#f0f0f0', borderRadius: '4px', overflow: 'hidden' }}>
+                      <div style={{
+                        width: `${(c.count / analyticsData.countries[0].count) * 100}%`,
+                        height: '100%',
+                        background: 'linear-gradient(90deg, #667eea, #764ba2)',
+                        borderRadius: '4px',
+                        transition: 'width 0.5s ease'
+                      }} />
+                    </div>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#667eea', minWidth: '30px', textAlign: 'right' }}>{c.count}</span>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Devices */}
+            <div className="admin-inner-card" style={{ padding: '1.5rem' }}>
+              <h4 style={{ margin: '0 0 1rem 0', fontSize: '1rem', color: '#444' }}>📱 Dispozitive</h4>
+              {[
+                { label: 'Mobile', count: analyticsData.devices.mobile, color: '#f5576c', icon: '📱' },
+                { label: 'Tablet', count: analyticsData.devices.tablet, color: '#feca57', icon: '📋' },
+                { label: 'Desktop', count: analyticsData.devices.desktop, color: '#667eea', icon: '🖥️' },
+              ].map((d, i) => {
+                const total = analyticsData.devices.mobile + analyticsData.devices.tablet + analyticsData.devices.desktop;
+                const pct = total > 0 ? Math.round((d.count / total) * 100) : 0;
+                return (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '1.4rem' }}>{d.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.85rem', color: '#333' }}>{d.label}</span>
+                        <span style={{ fontWeight: 700, fontSize: '0.85rem', color: d.color }}>{pct}% ({d.count})</span>
+                      </div>
+                      <div style={{ height: '8px', background: '#f0f0f0', borderRadius: '4px', overflow: 'hidden' }}>
+                        <div style={{
+                          width: `${pct}%`,
+                          height: '100%',
+                          background: d.color,
+                          borderRadius: '4px',
+                          transition: 'width 0.5s ease'
+                        }} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              <hr style={{ margin: '1.5rem 0 1rem', borderColor: '#eee' }} />
+              <h4 style={{ margin: '0 0 1rem 0', fontSize: '1rem', color: '#444' }}>🔗 Surse Trafic</h4>
+              {analyticsData.referrers.length === 0 ? (
+                <p style={{ color: '#aaa', fontSize: '0.85rem' }}>Nicio dată disponibilă</p>
+              ) : (
+                analyticsData.referrers.slice(0, 5).map((r, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#555' }}>{r.name}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#667eea' }}>{r.count}</span>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div style={{ marginTop: '1.5rem', padding: '1rem', background: '#fffbe6', borderRadius: '12px', border: '1px solid #ffeaa7', fontSize: '0.85rem', color: '#856404' }}>
+            <strong>💡 Notă:</strong> Datele sunt colectate local din browser-ul administratorului. Pentru analitică completă cu toți vizitatorii, recomandăm integrarea cu Google Analytics 4.
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
@@ -529,6 +810,7 @@ export default function AdminPanel({ onClose, onSaveData, initialData = {} }) {
           <header className="admin-topbar">
             <div className="admin-topbar-left">
               <h2>
+                {activeSection === 'analytics' && 'Analitică & Statistici Vizitatori'}
                 {activeSection === 'hero' && 'Hero Banner & Efect de Peceat'}
                 {activeSection === 'stats' && 'Blocul de Statistică (Cifre rapide)'}
                 {activeSection === 'courses' && 'Cursuri, Prețuri & Manuale'}
