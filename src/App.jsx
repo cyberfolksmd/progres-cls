@@ -1131,27 +1131,11 @@ export default function App() {
 
         <div className="container hero-container">
           <div className="hero-content slide-in-left">
-            <div className="hero-award-badge-wrapper animate-fade-up">
-              <div className="hero-award-badge">
-                <span className="award-text">{siteData.hero.awardText1}</span>
-                <span className="award-divider">&middot;</span>
-                <span className="award-text">{siteData.hero.awardText2}</span>
-                <span className="award-shimmer" />
-              </div>
-              <div className="award-rotating-circle badge-circle">
-
-                <svg viewBox="0 0 100 100" width="120" height="120">
-                  <defs>
-                    <path id="circlePath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
-                  </defs>
-                  <text fontSize="9.5" fontWeight="800" fill="#1a1a2e" letterSpacing="1.5" >
-                    <textPath href="#circlePath" startOffset="0%">
-                      CAMBRIDGE • METODOLOGY • CAMBRIDGE • METODOLOGY • 
-                    </textPath>
-                  </text>
-                </svg>
-
-              </div>
+            <div className="hero-award-badge animate-fade-up">
+              <span className="award-text">{siteData.hero.awardText1}</span>
+              <span className="award-divider">&middot;</span>
+              <span className="award-text">{siteData.hero.awardText2}</span>
+              <span className="award-shimmer" />
             </div>
             <h1 className="hero-h1 animate-fade-up animate-delay-1">
               <span className="gradient-text"><Typewriter words={siteData.hero.typewriterWords || TYPEWRITER_WORDS} /></span><br />cu Progress CLS
